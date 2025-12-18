@@ -1,0 +1,497 @@
+[
+  {
+    "OsmType": "way",
+    "OsmId": "way/487593505",
+    "Name": "(no name)",
+    "Lat": -34.9048761,
+    "Lon": 138.4911752,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/951591512",
+    "Name": "(no name)",
+    "Lat": -34.8587874,
+    "Lon": 138.5578343,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/1038983217",
+    "Name": "Adelaide Plains Library - Two Wells",
+    "Lat": -34.594077,
+    "Lon": 138.5143111,
+    "Website": "https://onecard.network/client/en_AU/mallala/",
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/1292752686",
+    "Name": "Barr Smith Library",
+    "Lat": -34.9188814,
+    "Lon": 138.604483,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/11772674360",
+    "Name": "BFPS Library",
+    "Lat": -34.9605949,
+    "Lon": 138.5735866,
+    "Website": "https://blackforestps.sa.edu.au/library/",
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/11533716830",
+    "Name": "Blackwood Library",
+    "Lat": -35.0196181,
+    "Lon": 138.6150736,
+    "Website": "https://onecard.network/client/en_AU/mitcham",
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/581499139",
+    "Name": "Brighton Library - City of Holdfast Bay",
+    "Lat": -35.0166714,
+    "Lon": 138.5201239,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/57919090",
+    "Name": "Burnside Library",
+    "Lat": -34.93866,
+    "Lon": 138.643638,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/663054311",
+    "Name": "Campbelltown Library",
+    "Lat": -34.8879543,
+    "Lon": 138.6784462,
+    "Website": "https://www.campbelltown.sa.gov.au/library",
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/5602269421",
+    "Name": "City Library",
+    "Lat": -34.9232211,
+    "Lon": 138.6023806,
+    "Website": null,
+    "OpeningHours": "Mo-Tu, Th 10:00-18:00; Fr 10:00-20:00; Su 12:00-17:00; We 10:00-19:00; Sa 10:00-17:00"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/192384142",
+    "Name": "City of Tea Tree Gully Library",
+    "Lat": -34.828469,
+    "Lon": 138.6901145,
+    "Website": "https://www.teatreegully.sa.gov.au/Places-Council-parks-facilities-and-venues/Library",
+    "OpeningHours": "Mo,We 09:00-20:00; Tu,Th-Fr 09:00-17:00; Sa 10:00-17:00; Su 11:00-15:00; PH off"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/210312269",
+    "Name": "Civic Library",
+    "Lat": -34.8788117,
+    "Lon": 138.538279,
+    "Website": null,
+    "OpeningHours": "Mo-Th 10:00-17:30; Fr 10:00-20:00; Sa 09:15-12:00; Su 13:30-16:30"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/240642809",
+    "Name": "Colonel Light Centre",
+    "Lat": -34.9260333,
+    "Lon": 138.6007702,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/132180997",
+    "Name": "Coventry Memorial Library",
+    "Lat": -35.0053994,
+    "Lon": 138.7175661,
+    "Website": "https://www.ahc.sa.gov.au/services/libraries/library-locations-and-hours/coventry-library",
+    "OpeningHours": "Mo-We,Fr 10:00-18:00; Th 10:00-19:00; Sa 10:00-16:00; Su 13:00-16:00; PH off; 00:00-24:00 off \"Catastrophic fire danger\""
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/3760233641",
+    "Name": "Enfield Library",
+    "Lat": -34.8528803,
+    "Lon": 138.6016223,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/108179135",
+    "Name": "Flinders University Central Library",
+    "Lat": -35.0253171,
+    "Lon": 138.5723296,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/11341136920",
+    "Name": "Gawler Public Library",
+    "Lat": -34.5993033,
+    "Lon": 138.7494095,
+    "Website": null,
+    "OpeningHours": "Mo-We,Fr 09:00-17:00; Th 10:00-18:00; Sa 09:00-13:00"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/2570988381",
+    "Name": "Glenelg Community Library",
+    "Lat": -34.9797128,
+    "Lon": 138.512212,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/423630380",
+    "Name": "Goodwood Library",
+    "Lat": -34.9508054,
+    "Lon": 138.5899313,
+    "Website": null,
+    "OpeningHours": "Mo 10:30-17:00; Tu 10:00-18:00; We 13:00-17:00; Th 10:00-18:00; Fr 10:00-17:00; Sa 10:00-13:00"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/543080890",
+    "Name": "Greenacres Library",
+    "Lat": -34.8701618,
+    "Lon": 138.6374333,
+    "Website": "https://www.paelibraries.com.au/locations",
+    "OpeningHours": "Sa 10:00-14:00; Mo-We, Fr 09:00-18:00; Su 13:00-16:00; Th 09:00-19:00"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/7085872951",
+    "Name": "Gumeracha Library",
+    "Lat": -34.8219684,
+    "Lon": 138.8863948,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/215405039",
+    "Name": "Hindmarsh Library",
+    "Lat": -34.9057407,
+    "Lon": 138.5735694,
+    "Website": null,
+    "OpeningHours": "Mo-Fr 10:00-19:00; Sa 12:30-16:30"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/367866730",
+    "Name": "Hutt Street Libraru",
+    "Lat": -34.9334316,
+    "Lon": 138.612166,
+    "Website": "https://www.cityofadelaide.com.au/community/library-services/library-locations/hutt-street-library/",
+    "OpeningHours": "Mo-Fr 10:00-17:00, Sa 10:00-14:00"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/1871406497",
+    "Name": "Ingle Farm Library",
+    "Lat": -34.8324041,
+    "Lon": 138.6489251,
+    "Website": "https://www.salisbury.sa.gov.au/community/libraries/branches-hours-locations/ingle-farm-library-2",
+    "OpeningHours": "Mo-We,Fr 09:30-17:00; Th 09:30-19:00; Sa 10:00-14:00; Su,PH off"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/362188005",
+    "Name": "Jeffrey Smart Building",
+    "Lat": -34.9238061,
+    "Lon": 138.5906566,
+    "Website": null,
+    "OpeningHours": "24/7"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/6953440885",
+    "Name": "Kensignton and Norwood Public Library",
+    "Lat": -34.9215529,
+    "Lon": 138.6316423,
+    "Website": null,
+    "OpeningHours": "Tu-We 13:00-17:00; Su 13:00-20:00; Th 00:00-24:00; Fr 09:30-17:00; Sa 10:00-13:00"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/2424959446",
+    "Name": "Len Beadell (Salisbury) Library",
+    "Lat": -34.7618816,
+    "Lon": 138.6458413,
+    "Website": null,
+    "OpeningHours": "Mo-We,Fr 08:30-17:30; Th 08:30-19:00; Sa 09:30-15:30; Su 11:00-14:00"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/1285911391",
+    "Name": "Library",
+    "Lat": -35.0742477,
+    "Lon": 138.5929557,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/9518134387",
+    "Name": "Lyndoch Library",
+    "Lat": -34.6011644,
+    "Lon": 138.891016,
+    "Website": "https://www.barossa.sa.gov.au/recreation-and-venues/venues-and-facilities/lyndoch-library-and-council-office",
+    "OpeningHours": "Mo-Fr 09:00-12:30, 13:30-17:00; Sa 09:30-12:30"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/12150899998",
+    "Name": "Marion Cultural Centre Library",
+    "Lat": -35.0135615,
+    "Lon": 138.5434011,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/286681484",
+    "Name": "Mawson Lakes Library",
+    "Lat": -34.8109606,
+    "Lon": 138.6170947,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/60341614",
+    "Name": "Mitcham Memorial Library",
+    "Lat": -34.9729828,
+    "Lon": 138.6085885,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/200113113",
+    "Name": "Mount Barker Community Library",
+    "Lat": -35.0691308,
+    "Lon": 138.8549994,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/903719806",
+    "Name": "Ngutungka West Lakes (Community Hub and Library)",
+    "Lat": -34.8790342,
+    "Lon": 138.4944856,
+    "Website": "https://www.charlessturt.sa.gov.au/community/library/our-libraries/ngutungka-west-lakes",
+    "OpeningHours": "Mo-Fr 09:00-17:00; Sa 10:00-16:00; Su 12:00-16:00"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/259725059",
+    "Name": "Noarlunga Library",
+    "Lat": -35.1400676,
+    "Lon": 138.4967251,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/218842486",
+    "Name": "North Adelaide Library",
+    "Lat": -34.9062141,
+    "Lon": 138.593835,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/1193064010",
+    "Name": "Paradise Primary School Library",
+    "Lat": -34.8704366,
+    "Lon": 138.6852687,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/502828536",
+    "Name": "Park Holme Library",
+    "Lat": -34.9917514,
+    "Lon": 138.555503,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/6884056285",
+    "Name": "Parks Library",
+    "Lat": -34.8586136,
+    "Lon": 138.557573,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/3803457282",
+    "Name": "Playford Library",
+    "Lat": -34.6695397,
+    "Lon": 138.6804135,
+    "Website": null,
+    "OpeningHours": "Mo-We 09:00-17:00; Th 10:00-19:00; Fr 09:00-17:00; Sa 10:00-14:00; Su 13:00-16:00"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/4950739608",
+    "Name": "Playford Library",
+    "Lat": -34.7176812,
+    "Lon": 138.6714942,
+    "Website": "https://playford.sa.gov.au/aboutthelibrary",
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/2483267814",
+    "Name": "Port Adelaide Library",
+    "Lat": -34.8473277,
+    "Lon": 138.5033672,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/215364809",
+    "Name": "Port Adelaide-Enfield Council Library, Semaphore Branch",
+    "Lat": -34.8388164,
+    "Lon": 138.4812309,
+    "Website": "https://www.cityofpae.sa.gov.au/explore/libraries",
+    "OpeningHours": "Mo-We 9:30-17:30; Th 09:30-20:00; Fr 10:00-17:30; Sa 09:30-13:00; Su 13:30-17:00"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/831017647",
+    "Name": "Prospect Library",
+    "Lat": -34.8860586,
+    "Lon": 138.5935751,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/586021448",
+    "Name": "Public Library",
+    "Lat": -34.9529967,
+    "Lon": 138.6080283,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/588082537",
+    "Name": "Public Library",
+    "Lat": -34.9170365,
+    "Lon": 138.4938722,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/2428447199",
+    "Name": "Schrader Libraray",
+    "Lat": -34.9352994,
+    "Lon": 138.6036214,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/677417155",
+    "Name": "State Library of South Australia",
+    "Lat": -34.9205015,
+    "Lon": 138.6023669,
+    "Website": "https://www.slsa.sa.gov.au/",
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/260373162",
+    "Name": "Sturt Library",
+    "Lat": -35.0183565,
+    "Lon": 138.5751312,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/282459978",
+    "Name": "Unley Library",
+    "Lat": -34.9506833,
+    "Lon": 138.6078907,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/322709645",
+    "Name": "Walkerville Library",
+    "Lat": -34.8976454,
+    "Lon": 138.614537,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/182633531",
+    "Name": "West Torrens Library",
+    "Lat": -34.9338192,
+    "Lon": 138.5618824,
+    "Website": "https://www.westtorrens.sa.gov.au/Library",
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/227745472",
+    "Name": "Woodcroft Library",
+    "Lat": -35.1136282,
+    "Lon": 138.5460761,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/341969614",
+    "Name": "Woodside Library",
+    "Lat": -34.9539764,
+    "Lon": 138.8750404,
+    "Website": null,
+    "OpeningHours": null
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/4998809936",
+    "Name": "Woodville Library and Civic Centre",
+    "Lat": -34.8787628,
+    "Lon": 138.5377752,
+    "Website": null,
+    "OpeningHours": null
+  }
+]
