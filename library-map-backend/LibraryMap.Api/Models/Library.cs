@@ -7,7 +7,7 @@ namespace LibraryMap.Api.Models
         // 出典・一意キー（OSM）
         public string? OsmType { get; set; }      // "node" / "way" / "relation"
         public long? OsmId { get; set; }          // 57919090
-        public string? OsmLastUpdated { get; set; } // あれば（ISO文字列でもOK）
+        public string? OsmLastUpdated { get; set; } // あれば
 
         public string Name { get; set; } = null!;
         public double Lat { get; set; }
@@ -31,6 +31,8 @@ namespace LibraryMap.Api.Models
 
         // Googleは後で入るかも、なので optionalのまま
         public string? GooglePlaceId { get; set; }
+
+
     }
 
 }

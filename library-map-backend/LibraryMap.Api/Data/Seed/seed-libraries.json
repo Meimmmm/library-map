@@ -6,7 +6,8 @@
     "Lat": -34.9048761,
     "Lon": 138.4911752,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2025-11-24T10:30:57Z"
   },
   {
     "OsmType": "way",
@@ -15,7 +16,8 @@
     "Lat": -34.8587874,
     "Lon": 138.5578343,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2021-06-06T02:37:58Z"
   },
   {
     "OsmType": "way",
@@ -24,7 +26,8 @@
     "Lat": -34.594077,
     "Lon": 138.5143111,
     "Website": "https://onecard.network/client/en_AU/mallala/",
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2022-03-10T07:31:50Z"
   },
   {
     "OsmType": "way",
@@ -33,7 +36,8 @@
     "Lat": -34.9188814,
     "Lon": 138.604483,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2025-10-31T02:20:56Z"
   },
   {
     "OsmType": "node",
@@ -42,7 +46,8 @@
     "Lat": -34.9605949,
     "Lon": 138.5735866,
     "Website": "https://blackforestps.sa.edu.au/library/",
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2024-03-30T00:22:53Z"
   },
   {
     "OsmType": "node",
@@ -51,7 +56,8 @@
     "Lat": -35.0196181,
     "Lon": 138.6150736,
     "Website": "https://onecard.network/client/en_AU/mitcham",
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2024-01-20T12:22:36Z"
   },
   {
     "OsmType": "way",
@@ -60,7 +66,8 @@
     "Lat": -35.0166714,
     "Lon": 138.5201239,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2023-08-20T10:03:36Z"
   },
   {
     "OsmType": "node",
@@ -69,7 +76,8 @@
     "Lat": -34.93866,
     "Lon": 138.643638,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2021-05-17T03:07:26Z"
   },
   {
     "OsmType": "way",
@@ -78,7 +86,8 @@
     "Lat": -34.8879543,
     "Lon": 138.6784462,
     "Website": "https://www.campbelltown.sa.gov.au/library",
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2023-10-16T00:37:07Z"
   },
   {
     "OsmType": "node",
@@ -87,7 +96,8 @@
     "Lat": -34.9232211,
     "Lon": 138.6023806,
     "Website": null,
-    "OpeningHours": "Mo-Tu, Th 10:00-18:00; Fr 10:00-20:00; Su 12:00-17:00; We 10:00-19:00; Sa 10:00-17:00"
+    "OpeningHours": "Mo-Tu, Th 10:00-18:00; Fr 10:00-20:00; Su 12:00-17:00; We 10:00-19:00; Sa 10:00-17:00",
+    "OsmLastUpdated": "2021-07-29T14:12:40Z"
   },
   {
     "OsmType": "way",
@@ -96,7 +106,8 @@
     "Lat": -34.828469,
     "Lon": 138.6901145,
     "Website": "https://www.teatreegully.sa.gov.au/Places-Council-parks-facilities-and-venues/Library",
-    "OpeningHours": "Mo,We 09:00-20:00; Tu,Th-Fr 09:00-17:00; Sa 10:00-17:00; Su 11:00-15:00; PH off"
+    "OpeningHours": "Mo,We 09:00-20:00; Tu,Th-Fr 09:00-17:00; Sa 10:00-17:00; Su 11:00-15:00; PH off",
+    "OsmLastUpdated": "2023-12-29T04:05:07Z"
   },
   {
     "OsmType": "way",
@@ -105,7 +116,8 @@
     "Lat": -34.8788117,
     "Lon": 138.538279,
     "Website": null,
-    "OpeningHours": "Mo-Th 10:00-17:30; Fr 10:00-20:00; Sa 09:15-12:00; Su 13:30-16:30"
+    "OpeningHours": "Mo-Th 10:00-17:30; Fr 10:00-20:00; Sa 09:15-12:00; Su 13:30-16:30",
+    "OsmLastUpdated": "2025-03-05T08:30:31Z"
   },
   {
     "OsmType": "way",
@@ -114,7 +126,8 @@
     "Lat": -34.9260333,
     "Lon": 138.6007702,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2024-10-27T11:01:04Z"
   },
   {
     "OsmType": "way",
@@ -123,7 +136,8 @@
     "Lat": -35.0053994,
     "Lon": 138.7175661,
     "Website": "https://www.ahc.sa.gov.au/services/libraries/library-locations-and-hours/coventry-library",
-    "OpeningHours": "Mo-We,Fr 10:00-18:00; Th 10:00-19:00; Sa 10:00-16:00; Su 13:00-16:00; PH off; 00:00-24:00 off \"Catastrophic fire danger\""
+    "OpeningHours": "Mo-We,Fr 10:00-18:00; Th 10:00-19:00; Sa 10:00-16:00; Su 13:00-16:00; PH off; 00:00-24:00 off \"Catastrophic fire danger\"",
+    "OsmLastUpdated": "2025-12-13T03:31:34Z"
   },
   {
     "OsmType": "node",
@@ -132,7 +146,8 @@
     "Lat": -34.8528803,
     "Lon": 138.6016223,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2015-09-26T13:41:05Z"
   },
   {
     "OsmType": "way",
@@ -141,7 +156,8 @@
     "Lat": -35.0253171,
     "Lon": 138.5723296,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2023-08-28T10:22:28Z"
   },
   {
     "OsmType": "node",
@@ -150,7 +166,8 @@
     "Lat": -34.5993033,
     "Lon": 138.7494095,
     "Website": null,
-    "OpeningHours": "Mo-We,Fr 09:00-17:00; Th 10:00-18:00; Sa 09:00-13:00"
+    "OpeningHours": "Mo-We,Fr 09:00-17:00; Th 10:00-18:00; Sa 09:00-13:00",
+    "OsmLastUpdated": "2023-11-14T07:39:10Z"
   },
   {
     "OsmType": "node",
@@ -159,7 +176,8 @@
     "Lat": -34.9797128,
     "Lon": 138.512212,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2013-12-08T05:16:49Z"
   },
   {
     "OsmType": "way",
@@ -168,7 +186,8 @@
     "Lat": -34.9508054,
     "Lon": 138.5899313,
     "Website": null,
-    "OpeningHours": "Mo 10:30-17:00; Tu 10:00-18:00; We 13:00-17:00; Th 10:00-18:00; Fr 10:00-17:00; Sa 10:00-13:00"
+    "OpeningHours": "Mo 10:30-17:00; Tu 10:00-18:00; We 13:00-17:00; Th 10:00-18:00; Fr 10:00-17:00; Sa 10:00-13:00",
+    "OsmLastUpdated": "2023-08-13T22:28:59Z"
   },
   {
     "OsmType": "way",
@@ -177,7 +196,8 @@
     "Lat": -34.8701618,
     "Lon": 138.6374333,
     "Website": "https://www.paelibraries.com.au/locations",
-    "OpeningHours": "Sa 10:00-14:00; Mo-We, Fr 09:00-18:00; Su 13:00-16:00; Th 09:00-19:00"
+    "OpeningHours": "Sa 10:00-14:00; Mo-We, Fr 09:00-18:00; Su 13:00-16:00; Th 09:00-19:00",
+    "OsmLastUpdated": "2024-12-22T02:20:01Z"
   },
   {
     "OsmType": "node",
@@ -186,7 +206,8 @@
     "Lat": -34.8219684,
     "Lon": 138.8863948,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2019-12-27T02:04:59Z"
   },
   {
     "OsmType": "way",
@@ -195,7 +216,8 @@
     "Lat": -34.9057407,
     "Lon": 138.5735694,
     "Website": null,
-    "OpeningHours": "Mo-Fr 10:00-19:00; Sa 12:30-16:30"
+    "OpeningHours": "Mo-Fr 10:00-19:00; Sa 12:30-16:30",
+    "OsmLastUpdated": "2025-03-05T08:29:07Z"
   },
   {
     "OsmType": "node",
@@ -204,7 +226,8 @@
     "Lat": -34.9334316,
     "Lon": 138.612166,
     "Website": "https://www.cityofadelaide.com.au/community/library-services/library-locations/hutt-street-library/",
-    "OpeningHours": "Mo-Fr 10:00-17:00, Sa 10:00-14:00"
+    "OpeningHours": "Mo-Fr 10:00-17:00, Sa 10:00-14:00",
+    "OsmLastUpdated": "2025-09-21T07:37:00Z"
   },
   {
     "OsmType": "node",
@@ -213,7 +236,8 @@
     "Lat": -34.8324041,
     "Lon": 138.6489251,
     "Website": "https://www.salisbury.sa.gov.au/community/libraries/branches-hours-locations/ingle-farm-library-2",
-    "OpeningHours": "Mo-We,Fr 09:30-17:00; Th 09:30-19:00; Sa 10:00-14:00; Su,PH off"
+    "OpeningHours": "Mo-We,Fr 09:30-17:00; Th 09:30-19:00; Sa 10:00-14:00; Su,PH off",
+    "OsmLastUpdated": "2025-11-22T02:43:35Z"
   },
   {
     "OsmType": "way",
@@ -222,7 +246,8 @@
     "Lat": -34.9238061,
     "Lon": 138.5906566,
     "Website": null,
-    "OpeningHours": "24/7"
+    "OpeningHours": "24/7",
+    "OsmLastUpdated": "2025-09-24T01:50:42Z"
   },
   {
     "OsmType": "node",
@@ -231,7 +256,8 @@
     "Lat": -34.9215529,
     "Lon": 138.6316423,
     "Website": null,
-    "OpeningHours": "Tu-We 13:00-17:00; Su 13:00-20:00; Th 00:00-24:00; Fr 09:30-17:00; Sa 10:00-13:00"
+    "OpeningHours": "Tu-We 13:00-17:00; Su 13:00-20:00; Th 00:00-24:00; Fr 09:30-17:00; Sa 10:00-13:00",
+    "OsmLastUpdated": "2019-12-29T05:06:57Z"
   },
   {
     "OsmType": "node",
@@ -240,7 +266,8 @@
     "Lat": -34.7618816,
     "Lon": 138.6458413,
     "Website": null,
-    "OpeningHours": "Mo-We,Fr 08:30-17:30; Th 08:30-19:00; Sa 09:30-15:30; Su 11:00-14:00"
+    "OpeningHours": "Mo-We,Fr 08:30-17:30; Th 08:30-19:00; Sa 09:30-15:30; Su 11:00-14:00",
+    "OsmLastUpdated": "2024-11-28T02:50:00Z"
   },
   {
     "OsmType": "node",
@@ -249,7 +276,8 @@
     "Lat": -35.0742477,
     "Lon": 138.5929557,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2011-05-15T08:43:54Z"
   },
   {
     "OsmType": "node",
@@ -258,7 +286,8 @@
     "Lat": -34.6011644,
     "Lon": 138.891016,
     "Website": "https://www.barossa.sa.gov.au/recreation-and-venues/venues-and-facilities/lyndoch-library-and-council-office",
-    "OpeningHours": "Mo-Fr 09:00-12:30, 13:30-17:00; Sa 09:30-12:30"
+    "OpeningHours": "Mo-Fr 09:00-12:30, 13:30-17:00; Sa 09:30-12:30",
+    "OsmLastUpdated": "2022-02-18T23:30:48Z"
   },
   {
     "OsmType": "node",
@@ -267,7 +296,8 @@
     "Lat": -35.0135615,
     "Lon": 138.5434011,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2024-09-02T05:29:10Z"
   },
   {
     "OsmType": "node",
@@ -276,7 +306,8 @@
     "Lat": -34.8109606,
     "Lon": 138.6170947,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2025-09-18T04:44:21Z"
   },
   {
     "OsmType": "way",
@@ -285,7 +316,8 @@
     "Lat": -34.9729828,
     "Lon": 138.6085885,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2023-10-30T22:22:52Z"
   },
   {
     "OsmType": "node",
@@ -294,7 +326,8 @@
     "Lat": -35.0691308,
     "Lon": 138.8549994,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2025-07-03T03:02:01Z"
   },
   {
     "OsmType": "node",
@@ -303,7 +336,8 @@
     "Lat": -34.8790342,
     "Lon": 138.4944856,
     "Website": "https://www.charlessturt.sa.gov.au/community/library/our-libraries/ngutungka-west-lakes",
-    "OpeningHours": "Mo-Fr 09:00-17:00; Sa 10:00-16:00; Su 12:00-16:00"
+    "OpeningHours": "Mo-Fr 09:00-17:00; Sa 10:00-16:00; Su 12:00-16:00",
+    "OsmLastUpdated": "2024-03-08T06:08:17Z"
   },
   {
     "OsmType": "way",
@@ -312,7 +346,8 @@
     "Lat": -35.1400676,
     "Lon": 138.4967251,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2015-06-15T11:37:01Z"
   },
   {
     "OsmType": "way",
@@ -321,7 +356,8 @@
     "Lat": -34.9062141,
     "Lon": 138.593835,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2025-07-05T07:23:34Z"
   },
   {
     "OsmType": "way",
@@ -330,7 +366,8 @@
     "Lat": -34.8704366,
     "Lon": 138.6852687,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2023-08-23T00:18:57Z"
   },
   {
     "OsmType": "way",
@@ -339,7 +376,8 @@
     "Lat": -34.9917514,
     "Lon": 138.555503,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2017-06-23T07:57:10Z"
   },
   {
     "OsmType": "node",
@@ -348,7 +386,8 @@
     "Lat": -34.8586136,
     "Lon": 138.557573,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2019-10-16T03:08:37Z"
   },
   {
     "OsmType": "node",
@@ -357,7 +396,8 @@
     "Lat": -34.6695397,
     "Lon": 138.6804135,
     "Website": null,
-    "OpeningHours": "Mo-We 09:00-17:00; Th 10:00-19:00; Fr 09:00-17:00; Sa 10:00-14:00; Su 13:00-16:00"
+    "OpeningHours": "Mo-We 09:00-17:00; Th 10:00-19:00; Fr 09:00-17:00; Sa 10:00-14:00; Su 13:00-16:00",
+    "OsmLastUpdated": "2025-03-05T08:28:16Z"
   },
   {
     "OsmType": "node",
@@ -366,7 +406,8 @@
     "Lat": -34.7176812,
     "Lon": 138.6714942,
     "Website": "https://playford.sa.gov.au/aboutthelibrary",
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2019-03-23T06:01:02Z"
   },
   {
     "OsmType": "node",
@@ -375,7 +416,8 @@
     "Lat": -34.8473277,
     "Lon": 138.5033672,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2025-08-09T06:22:15Z"
   },
   {
     "OsmType": "way",
@@ -384,7 +426,8 @@
     "Lat": -34.8388164,
     "Lon": 138.4812309,
     "Website": "https://www.cityofpae.sa.gov.au/explore/libraries",
-    "OpeningHours": "Mo-We 9:30-17:30; Th 09:30-20:00; Fr 10:00-17:30; Sa 09:30-13:00; Su 13:30-17:00"
+    "OpeningHours": "Mo-We 9:30-17:30; Th 09:30-20:00; Fr 10:00-17:30; Sa 09:30-13:00; Su 13:30-17:00",
+    "OsmLastUpdated": "2025-03-05T08:20:44Z"
   },
   {
     "OsmType": "way",
@@ -393,7 +436,8 @@
     "Lat": -34.8860586,
     "Lon": 138.5935751,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2025-12-07T02:49:02Z"
   },
   {
     "OsmType": "way",
@@ -402,7 +446,8 @@
     "Lat": -34.9529967,
     "Lon": 138.6080283,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2025-07-03T12:57:54Z"
   },
   {
     "OsmType": "way",
@@ -411,7 +456,8 @@
     "Lat": -34.9170365,
     "Lon": 138.4938722,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2025-11-24T10:30:57Z"
   },
   {
     "OsmType": "node",
@@ -420,7 +466,8 @@
     "Lat": -34.9352994,
     "Lon": 138.6036214,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2017-04-20T12:45:30Z"
   },
   {
     "OsmType": "way",
@@ -429,7 +476,8 @@
     "Lat": -34.9205015,
     "Lon": 138.6023669,
     "Website": "https://www.slsa.sa.gov.au/",
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2024-12-31T01:35:15Z"
   },
   {
     "OsmType": "way",
@@ -438,7 +486,8 @@
     "Lat": -35.0183565,
     "Lon": 138.5751312,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2023-08-28T10:22:28Z"
   },
   {
     "OsmType": "node",
@@ -447,7 +496,8 @@
     "Lat": -34.9506833,
     "Lon": 138.6078907,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2025-10-14T22:23:19Z"
   },
   {
     "OsmType": "node",
@@ -456,7 +506,8 @@
     "Lat": -34.8976454,
     "Lon": 138.614537,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2025-01-26T07:42:12Z"
   },
   {
     "OsmType": "way",
@@ -465,7 +516,8 @@
     "Lat": -34.9338192,
     "Lon": 138.5618824,
     "Website": "https://www.westtorrens.sa.gov.au/Library",
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2025-10-30T01:25:20Z"
   },
   {
     "OsmType": "way",
@@ -474,7 +526,8 @@
     "Lat": -35.1136282,
     "Lon": 138.5460761,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2018-01-03T05:22:05Z"
   },
   {
     "OsmType": "way",
@@ -483,7 +536,8 @@
     "Lat": -34.9539764,
     "Lon": 138.8750404,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2022-04-17T06:18:05Z"
   },
   {
     "OsmType": "node",
@@ -492,6 +546,7 @@
     "Lat": -34.8787628,
     "Lon": 138.5377752,
     "Website": null,
-    "OpeningHours": null
+    "OpeningHours": null,
+    "OsmLastUpdated": "2017-07-28T01:00:37Z"
   }
 ]

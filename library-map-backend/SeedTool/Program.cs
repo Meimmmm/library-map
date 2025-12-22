@@ -24,8 +24,20 @@ var seed = geo.Features
     {
         var props = f.Properties ?? new Dictionary<string, JsonElement>();
 
+        if (props.TryGetValue("@timestamp", out var ts))
+            {
+                Console.WriteLine($"FOUND @timestamp kind={ts.ValueKind} raw={ts}");
+            }
+            else
+            {
+                Console.WriteLine("NO @timestamp");
+            }
+
+
         string? GetString(string key)
-            => props.TryGetValue(key, out var v) && v.ValueKind == JsonValueKind.String ? v.GetString() : null;
+            => props.TryGetValue(key, out var v) && v.ValueKind == JsonValueKind.String 
+            ? v.GetString() 
+            : null;
 
         // OSM id is usually in "@id" like "node/57919090"
         var osmIdRaw = GetString("@id") ?? GetString("id");
@@ -46,7 +58,8 @@ var seed = geo.Features
             Lat = lat,
             Lon = lon,
             Website = GetString("website") ?? GetString("contact:website"),
-            OpeningHours = GetString("opening_hours")
+            OpeningHours = GetString("opening_hours"),
+            OsmLastUpdated = GetString("@timestamp")    //
         };
     })
     .Where(x => x is not null)
@@ -76,6 +89,7 @@ public sealed class SeedLibrary
     public double Lon { get; set; }
     public string? Website { get; set; }
     public string? OpeningHours { get; set; }
+    public string? OsmLastUpdated { get; set; } //
 }
 
 public sealed class GeoJsonFeatureCollection

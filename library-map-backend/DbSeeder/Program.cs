@@ -95,11 +95,12 @@ var existingMap = existing.ToDictionary(
 );
 
 // ======================================================
-// Seed → Entity 変換 & Insert
+// Seed → Entity 変換 & Insert（既存はOsmLastUpdatedだけ埋める）
 // ======================================================
 
 int inserted = 0;
 int skipped = 0;
+int updated = 0;
 
 foreach (var seed in seedItems)
 {
@@ -122,8 +123,16 @@ foreach (var seed in seedItems)
 
     string key = $"{osmType}/{osmId}";
 
-    if (existingMap.ContainsKey(key))
+    // 既存なら Insert しない。ただし OsmLastUpdated が未設定なら埋める
+    if (existingMap.TryGetValue(key, out var existingLib))
     {
+        if (string.IsNullOrWhiteSpace(existingLib.OsmLastUpdated) &&
+            !string.IsNullOrWhiteSpace(seed.OsmLastUpdated))
+        {
+            existingLib.OsmLastUpdated = seed.OsmLastUpdated;
+            updated++;
+        }
+
         skipped++;
         continue;
     }
@@ -132,6 +141,7 @@ foreach (var seed in seedItems)
     {
         OsmType = osmType,
         OsmId = osmId,
+        OsmLastUpdated = seed.OsmLastUpdated,   // ★追加
 
         Name = seed.Name ?? "(no name)",
         Lat = seed.Lat,
@@ -159,6 +169,7 @@ foreach (var seed in seedItems)
 await db.SaveChangesAsync();
 
 Console.WriteLine($"✅ Inserted: {inserted}");
+Console.WriteLine($"✍ Updated : {updated} (filled OsmLastUpdated)");
 Console.WriteLine($"⏭ Skipped : {skipped}");
 
 // ======================================================
@@ -176,4 +187,5 @@ public sealed class SeedLibrary
 
     public string? Website { get; set; }
     public string? OpeningHours { get; set; }
+    public string? OsmLastUpdated { get; set; } //一年前の情報は非表示？
 }
