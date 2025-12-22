@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -64,10 +65,15 @@ Console.WriteLine($"Reading seed: {seedPath}");
 
 var seedJson = await File.ReadAllTextAsync(seedPath);
 
-var seedItems = JsonSerializer.Deserialize<List<SeedLibrary>>(seedJson, new JsonSerializerOptions
+var jsonOptions = new JsonSerializerOptions
 {
-    PropertyNameCaseInsensitive = true
-}) ?? new();
+    PropertyNameCaseInsensitive = true,
+    ReadCommentHandling = JsonCommentHandling.Skip,
+    AllowTrailingCommas = true,
+    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+};
+
+var seedItems = JsonSerializer.Deserialize<List<SeedLibrary>>(seedJson, jsonOptions) ?? new();
 
 Console.WriteLine($"Seed items: {seedItems.Count}");
 
@@ -75,11 +81,15 @@ Console.WriteLine($"Seed items: {seedItems.Count}");
 // DbContext
 // ======================================================
 
+Console.WriteLine($"[Seeder] conn = {connectionString}");
+
 var options = new DbContextOptionsBuilder<LibraryContext>()
     .UseSqlServer(connectionString)
     .Options;
 
 await using var db = new LibraryContext(options);
+
+Console.WriteLine($"[Seeder] DB = {db.Database.GetDbConnection().Database}");
 
 // Migration 管理前提（EnsureCreated は使わない）
 await db.Database.MigrateAsync();
@@ -137,28 +147,33 @@ foreach (var seed in seedItems)
         continue;
     }
 
+    // ★ OpeningHours(object) を DB には string(JSON) として保存する
+    string? openingHoursJson = null;
+    if (seed.OpeningHours is not null)
+    {
+        // exceptions を今は使わなくても、入ってきたらそのまま含めて文字列化される
+        openingHoursJson = JsonSerializer.Serialize(seed.OpeningHours, jsonOptions);
+    }
+
     var library = new Library
     {
         OsmType = osmType,
         OsmId = osmId,
-        OsmLastUpdated = seed.OsmLastUpdated,   // ★追加
+        OsmLastUpdated = seed.OsmLastUpdated,
 
         Name = seed.Name ?? "(no name)",
         Lat = seed.Lat,
         Lng = seed.Lon,
 
-        Category = "library",
         WebsiteUrl = seed.Website,
-        OpeningHoursRaw = seed.OpeningHours,
+        OpeningHoursJson = openingHoursJson,
 
         // seed では埋まらない項目
         Address = null,
-        Suburb = null,
-        Postcode = null,
         HasParking = null,
         NearestBusStop = null,
         WalkingMinutesFromBus = null,
-        GooglePlaceId = null
+        GooglePlaceId = seed.GooglePlaceId // ← seedに入れるなら反映（無ければnull）
     };
 
     db.Libraries.Add(library);
@@ -186,6 +201,44 @@ public sealed class SeedLibrary
     public double Lon { get; set; }
 
     public string? Website { get; set; }
-    public string? OpeningHours { get; set; }
-    public string? OsmLastUpdated { get; set; } //一年前の情報は非表示？
+    public string? GooglePlaceId { get; set; } // ★追加（seedにあるなら）
+
+    // ★ここが変更：string ではなく object(DTO)
+    public OpeningHoursPayload? OpeningHours { get; set; }
+
+    public string? OsmLastUpdated { get; set; }
+}
+
+// 自前 canonical opening hours（exceptions は今は実装しない前提）
+public sealed class OpeningHoursPayload
+{
+    public string timezone { get; set; } = "Australia/Adelaide";
+    public WeeklyPayload weekly { get; set; } = new();
+    public SourcePayload source { get; set; } = new();
+
+    // exceptions は今は使わないなら不要（入ってくる可能性があるならコメント解除）
+    // public List<ExceptionPayload>? exceptions { get; set; }
+}
+
+public sealed class WeeklyPayload
+{
+    public List<TimeRangePayload> mon { get; set; } = new();
+    public List<TimeRangePayload> tue { get; set; } = new();
+    public List<TimeRangePayload> wed { get; set; } = new();
+    public List<TimeRangePayload> thu { get; set; } = new();
+    public List<TimeRangePayload> fri { get; set; } = new();
+    public List<TimeRangePayload> sat { get; set; } = new();
+    public List<TimeRangePayload> sun { get; set; } = new();
+}
+
+public sealed class TimeRangePayload
+{
+    public string open { get; set; } = default!;
+    public string close { get; set; } = default!;
+}
+
+public sealed class SourcePayload
+{
+    public string type { get; set; } = "manual";
+    public string updatedAt { get; set; } = default!;
 }
