@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- DbContext を使うため -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.1" />
+    <!-- appsettings.json を読むため -->
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- ★ Backend（Web API）を参照 -->
+    <ProjectReference Include="..\LibraryMap.Api\LibraryMap.Api.csproj" />
+  </ItemGroup>
+</Project>

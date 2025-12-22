@@ -42,7 +42,7 @@ SeedTool/*.geojson
 # =========================
 # ASP.NET Core (local only)
 # =========================
-appsettings.Development.json
+LibraryMap.Api/appsettings.Development.json
 
 # =========================
 # Database

@@ -2,8 +2,10 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-const string inputPath = "GeoJSON_Adelaide.geojson";
-const string outputPath = "seed-libraries.json";
+var toolDir = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
+
+var inputPath  = Path.Combine(toolDir, "GeoJSON_Adelaide.geojson");
+var outputPath = Path.Combine(toolDir, "seed-libraries.json");
 
 if (!File.Exists(inputPath))
 {
