@@ -32,10 +32,14 @@ namespace LibraryMap.Api.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Category")
+                    b.Property<string>("Categories")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GooglePlaceId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("HasParking")
@@ -44,7 +48,7 @@ namespace LibraryMap.Api.Migrations
                     b.Property<double>("Lat")
                         .HasColumnType("float");
 
-                    b.Property<double>("Lng")
+                    b.Property<double>("Lon")
                         .HasColumnType("float");
 
                     b.Property<string>("Name")
@@ -54,28 +58,22 @@ namespace LibraryMap.Api.Migrations
                     b.Property<string>("NearestBusStop")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("OpeningHoursRaw")
+                    b.Property<string>("OpeningHoursJson")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("OsmId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("OsmLastUpdated")
+                    b.Property<string>("OsmId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OsmType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Postcode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Suburb")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("WalkingMinutesFromBus")
                         .HasColumnType("int");
 
                     b.Property<string>("WebsiteUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WebsiteUrl2")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

@@ -44,6 +44,16 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
+app.MapGet("/debug/db", (LibraryContext db) =>
+{
+    return new
+    {
+        Database = db.Database.GetDbConnection().Database,
+        DataSource = db.Database.GetDbConnection().DataSource
+    };
+});
+
+
 app.MapGet("/weatherforecast", () =>
 {
     var forecast =  Enumerable.Range(1, 5).Select(index =>

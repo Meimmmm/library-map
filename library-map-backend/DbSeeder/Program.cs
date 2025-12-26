@@ -3,7 +3,6 @@ using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-// ★ Backend の Entity / DbContext を使う
 using LibraryMap.Api.Data;
 using LibraryMap.Api.Models;
 
@@ -11,22 +10,16 @@ using LibraryMap.Api.Models;
 // パス設定
 // ======================================================
 
-// DbSeeder/bin/... から backend ルートへ戻る
 string backendRoot = Path.GetFullPath(Path.Combine(
-    AppContext.BaseDirectory,
-    "..", "..", "..", ".."
+    AppContext.BaseDirectory, "..", "..", "..", ".."
 ));
 
-// appsettings
 string appsettingsPath = Path.Combine(
-    backendRoot,
-    "LibraryMap.Api", "appsettings.Development.json"
+    backendRoot, "LibraryMap.Api", "appsettings.Development.json"
 );
 
-// seed file
 string seedPath = Path.Combine(
-    backendRoot,
-    "LibraryMap.Api", "Data", "Seed", "seed-libraries.json"
+    backendRoot, "LibraryMap.Api", "Data", "Seed", "seed-libraries.json"
 );
 
 // ======================================================
@@ -61,7 +54,7 @@ if (!File.Exists(seedPath))
     return;
 }
 
-Console.WriteLine($"Reading seed: {seedPath}");
+Console.WriteLine($"📖 Reading seed: {seedPath}");
 
 var seedJson = await File.ReadAllTextAsync(seedPath);
 
@@ -74,171 +67,102 @@ var jsonOptions = new JsonSerializerOptions
 };
 
 var seedItems = JsonSerializer.Deserialize<List<SeedLibrary>>(seedJson, jsonOptions) ?? new();
-
-Console.WriteLine($"Seed items: {seedItems.Count}");
+Console.WriteLine($"📦 Seed items: {seedItems.Count}");
 
 // ======================================================
 // DbContext
 // ======================================================
 
-Console.WriteLine($"[Seeder] conn = {connectionString}");
-
-var options = new DbContextOptionsBuilder<LibraryContext>()
+var dbOptions = new DbContextOptionsBuilder<LibraryContext>()
     .UseSqlServer(connectionString)
     .Options;
 
-await using var db = new LibraryContext(options);
+await using var db = new LibraryContext(dbOptions);
 
-Console.WriteLine($"[Seeder] DB = {db.Database.GetDbConnection().Database}");
-
-// Migration 管理前提（EnsureCreated は使わない）
 await db.Database.MigrateAsync();
 
-// 既存 OSM データ取得（Upsert 用）
-var existing = await db.Libraries
-    .Where(l => l.OsmType != null && l.OsmId != null)
-    .ToListAsync();
-
-var existingMap = existing.ToDictionary(
-    l => $"{l.OsmType}/{l.OsmId}",
-    StringComparer.OrdinalIgnoreCase
-);
-
 // ======================================================
-// Seed → Entity 変換 & Insert（既存はOsmLastUpdatedだけ埋める）
+// Insert（全入れ）
 // ======================================================
 
 int inserted = 0;
-int skipped = 0;
-int updated = 0;
 
 foreach (var seed in seedItems)
 {
-    // seed.OsmId = "node/903719806"
-    var parts = seed.OsmId?.Split('/', 2);
-
-    string? osmType = seed.OsmType ?? parts?.FirstOrDefault();
-    long? osmId = null;
-
-    if (parts?.Length == 2 && long.TryParse(parts[1], out var parsed))
-    {
-        osmId = parsed;
-    }
-
-    if (osmType == null || osmId == null)
-    {
-        skipped++;
-        continue;
-    }
-
-    string key = $"{osmType}/{osmId}";
-
-    // 既存なら Insert しない。ただし OsmLastUpdated が未設定なら埋める
-    if (existingMap.TryGetValue(key, out var existingLib))
-    {
-        if (string.IsNullOrWhiteSpace(existingLib.OsmLastUpdated) &&
-            !string.IsNullOrWhiteSpace(seed.OsmLastUpdated))
-        {
-            existingLib.OsmLastUpdated = seed.OsmLastUpdated;
-            updated++;
-        }
-
-        skipped++;
-        continue;
-    }
-
-    // ★ OpeningHours(object) を DB には string(JSON) として保存する
+    // ✅ exceptions なども含め、OpeningHours の元JSONをそのまま保存
     string? openingHoursJson = null;
-    if (seed.OpeningHours is not null)
+    if (seed.OpeningHours.HasValue)
     {
-        // exceptions を今は使わなくても、入ってきたらそのまま含めて文字列化される
-        openingHoursJson = JsonSerializer.Serialize(seed.OpeningHours, jsonOptions);
+        // GetRawText() は元の JSON テキストを保持（exceptions も残る）
+        openingHoursJson = seed.OpeningHours.Value.GetRawText();
     }
 
     var library = new Library
     {
-        OsmType = osmType,
-        OsmId = osmId,
-        OsmLastUpdated = seed.OsmLastUpdated,
+        // ✅ Id は書かない：DBが自動採番（IDENTITY）
+        OsmType = Normalize(seed.OsmType),
+        OsmId = Normalize(seed.OsmId),
 
-        Name = seed.Name ?? "(no name)",
         Lat = seed.Lat,
-        Lng = seed.Lon,
+        Lon = seed.Lon,
 
-        WebsiteUrl = seed.Website,
+        GooglePlaceId = seed.GooglePlaceId ?? "",
+        Categories = Normalize(seed.Categories),
+        Comment = Normalize(seed.Comment),
+
+        Name = string.IsNullOrWhiteSpace(seed.Name) ? "(no name)" : seed.Name.Trim(),
+        Address = Normalize(seed.Address),
+
+        WebsiteUrl = Normalize(seed.Website),
+        WebsiteUrl2 = Normalize(seed.Website2),
+
         OpeningHoursJson = openingHoursJson,
 
-        // seed では埋まらない項目
-        Address = null,
         HasParking = null,
         NearestBusStop = null,
         WalkingMinutesFromBus = null,
-        GooglePlaceId = seed.GooglePlaceId // ← seedに入れるなら反映（無ければnull）
     };
 
     db.Libraries.Add(library);
-    existingMap[key] = library;
     inserted++;
 }
 
 await db.SaveChangesAsync();
 
 Console.WriteLine($"✅ Inserted: {inserted}");
-Console.WriteLine($"✍ Updated : {updated} (filled OsmLastUpdated)");
-Console.WriteLine($"⏭ Skipped : {skipped}");
 
 // ======================================================
-// Seed DTO（入力専用）
+// helpers
+// ======================================================
+
+static string? Normalize(string? s)
+{
+    if (string.IsNullOrWhiteSpace(s)) return null;
+    return s.Trim();
+}
+
+// ======================================================
+// Seed DTO（入力専用）※Data Transfer Object
 // ======================================================
 
 public sealed class SeedLibrary
 {
     public string? OsmType { get; set; }
-    public string? OsmId { get; set; }        // "node/903719806"
+    public string? OsmId { get; set; }          // "way/182633531"
 
     public string? Name { get; set; }
+    public string? Address { get; set; }
+
     public double Lat { get; set; }
     public double Lon { get; set; }
 
-    public string? Website { get; set; }
-    public string? GooglePlaceId { get; set; } // ★追加（seedにあるなら）
+    public string? Website { get; set; }        // seed の "Website"
+    public string? Website2 { get; set; }       // seed の "Website2"
 
-    // ★ここが変更：string ではなく object(DTO)
-    public OpeningHoursPayload? OpeningHours { get; set; }
+    public string? GooglePlaceId { get; set; }
+    public string? Categories { get; set; }
+    public string? Comment { get; set; }
 
-    public string? OsmLastUpdated { get; set; }
-}
-
-// 自前 canonical opening hours（exceptions は今は実装しない前提）
-public sealed class OpeningHoursPayload
-{
-    public string timezone { get; set; } = "Australia/Adelaide";
-    public WeeklyPayload weekly { get; set; } = new();
-    public SourcePayload source { get; set; } = new();
-
-    // exceptions は今は使わないなら不要（入ってくる可能性があるならコメント解除）
-    // public List<ExceptionPayload>? exceptions { get; set; }
-}
-
-public sealed class WeeklyPayload
-{
-    public List<TimeRangePayload> mon { get; set; } = new();
-    public List<TimeRangePayload> tue { get; set; } = new();
-    public List<TimeRangePayload> wed { get; set; } = new();
-    public List<TimeRangePayload> thu { get; set; } = new();
-    public List<TimeRangePayload> fri { get; set; } = new();
-    public List<TimeRangePayload> sat { get; set; } = new();
-    public List<TimeRangePayload> sun { get; set; } = new();
-}
-
-public sealed class TimeRangePayload
-{
-    public string open { get; set; } = default!;
-    public string close { get; set; } = default!;
-}
-
-public sealed class SourcePayload
-{
-    public string type { get; set; } = "manual";
-    public string updatedAt { get; set; } = default!;
+    // ✅ 型を固定しない：exceptions 等も含めて丸ごと保持できる
+    public JsonElement? OpeningHours { get; set; }
 }

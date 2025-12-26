@@ -16,18 +16,21 @@ namespace LibraryMap.Api.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OsmType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OsmId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Lat = table.Column<double>(type: "float", nullable: false),
-                    Lng = table.Column<double>(type: "float", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Suburb = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Postcode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Lon = table.Column<double>(type: "float", nullable: false),
+                    GooglePlaceId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Categories = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     WebsiteUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WebsiteUrl2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OpeningHoursJson = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     HasParking = table.Column<bool>(type: "bit", nullable: true),
                     NearestBusStop = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WalkingMinutesFromBus = table.Column<int>(type: "int", nullable: true),
-                    OpeningHoursJson = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    WalkingMinutesFromBus = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
