@@ -50,6 +50,12 @@ function MapView({ timeMode }: MapViewProps) {
     return <div className="p-4 text-red-600">API Error: {error}</div>;
   }
 
+  function extractOpenClose(range?: string) {
+    if (!range) return { open: null, close: null };
+    const [open, close] = range.split("–");
+    return { open: open ?? null, close: close ?? null };
+  }
+
   return (
     <MapContainer
       center={ADELAIDE_CENTER}
@@ -66,18 +72,22 @@ function MapView({ timeMode }: MapViewProps) {
         const status = getLibraryStatusFromScheduleJson(lib.openingHoursJson ?? undefined);
 
         // Marker のラベル（小さい表示）
-        let markerLabel = "Closed";
-        if (timeMode === "openTime") {
-          markerLabel = status.isOpen ? "Open" : "Closed";
-        } else {
-          const m = status.label.match(/until\s+(\d{1,2}:\d{2})/i);
-          markerLabel = m?.[1] ?? (status.isOpen ? "Open" : "Closed");
-        }
+        // let markerLabel = "Closed";
+        // if (timeMode === "openTime") {
+        //   markerLabel = status.isOpen ? "Open" : "Closed";
+        // } else {
+        //   const m = status.label.match(/until\s+(\d{1,2}:\d{2})/i);
+        //   markerLabel = m?.[1] ?? (status.isOpen ? "Open" : "Closed");
+        // }
+        const [, range] = status.label.split(" · ");
+        const { open, close } = extractOpenClose(range);
 
-        // ポップアップで見せたい「今日の開館–閉館」
-        // const todayHours =
-        //   getTodayOpenCloseLabelFromScheduleJson(lib.openingHoursJson ?? undefined) ??
-        //   "Hours not available";
+        const markerLabel =
+          timeMode === "openTime"
+            // ? open ? `from ${open}` : "Closed"
+            // : close ? `until ${close}` : "Closed";
+            ? open ?? "Closed"
+            : close ?? "Closed";
 
         return (
           <Marker
@@ -89,12 +99,7 @@ function MapView({ timeMode }: MapViewProps) {
             <Popup>
               <div className="font-bold mb-1">{lib.name}</div>
 
-              {/* 今日の open-close */}
-              {/* <div className="text-xs text-slate-700 mb-1">
-                {todayHours}
-              </div> */}
-
-              {/* Open/Closed*/}
+              {/* Open/Closed (hours)*/}
               {lib.openingHoursJson && (
                 <div className="text-xs text-slate-500 mb-2">
                   {status.label}
