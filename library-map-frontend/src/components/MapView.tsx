@@ -6,7 +6,10 @@ import type { LatLngExpression } from "leaflet";
 import type { Library } from "../types/library";
 import { createStatusIcon } from "../utils/mapIconUtils";
 import { fetchLibraries, type ApiLibrary } from "../api/apiLibraries";
-import { getLibraryStatusFromOSM } from "../utils/openingHoursUtils";
+import {
+  getLibraryStatusFromScheduleJson,
+  // getTodayOpenCloseLabelFromScheduleJson,
+} from "../utils/openingHoursUtils";
 
 type TimeMode = "openTime" | "closeTime";
 
@@ -21,21 +24,13 @@ function toFrontendLibrary(api: ApiLibrary): Library {
     id: api.id,
     name: api.name,
     lat: api.lat,
-    lng: api.lng,
+    lon: api.lon,
     address: api.address ?? "",
-    suburb: api.suburb ?? "",
-    postcode: api.postcode ?? "",
-    category: api.category ?? "",
+
     websiteUrl: api.websiteUrl ?? undefined,
-    hasParking: api.hasParking ?? null,
-    nearestBusStop: api.nearestBusStop ?? undefined,
-    walkingMinutesFromBus: api.walkingMinutesFromBus ?? undefined,
+    websiteUrl2: api.websiteUrl2 ?? undefined, // Use B only if A is null or undefined
 
-    // ★ OSM opening_hours の“原文”をそのまま使う
-    openingHoursRaw: api.openingHoursRaw ?? null,
-
-    // （任意）OSM更新日時を表示したいなら
-    osmLastUpdated: api.osmLastUpdated ?? null,
+    openingHoursJson: api.openingHoursJson ?? null,
   };
 }
 
@@ -68,61 +63,73 @@ function MapView({ timeMode }: MapViewProps) {
       />
 
       {libs.map((lib) => {
-        const status = getLibraryStatusFromOSM(lib.openingHoursRaw ?? undefined);
+        const status = getLibraryStatusFromScheduleJson(lib.openingHoursJson ?? undefined);
 
-        // Marker のラベル（小さい表示）を timeMode に合わせて作る
+        // Marker のラベル（小さい表示）
         let markerLabel = "Closed";
         if (timeMode === "openTime") {
           markerLabel = status.isOpen ? "Open" : "Closed";
         } else {
-          // status.label 例: "Open — until 17:30" / "Closed — opens 09:00"
-          // closeTimeは "until HH:mm" が取れたらそれを表示
           const m = status.label.match(/until\s+(\d{1,2}:\d{2})/i);
           markerLabel = m?.[1] ?? (status.isOpen ? "Open" : "Closed");
         }
 
-        const popupLine =
-          lib.openingHoursRaw
-            ? status.label
-            : "Hours not available";
+        // ポップアップで見せたい「今日の開館–閉館」
+        // const todayHours =
+        //   getTodayOpenCloseLabelFromScheduleJson(lib.openingHoursJson ?? undefined) ??
+        //   "Hours not available";
 
         return (
           <Marker
             key={lib.id}
-            position={[lib.lat, lib.lng]}
+            position={[lib.lat, lib.lon]}
             icon={createStatusIcon(markerLabel, status.isOpen)}
             zIndexOffset={status.isOpen ? 1000 : 0}
           >
             <Popup>
               <div className="font-bold mb-1">{lib.name}</div>
 
-              <div className="text-xs text-slate-600 mb-1">
-                {popupLine}
-              </div>
+              {/* 今日の open-close */}
+              {/* <div className="text-xs text-slate-700 mb-1">
+                {todayHours}
+              </div> */}
 
-              <div className="text-xs text-slate-500 mb-1">
-                {lib.address}
-                <br />
-                {lib.suburb} {lib.postcode}
-              </div>
-
-              {lib.websiteUrl && (
-                <a
-                  href={lib.websiteUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-xs text-blue-600 underline"
-                >
-                  Website
-                </a>
-              )}
-
-              {/* (任意) OSM更新日時の表示：古いデータの注意書きに使える */}
-              {lib.osmLastUpdated && (
-                <div className="mt-2 text-[10px] text-slate-400">
-                  OSM updated: {lib.osmLastUpdated}
+              {/* Open/Closed*/}
+              {lib.openingHoursJson && (
+                <div className="text-xs text-slate-500 mb-2">
+                  {status.label}
                 </div>
               )}
+
+              {lib.address && (
+                <div className="text-[11px] text-slate-500 mb-2">
+                  {lib.address}
+                </div>
+              )}
+
+              <div className="flex flex-col gap-1">
+                {lib.websiteUrl && (
+                  <a
+                    href={lib.websiteUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-xs text-blue-600 underline"
+                  >
+                    Website1
+                  </a>
+                )}
+
+                {lib.websiteUrl2 && (
+                  <a
+                    href={lib.websiteUrl2}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-xs text-blue-600 underline"
+                  >
+                    Website2
+                  </a>
+                )}
+              </div>
             </Popup>
           </Marker>
         );

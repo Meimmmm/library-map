@@ -1,36 +1,21 @@
 // src/api/apiLibraries.ts
+// APIから取得する図書館データの型定義と取得関数(バックエンド API のレスポンスそのもの)
 
 export type ApiLibrary = {
   id: number;
-
-  name: string;
   lat: number;
-  lng: number;
+  lon: number;
+  categories?: string | null; 
 
+  // visible info
+  name: string;
   address?: string | null;
-  suburb?: string | null;
-  postcode?: string | null;
-
-  category?: string | null;
   websiteUrl?: string | null;
-
-  hasParking?: boolean | null;
-  nearestBusStop?: string | null;
-  walkingMinutesFromBus?: number | null;
-
-  /**
-   * OpenStreetMap opening_hours (raw string)
-   * e.g. "Mo,We 09:00-20:00; Tu,Th-Fr 09:00-17:00; PH off"
-   */
-  openingHoursRaw?: string | null;
-  
-  osmLastUpdated?: string | null;
+  websiteUrl2?: string | null;
+  openingHoursJson?: string | null;
 };
 
-// A method to access Vite environment variables
-// If the environment variable is set, use it. If not, use the localhost URL as the default.
-const API_BASE =
-  import.meta.env.VITE_API_BASE_URL ?? "http://localhost:5259";
+const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:5259";
 
 export async function fetchLibraries(): Promise<ApiLibrary[]> {
   const res = await fetch(`${API_BASE}/api/libraries`);
@@ -40,5 +25,5 @@ export async function fetchLibraries(): Promise<ApiLibrary[]> {
     throw new Error(`Failed to fetch libraries: ${res.status} ${text}`);
   }
 
-  return res.json();
+  return (await res.json()) as ApiLibrary[];
 }

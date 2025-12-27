@@ -18,13 +18,6 @@ namespace LibraryMap.Api.Models
         public string? WebsiteUrl2 { get; set; }
         public string? OpeningHoursJson { get; set; }
 
-
-        public bool? HasParking { get; set; }
-        public string? NearestBusStop { get; set; }
-        public int? WalkingMinutesFromBus { get; set; }
-
-
-
     }
 
 }
