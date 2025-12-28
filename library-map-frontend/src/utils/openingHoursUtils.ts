@@ -158,19 +158,19 @@ export function getTodayLibraryStatus(
 }
 
 
-// -------- extra: 今日の open-close 表示（必要ならUIで使う） --------
+// // -------- extra: 今日の open-close 表示（必要ならUIで使う） --------
 
-export function getTodayOpenToCloseLabel(
-  now: Date,
-  openingHoursJson?: string | undefined,
-): string | null {
-  const ctx = getTodayContext(now, openingHoursJson);
-  if (!ctx) return null;
+// export function getTodayOpenToCloseLabel(
+//   now: Date,
+//   openingHoursJson?: string | undefined,
+// ): string | null {
+//   const ctx = getTodayContext(now, openingHoursJson);
+//   if (!ctx) return null;
 
-  const { slots } = ctx;
-  if (slots.length === 0) return "Closed";
+//   const { slots } = ctx;
+//   if (slots.length === 0) return "Closed";
 
-  // 複数枠に対応: "10:00–12:00, 13:00–16:00"
-  return slots.map((s) => `${s.open}–${s.close}`).join(", ");
-}
+//   // 複数枠に対応: "10:00–12:00, 13:00–16:00"
+//   return slots.map((s) => `${s.open}–${s.close}`).join(", ");
+// }
 
