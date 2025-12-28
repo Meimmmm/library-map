@@ -6,19 +6,22 @@ import type { LatLngExpression } from "leaflet";
 import type { Library } from "../types/library";
 import { createStatusIcon } from "../utils/mapIconUtils";
 import { fetchLibraries, type ApiLibrary } from "../api/apiLibraries";
-import {
-  getTodayLibraryStatus,
-  getTodayOpenAndCloseTime
-  // getTodayOpenAndCloseTime,
-} from "../utils/openingHoursUtils";
+import { getTodayLibraryStatus, getTodayOpenAndCloseTime } from "../utils/openingHoursUtils";
 
 type TimeMode = "openTime" | "closeTime" | "openCloseTime";
 
 interface MapViewProps {
   timeMode: TimeMode;
+  setTimeMode: (m: TimeMode) => void; // ★追加
 }
 
 const ADELAIDE_CENTER: LatLngExpression = [-34.9285, 138.6007];
+
+const modeLabel: Record<TimeMode, string> = {
+  openCloseTime: "Open-Close Time",
+  openTime: "Open Time",
+  closeTime: "Close Time",
+};
 
 function toFrontendLibrary(api: ApiLibrary): Library {
   return {
@@ -27,20 +30,18 @@ function toFrontendLibrary(api: ApiLibrary): Library {
     lat: api.lat,
     lon: api.lon,
     address: api.address ?? "",
-
     websiteUrl: api.websiteUrl ?? undefined,
-    websiteUrl2: api.websiteUrl2 ?? undefined, // Use B only if A is null or undefined
-
+    websiteUrl2: api.websiteUrl2 ?? undefined,
     openingHoursJson: api.openingHoursJson ?? null,
   };
 }
 
 const now = import.meta.env.DEV
-  ? new Date("2025-12-29T13:00:00+10:30")
-  // ? new Date()
+  // ? new Date("2025-12-29T13:00:00+10:30")
+  ? new Date()
   : new Date();
 
-function MapView({ timeMode }: MapViewProps) {
+function MapView({ timeMode, setTimeMode }: MapViewProps) {
   const [apiLibs, setApiLibs] = useState<ApiLibrary[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -57,11 +58,43 @@ function MapView({ timeMode }: MapViewProps) {
   }
 
   return (
-    // <div className="h-full w-full">
+    <div className="h-full w-full relative">
+      {/* Floating dropdown (mobile-first). PCでも出したいなら sm:hidden を外す */}
+      <div className="absolute top-3 right-3 z-[1000]">
+        <details className="group relative inline-block">
+          <summary className="list-none cursor-pointer select-none rounded-full border bg-white/95 backdrop-blur px-3 py-2 shadow-md inline-flex items-center gap-2 w-max">
+            <span className="text-sm font-medium text-slate-800 max-w-[120px] truncate">
+              {modeLabel[timeMode]}
+            </span>
+            <span className="text-slate-500 transition-transform group-open:rotate-180">▾</span>
+          </summary>
+
+          {/* メニューは右揃え＆幅固定（必要なら） */}
+          <div className="absolute right-0 mt-2 w-40 rounded-2xl border bg-white overflow-hidden shadow-lg">
+            {(Object.keys(modeLabel) as TimeMode[]).map((m) => (
+              <button
+                key={m}
+                type="button"
+                className={
+                  "w-full px-3 py-2 text-left text-sm " +
+                  (timeMode === m
+                    ? "bg-slate-800 text-white"
+                    : "text-slate-700 hover:bg-slate-50")
+                }
+                onClick={() => setTimeMode(m)}
+              >
+                {modeLabel[m]}
+              </button>
+            ))}
+          </div>
+        </details>
+      </div>
+      
+
       <MapContainer
+        className="w-full h-full"
         center={ADELAIDE_CENTER}
         zoom={13}
-        className="w-full h-full"
         scrollWheelZoom={true}
       >
         <TileLayer
@@ -70,21 +103,14 @@ function MapView({ timeMode }: MapViewProps) {
         />
 
         {libs.map((lib) => {
-          const { openTime, closeTime, openCloseTime } 
-                = getTodayOpenAndCloseTime(now, lib.openingHoursJson ?? undefined);
+          const { openTime, closeTime, openCloseTime } =
+            getTodayOpenAndCloseTime(now, lib.openingHoursJson ?? undefined);
           const status = getTodayLibraryStatus(now, lib.openingHoursJson ?? undefined);
-          // const markerLabel = getTodayOpenToCloseLabel(now, lib.openingHoursJson ?? undefined) ?? "Hours unavailable";
 
-          
-          // Marker のラベル（小さい表示）
-          let markerLabel = "Closed";   //Pinに表示する値
-          if (timeMode === "openTime") {
-            markerLabel = openTime ?? "Closed";  // 10:00 / Closed
-          } else if (timeMode === "closeTime") {
-            markerLabel = closeTime ?? "Closed";  // 18:00 / Closed
-          } else {
-            markerLabel = openCloseTime ?? "Closed";  // 10:00–18:00 / Closed
-          }
+          let markerLabel = "Closed";
+          if (timeMode === "openTime") markerLabel = openTime ?? "Closed";
+          else if (timeMode === "closeTime") markerLabel = closeTime ?? "Closed";
+          else markerLabel = openCloseTime ?? "Closed";
 
           return (
             <Marker
@@ -96,17 +122,12 @@ function MapView({ timeMode }: MapViewProps) {
               <Popup>
                 <div className="font-bold mb-1">{lib.name}</div>
 
-                {/* Open/Closed (hours)*/}
                 {lib.openingHoursJson && (
-                  <div className="text-xs text-slate-500 mb-2">
-                    {status.label}
-                  </div>
+                  <div className="text-xs text-slate-500 mb-2">{status.label}</div>
                 )}
 
                 {lib.address && (
-                  <div className="text-[11px] text-slate-500 mb-2">
-                    {lib.address}
-                  </div>
+                  <div className="text-[11px] text-slate-500 mb-2">{lib.address}</div>
                 )}
 
                 <div className="flex flex-col gap-1">
@@ -137,7 +158,7 @@ function MapView({ timeMode }: MapViewProps) {
           );
         })}
       </MapContainer>
-    // </div>
+    </div>
   );
 }
 
