@@ -7,11 +7,12 @@ import type { Library } from "../types/library";
 import { createStatusIcon } from "../utils/mapIconUtils";
 import { fetchLibraries, type ApiLibrary } from "../api/apiLibraries";
 import {
-  getLibraryStatusFromScheduleJson,
-  // getTodayOpenCloseLabelFromScheduleJson,
+  getTodayLibraryStatus,
+  getTodayOpenAndCloseTime
+  // getTodayOpenAndCloseTime,
 } from "../utils/openingHoursUtils";
 
-type TimeMode = "openTime" | "closeTime";
+type TimeMode = "openTime" | "closeTime" | "openCloseTime";
 
 interface MapViewProps {
   timeMode: TimeMode;
@@ -34,6 +35,11 @@ function toFrontendLibrary(api: ApiLibrary): Library {
   };
 }
 
+const now = import.meta.env.DEV
+  ? new Date("2025-12-29T13:00:00+10:30")
+  // ? new Date()
+  : new Date();
+
 function MapView({ timeMode }: MapViewProps) {
   const [apiLibs, setApiLibs] = useState<ApiLibrary[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -50,12 +56,6 @@ function MapView({ timeMode }: MapViewProps) {
     return <div className="p-4 text-red-600">API Error: {error}</div>;
   }
 
-  function extractOpenClose(range?: string) {
-    if (!range) return { open: null, close: null };
-    const [open, close] = range.split("–");
-    return { open: open ?? null, close: close ?? null };
-  }
-
   return (
     <MapContainer
       center={ADELAIDE_CENTER}
@@ -69,25 +69,21 @@ function MapView({ timeMode }: MapViewProps) {
       />
 
       {libs.map((lib) => {
-        const status = getLibraryStatusFromScheduleJson(lib.openingHoursJson ?? undefined);
+        const { openTime, closeTime, openCloseTime } 
+              = getTodayOpenAndCloseTime(now, lib.openingHoursJson ?? undefined);
+        const status = getTodayLibraryStatus(now, lib.openingHoursJson ?? undefined);
+        // const markerLabel = getTodayOpenToCloseLabel(now, lib.openingHoursJson ?? undefined) ?? "Hours unavailable";
 
+        
         // Marker のラベル（小さい表示）
-        // let markerLabel = "Closed";
-        // if (timeMode === "openTime") {
-        //   markerLabel = status.isOpen ? "Open" : "Closed";
-        // } else {
-        //   const m = status.label.match(/until\s+(\d{1,2}:\d{2})/i);
-        //   markerLabel = m?.[1] ?? (status.isOpen ? "Open" : "Closed");
-        // }
-        const [, range] = status.label.split(" · ");
-        const { open, close } = extractOpenClose(range);
-
-        const markerLabel =
-          timeMode === "openTime"
-            // ? open ? `from ${open}` : "Closed"
-            // : close ? `until ${close}` : "Closed";
-            ? open ?? "Closed"
-            : close ?? "Closed";
+        let markerLabel = "Closed";   //Pinに表示する値
+        if (timeMode === "openTime") {
+          markerLabel = openTime ?? "Closed";  // 10:00 / Closed
+        } else if (timeMode === "closeTime") {
+          markerLabel = closeTime ?? "Closed";  // 18:00 / Closed
+        } else {
+          markerLabel = openCloseTime ?? "Closed";  // 10:00–18:00 / Closed
+        }
 
         return (
           <Marker

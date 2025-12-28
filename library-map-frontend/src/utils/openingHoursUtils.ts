@@ -63,22 +63,20 @@ function getTodaySlots(schedule: OpeningHoursSchedule, weekday: Weekday): TimeRa
 }
 
 
-// --------  --------
+// -------- tiny shared core (最小の共通化) --------
 
+type TodayContext = {
+  schedule: OpeningHoursSchedule;
+  p: ReturnType<typeof getZonedParts>;
+  slots: TimeRange[];
+};
 
-
-
-// -------- extra: 今日の open-close 表示 --------
-
-export function getTodayOpenCloseLabelFromScheduleJson(
-  openingHoursJson?: string,
-  now: Date = new Date()
-): string | null {
+function getTodayContext(now: Date, openingHoursJson?: string): TodayContext | null {
   if (!openingHoursJson) return null;
 
-  let schedule: OpeningHoursSchedule;
+  let schedule: OpeningHoursSchedule; 
   try {
-    schedule = JSON.parse(openingHoursJson);
+    schedule = JSON.parse(openingHoursJson);  //元データ
   } catch {
     return null;
   }
@@ -86,58 +84,93 @@ export function getTodayOpenCloseLabelFromScheduleJson(
   if (!schedule.timezone || !schedule.weekly) return null;
 
   const p = getZonedParts(schedule.timezone, now);
-  const slots = getTodaySlots(schedule, p.weekday);
+  const slots = getTodaySlots(schedule, p.weekday); // 今日の開館時間帯リスト ex   { open: "10:00", close: "12:00" }, { open: "13:00", close: "16:00" }
 
-  if (slots.length === 0) return "Closed";
-    // 複数枠に対応: "Open 10:00–12:00, 13:00–16:00"
-    const rangeText = slots.map(s => `${s.open}–${s.close}`).join(", ");
-    return `Open ${rangeText}`;
+  return { schedule, p, slots };
 }
 
-// -------- main status --------
+// -------- marker用：今日の最初のopen / 最後のclose --------
+// open: "10:00",
+// close: "18:00",
+// openClose: "10:00–18:00"
+export function getTodayOpenAndCloseTime(
+  now: Date,
+  openingHoursJson?: string | undefined,
+): { openTime: string | null; closeTime: string | null; openCloseTime: string | null } {
 
-export function getLibraryStatusFromScheduleJson(
-  openingHoursJson?: string,
-  now: Date = import.meta.env.DEV
-    ? new Date("2025-12-22T10:00:00+10:30") // Test
-    : new Date()
+  const ctx = getTodayContext(now, openingHoursJson); //今日の営業時間情報だけを取り出す
+
+  //今日が Closed だったり、JSON が壊れてたら null
+  if (!ctx) return { openTime: null, closeTime: null, openCloseTime: null };
+
+  const { slots } = ctx;
+  //空配列 = 今日は営業なし かどうか
+  if (slots.length === 0) return { openTime: null, closeTime: null, openCloseTime: null };
+
+  const firstOpen = [...slots]  //元の配列を壊さないためのコピー
+    .map((s) => s.open)
+    .sort((a, b) => hhmmToMinutes(a) - hhmmToMinutes(b))[0];  //分 → 数値にして 時間順にソート[0]一番早い open time
+
+  const lastClose = [...slots]
+    .map((s) => s.close)
+    .sort((a, b) => hhmmToMinutes(b) - hhmmToMinutes(a))[0];
+
+  return {
+    openTime: firstOpen ?? null,
+    closeTime: lastClose ?? null,
+    openCloseTime: firstOpen && lastClose ? `${firstOpen}–${lastClose}` : null,
+  };
+}
+
+// -------- main status（Popup / icon色 / zIndexなど） --------
+//   label: "Open now · 10:00–18:00",
+//   isOpen: true
+//   ※slots: [ { open: "10:00", close: "12:00" }, { open: "13:00", close: "16:00" } ]
+
+export function getTodayLibraryStatus(
+  now: Date,
+  openingHoursJson?: string | undefined,
 ): LibraryStatus {
+  const ctx = getTodayContext(now, openingHoursJson);
 
-  if (!openingHoursJson) return { label: "Hours not available", isOpen: false };
+  if (!ctx) return { label: "Hours unavailable", isOpen: false };
 
-  let schedule: OpeningHoursSchedule;
-  try {
-    schedule = JSON.parse(openingHoursJson);
-  } catch {
-    return { label: "Hours unavailable", isOpen: false };
-  }
-
-  if (!schedule.timezone || !schedule.weekly) {
-    return { label: "Hours unavailable", isOpen: false };
-  }
-
-  const p = getZonedParts(schedule.timezone, now);
-  const slots = getTodaySlots(schedule, p.weekday);
+  const { p, slots } = ctx;
 
   // 今日スロットなし
   if (slots.length === 0) {
     return { label: "Closed today", isOpen: false };
   }
 
-  // "10:00–12:00, 13:00–16:00"
-  const rangeText = slots.map(s => `${s.open}–${s.close}`).join(", ");
+  const rangeText = slots.map((s) => `${s.open}–${s.close}`).join(", ");
 
-  // 今がスロット内か？
-  const isOpenNow = slots.some(s => {
+  const isOpenNow = slots.some((s) => {
     const o = hhmmToMinutes(s.open);
     const c = hhmmToMinutes(s.close);
     return p.minutes >= o && p.minutes < c;
   });
 
-  const label = isOpenNow
-    ? `Open now · ${rangeText}`
-    : `Closed now · ${rangeText}`;
-
+  // "mon" -> "Mon"
+  const weekdayLabel = p.weekday.charAt(0).toUpperCase() + p.weekday.slice(1);
+  const label = isOpenNow ? `Open now · ${weekdayLabel} ${rangeText}` 
+                          : `Closed now · ${weekdayLabel} ${rangeText}`;
   return { label, isOpen: isOpenNow };
+}
+
+
+// -------- extra: 今日の open-close 表示（必要ならUIで使う） --------
+
+export function getTodayOpenToCloseLabel(
+  now: Date,
+  openingHoursJson?: string | undefined,
+): string | null {
+  const ctx = getTodayContext(now, openingHoursJson);
+  if (!ctx) return null;
+
+  const { slots } = ctx;
+  if (slots.length === 0) return "Closed";
+
+  // 複数枠に対応: "10:00–12:00, 13:00–16:00"
+  return slots.map((s) => `${s.open}–${s.close}`).join(", ");
 }
 
