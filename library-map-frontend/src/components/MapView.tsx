@@ -12,7 +12,7 @@ type TimeMode = "openTime" | "closeTime" | "openCloseTime";
 
 interface MapViewProps {
   timeMode: TimeMode;
-  setTimeMode: (m: TimeMode) => void; // ★追加
+  setTimeMode: (m: TimeMode) => void;
 }
 
 const ADELAIDE_CENTER: LatLngExpression = [-34.9285, 138.6007];
@@ -37,7 +37,7 @@ function toFrontendLibrary(api: ApiLibrary): Library {
 }
 
 const now = import.meta.env.DEV
-  // ? new Date("2025-12-29T13:00:00+10:30")
+  // ? new Date("2025-12-29T13:00:00+10:30")  // for testing
   ? new Date()
   : new Date();
 
@@ -59,7 +59,7 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
 
   return (
     <div className="h-full w-full relative">
-      {/* Floating dropdown (mobile-first). PCでも出したいなら sm:hidden を外す */}
+      {/* Floating dropdown (mobile-first). If you want to display it on PC, remove sm:hidden */}
       <div className="absolute top-3 right-3 z-[1000]">
         <details className="group relative inline-block">
           <summary className="list-none cursor-pointer select-none rounded-full border bg-white/95 backdrop-blur px-3 py-2 shadow-md inline-flex items-center gap-2 w-max">
@@ -69,7 +69,7 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
             <span className="text-slate-500 transition-transform group-open:rotate-180">▾</span>
           </summary>
 
-          {/* メニューは右揃え＆幅固定（必要なら） */}
+          {/* Menu should be right-aligned and have a fixed width (if necessary) */}
           <div className="absolute right-0 mt-2 w-40 rounded-2xl border bg-white overflow-hidden shadow-lg">
             {(Object.keys(modeLabel) as TimeMode[]).map((m) => (
               <button

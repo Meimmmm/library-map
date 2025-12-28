@@ -20,8 +20,8 @@ function App() {
         </div>
       </header>
 
-    <main className="flex-1 min-h-0">
-      <div className="w-full h-full">
+      <main className="flex-1 min-h-0">
+        <div className="w-full h-full">
           <MapView timeMode={timeMode} setTimeMode={setTimeMode} />
         </div>
       </main>

@@ -2,11 +2,11 @@
 import L from "leaflet";
 
 export function createStatusIcon(label: string, isOpen: boolean) {
-  const color = isOpen ? "#16a34a" : "#4b5563"; // 緑 or グレー
+  const color = isOpen ? "#16a34a" : "#4b5563"; // Green or Gray
 
   const html = `
     <div style="display:flex;flex-direction:column;align-items:center;transform:translateY(-8px);">
-      <!-- 上の小さいラベル -->
+      <!-- Small label on top -->
       <div
         style="
           background:${color};
@@ -21,7 +21,7 @@ export function createStatusIcon(label: string, isOpen: boolean) {
         ${label}
       </div>
 
-      <!-- ピンの丸い頭 -->
+      <!-- Round head of the pin -->
       <div
         style="
           width:16px;
@@ -34,7 +34,7 @@ export function createStatusIcon(label: string, isOpen: boolean) {
         "
       ></div>
 
-      <!-- ピンの三角（下のとんがり） -->
+      <!-- Pin's triangle (bottom point) -->
       <div
         style="
           width:0;
@@ -52,7 +52,7 @@ export function createStatusIcon(label: string, isOpen: boolean) {
     html,
     className: "",
     iconSize: [0, 0],
-    // 図書館の位置 = 三角の先端のあたりになるように調整
+    // Library position = Adjust so that it is near the tip of the triangle
     iconAnchor: [10, 28],
   });
 }
