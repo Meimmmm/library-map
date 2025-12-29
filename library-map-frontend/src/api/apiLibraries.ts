@@ -1,10 +1,11 @@
 // src/api/apiLibraries.ts
-// APIから取得する図書館データの型定義と取得関数(バックエンド API のレスポンスそのもの)
+// Type definition and retrieval function for library data retrieved from the API (the backend API response itself)
 
 export type ApiLibrary = {
   id: number;
   lat: number;
   lon: number;
+  GooglePlaceId: string;
   categories?: string | null; 
 
   // visible info

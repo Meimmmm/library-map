@@ -7,6 +7,7 @@ import type { Library } from "../types/library";
 import { createStatusIcon } from "../utils/mapIconUtils";
 import { fetchLibraries, type ApiLibrary } from "../api/apiLibraries";
 import { getTodayLibraryStatus, getTodayOpenAndCloseTime } from "../utils/openingHoursUtils";
+import { getGoogleMapsSearchUrl } from "../utils/mapLinkUtils";
 
 type TimeMode = "openTime" | "closeTime" | "openCloseTime";
 
@@ -26,9 +27,11 @@ const modeLabel: Record<TimeMode, string> = {
 function toFrontendLibrary(api: ApiLibrary): Library {
   return {
     id: api.id,
-    name: api.name,
     lat: api.lat,
     lon: api.lon,
+    GooglePlaceId: api.GooglePlaceId,
+
+    name: api.name,
     address: api.address ?? "",
     websiteUrl: api.websiteUrl ?? undefined,
     websiteUrl2: api.websiteUrl2 ?? undefined,
@@ -90,7 +93,6 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
         </details>
       </div>
       
-
       <MapContainer
         className="w-full h-full"
         center={ADELAIDE_CENTER}
@@ -103,9 +105,13 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
         />
 
         {libs.map((lib) => {
-          const { openTime, closeTime, openCloseTime } =
+          const { openTime, closeTime, openCloseTime } = 
             getTodayOpenAndCloseTime(now, lib.openingHoursJson ?? undefined);
           const status = getTodayLibraryStatus(now, lib.openingHoursJson ?? undefined);
+          const mapUrl = getGoogleMapsSearchUrl({
+            name: lib.name,
+            address: lib.address,
+          });
 
           let markerLabel = "Closed";
           if (timeMode === "openTime") markerLabel = openTime ?? "Closed";
@@ -130,13 +136,14 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
                   <div className="text-[11px] text-slate-500 mb-2">{lib.address}</div>
                 )}
 
+                {/* links */}
                 <div className="flex flex-col gap-1">
                   {lib.websiteUrl && (
                     <a
                       href={lib.websiteUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-xs text-blue-600 underline"
+                      className="block text-[11px] text-blue-600 hover:underline"
                     >
                       Library Website
                     </a>
@@ -147,9 +154,20 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
                       href={lib.websiteUrl2}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-xs text-blue-600 underline"
+                      className="block text-[11px] text-blue-600 hover:underline"
                     >
-                      Opening Hours Webpage
+                      Opening Hours Web Page
+                    </a>
+                  )}
+
+                  {mapUrl && (
+                    <a
+                      href={mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-[11px] text-slate-500 mb-2 hover:underline"
+                    >
+                      GoogleMap📍
                     </a>
                   )}
                 </div>

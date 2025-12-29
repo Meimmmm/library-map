@@ -5,6 +5,7 @@ export interface Library {
   id: number;
   lat: number;
   lon: number;
+  GooglePlaceId: string;
   categories?: string;
 
   name: string;
