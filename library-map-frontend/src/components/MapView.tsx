@@ -9,7 +9,7 @@ import { fetchLibraries, type ApiLibrary } from "../api/apiLibraries";
 import { getTodayLibraryStatus, getTodayOpenAndCloseTime } from "../utils/openingHoursUtils";
 import { getGoogleMapsSearchUrl } from "../utils/mapLinkUtils";
 
-type TimeMode = "openTime" | "closeTime" | "openCloseTime";
+type TimeMode = "openTime" | "closeTime" | "openCloseTime"; //Go types
 
 interface MapViewProps {
   timeMode: TimeMode;

@@ -5,7 +5,7 @@ import MapView from "./components/MapView";
 type TimeMode = "openTime" | "closeTime" | "openCloseTime";
 
 function App() {
-  const [timeMode, setTimeMode] = useState<TimeMode>("openTime");
+  const [timeMode, setTimeMode] = useState<TimeMode>("openCloseTime");
 
   return (
     <div className="min-h-screen bg-slate-100 flex flex-col">

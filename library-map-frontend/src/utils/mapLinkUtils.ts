@@ -12,7 +12,7 @@ export function getGoogleMapsSearchUrl(params: {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
 }
 
-
+// did not work well with some places
 // export function getGoogleMapsUrl(placeId: string): string {
 //   return `https://www.google.com/maps/search/?api=1&query=place_id:${placeId}`;
 // }
