@@ -138,7 +138,7 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
                       rel="noreferrer"
                       className="text-xs text-blue-600 underline"
                     >
-                      Website1
+                      Library Website
                     </a>
                   )}
 
@@ -149,7 +149,7 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
                       rel="noreferrer"
                       className="text-xs text-blue-600 underline"
                     >
-                      Website2
+                      Opening Hours Webpage
                     </a>
                   )}
                 </div>
