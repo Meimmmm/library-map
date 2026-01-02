@@ -35,7 +35,7 @@ function toFrontendLibrary(api: ApiLibrary): Library {
     address: api.address ?? "",
     websiteUrl: api.websiteUrl ?? undefined,
     websiteUrl2: api.websiteUrl2 ?? undefined,
-    openingHoursJson: api.openingHoursJson ?? null,
+    openingHoursJson: api.openingHoursJson ?? null, //
   };
 }
 

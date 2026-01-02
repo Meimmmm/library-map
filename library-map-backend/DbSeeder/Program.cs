@@ -118,9 +118,9 @@ foreach (var seed in seedItems)
 
         OpeningHoursJson = openingHoursJson,
 
-        HasParking = null,
-        NearestBusStop = null,
-        WalkingMinutesFromBus = null,
+        // HasParking = null,
+        // NearestBusStop = null,
+        // WalkingMinutesFromBus = null,
     };
 
     db.Libraries.Add(library);
