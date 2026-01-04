@@ -49,3 +49,7 @@ LibraryMap.Api/appsettings.Development.json
 # =========================
 *.mdf
 *.ldf
+# SQLite
+*.db
+*.sqlite
+*.sqlite3
