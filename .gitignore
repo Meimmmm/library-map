@@ -35,11 +35,6 @@ obj/
 *.user
 
 # =========================
-# Seed / Data generation
-# =========================
-SeedTool/*.geojson
-
-# =========================
 # ASP.NET Core (local only)
 # =========================
 LibraryMap.Api/appsettings.Development.json
@@ -55,3 +50,9 @@ LibraryMap.Api/appsettings.Development.json
 *.sqlite3
 *.db-shm
 *.db-wal
+
+# =========================
+# local-only tools
+# =========================
+library-map-backend/DbSeeder/
+library-map-backend/DbSeeder/
