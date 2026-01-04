@@ -116,6 +116,8 @@ dotnet run
 ```
 Make sure the API is running before starting the frontend.
 
+---
+
 ## Future Improvements
 - Date/time-based opening status support
 - Handling of irregular hours (holidays, year-end periods)
@@ -128,9 +130,9 @@ Make sure the API is running before starting the frontend.
 ---
 
 ## Author
-Mei Takagi
-Master of Computer Science (AI)
-Aspiring Full-Stack / .NET / Cloud Engineer
+Mei Takagi.
+Master of Computer Science (AI).
+Aspiring Full-Stack / .NET / Cloud Engineer.
 
 ## License
 This project is for educational and portfolio purposes.
