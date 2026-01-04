@@ -21,7 +21,11 @@ builder.Services.AddCors(options =>
     options.AddPolicy("FrontendDev", policy =>
     {
         policy
-            .WithOrigins("http://localhost:5173") // Can come from this URL. ※Port number is for Vite dev server
+            .WithOrigins(
+                "http://localhost:5173",
+                "https://gray-mud-0fd63cf00.1.azurestaticapps.net"
+            )
+            // .WithOrigins("http://localhost:5173") // Can come from this URL. ※Port number is for Vite dev server
             .AllowAnyHeader()
             .AllowAnyMethod();  // Allow any HTTP method (GET, POST, etc.)
     });
@@ -32,8 +36,8 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<LibraryContext>();
-    await db.Database.MigrateAsync();          // テーブル作成/更新
-    await LibrarySeeder.SeedAsync(db, app.Environment);  // 初回データ投入
+    await db.Database.MigrateAsync();          // Table creation/update
+    await LibrarySeeder.SeedAsync(db, app.Environment);  // Initial data input
 }
 
 // Configure the HTTP request pipeline.
@@ -44,14 +48,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
 app.UseHttpsRedirection();
-app.UseCors("FrontendDev"); // Use CORS policy  ???????★
-
-// var summaries = new[]
-// {
-//     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-// };
+app.UseCors("FrontendDev"); // Use CORS policy  ★
 
 app.MapGet("/debug/db", (LibraryContext db) =>
 {
@@ -62,26 +60,6 @@ app.MapGet("/debug/db", (LibraryContext db) =>
     };
 });
 
-
-// app.MapGet("/weatherforecast", () =>
-// {
-//     var forecast =  Enumerable.Range(1, 5).Select(index =>
-//         new WeatherForecast
-//         (
-//             DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-//             Random.Shared.Next(-20, 55),
-//             summaries[Random.Shared.Next(summaries.Length)]
-//         ))
-//         .ToArray();
-//     return forecast;
-// })
-// .WithName("GetWeatherForecast");
-
-
 app.MapControllers();
 app.Run();
 
-// record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-// {
-//     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-// }
