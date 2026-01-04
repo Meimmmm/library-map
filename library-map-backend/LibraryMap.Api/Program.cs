@@ -5,20 +5,22 @@ using LibraryMap.Api.Data.Seed;
 var builder = WebApplication.CreateBuilder(args);
 
 //******************************************************************
-// Add services to the container.
+// Services
 //******************************************************************
-builder.Services.AddOpenApi();              
 builder.Services.AddEndpointsApiExplorer(); // For Swagger
 builder.Services.AddSwaggerGen();           // For Swagger
 builder.Services.AddControllers();
 
+//DB
 builder.Services.AddDbContext<LibraryContext>(options =>
-    // options.UseSqlServer(builder.Configuration.GetConnectionString("LibraryDb")));
     options.UseSqlite(builder.Configuration.GetConnectionString("LibraryDb")));
+    // options.UseSqlServer(builder.Configuration.GetConnectionString("LibraryDb")));
 
+// CORS
+const string CorsPolicyName = "FrontendDev";
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("FrontendDev", policy =>
+    options.AddPolicy(CorsPolicyName, policy =>
     {
         policy
             .WithOrigins(
@@ -32,24 +34,35 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+//******************************************************************
+// DB migrate + seed
+//******************************************************************
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<LibraryContext>();
-    await db.Database.MigrateAsync();          // Table creation/update
+    await db.Database.MigrateAsync();                    // Table creation/update
     await LibrarySeeder.SeedAsync(db, app.Environment);  // Initial data input
 }
 
-// Configure the HTTP request pipeline.
+//******************************************************************
+// Middleware pipeline
+//******************************************************************
 if (app.Environment.IsDevelopment())
 {
-    // app.MapOpenApi(); // Just output OpenAPI JSON (no UI) 
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-app.UseCors("FrontendDev"); // Use CORS policy  ★
 
+//Important: The order of Routing → CORS → Controllers is stable.
+app.UseRouting();
+
+app.UseCors(CorsPolicyName);
+
+app.MapControllers();
+
+//optional
 app.MapGet("/debug/db", (LibraryContext db) =>
 {
     return new
@@ -59,6 +72,5 @@ app.MapGet("/debug/db", (LibraryContext db) =>
     };
 });
 
-app.MapControllers();
 app.Run();
 
