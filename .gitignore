@@ -55,4 +55,4 @@ LibraryMap.Api/appsettings.Development.json
 # local-only tools
 # =========================
 library-map-backend/DbSeeder/
-library-map-backend/DbSeeder/
+library-map-backend/SeedTool/
