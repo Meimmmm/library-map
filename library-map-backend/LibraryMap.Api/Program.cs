@@ -22,10 +22,9 @@ builder.Services.AddCors(options =>
     {
         policy
             .WithOrigins(
-                "http://localhost:5173",
-                "https://library-map-api-dgbxatcbbfddfqdx.australiaeast-01.azurewebsites.net"
+                "http://localhost:5173",    // Can come from this URL. ※Port number is for Vite dev server
+                "https://gray-mud-0fd63cf00.1.azurestaticapps.net"
             )
-            // .WithOrigins("http://localhost:5173") // Can come from this URL. ※Port number is for Vite dev server
             .AllowAnyHeader()
             .AllowAnyMethod();  // Allow any HTTP method (GET, POST, etc.)
     });
