@@ -8,14 +8,13 @@ public static class LibrarySeeder
 {
     public static async Task SeedAsync(LibraryContext db, IHostEnvironment env)
     {
-        // 初回のみ
-        if (await db.Libraries.AnyAsync()) return;
+        if (await db.Libraries.AnyAsync()) return;  //
 
         var path = Path.Combine(
             env.ContentRootPath,
             "Data",
             "Seed",
-            "seed-libraries.json" // ← 実ファイル名と一致させる
+            "seed-libraries.json"
         );
 
         var json = await File.ReadAllTextAsync(path);
@@ -23,7 +22,7 @@ public static class LibrarySeeder
         var options = new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true,
-            AllowTrailingCommas = true // 念のため
+            AllowTrailingCommas = true // Just in case
         };
 
         var seed = JsonSerializer.Deserialize<List<SeedLibraryDto>>(json, options) ?? new();

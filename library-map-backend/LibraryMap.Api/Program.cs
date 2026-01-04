@@ -40,8 +40,12 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<LibraryContext>();
-    await db.Database.MigrateAsync();                    // Table creation/update
-    await LibrarySeeder.SeedAsync(db, app.Environment);  // Initial data input
+    await db.Database.MigrateAsync();   // Table creation/update
+    
+    if (!db.Libraries.Any())
+    {
+        await LibrarySeeder.SeedAsync(db, app.Environment);  // Initial data input    
+    }
 }
 
 //******************************************************************
