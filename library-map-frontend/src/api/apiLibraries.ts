@@ -16,8 +16,7 @@ export type ApiLibrary = {
   openingHoursJson?: string | null;
 };
 
-// const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:5259";
-const API_BASE = import.meta.env.VITE_API_BASE_URL;
+const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:5259";
 
 export async function fetchLibraries(): Promise<ApiLibrary[]> {
   const res = await fetch(`${API_BASE}/api/libraries`);
