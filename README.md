@@ -6,6 +6,13 @@ This project is built as a **portfolio application** to demonstrate modern full-
 
 ---
 
+## Background & Motivation
+Have you ever finished an errand and wondered, "Are there any libraries nearby where I can stop by for a bit? Which one stays open the latest?"
+I built this tool to solve that exact problem, to allow anyone to instantly compare the locations and opening hours of multiple libraries at a glance.
+This project is dedicated to everyone who works hard every day. I hope this map supports your journey, even in a small way.
+
+---
+
 ## Live Demo
 - **Frontend (Azure Static Web Apps)**  
   https://gray-mud-0fd63cf00.1.azurestaticapps.net
