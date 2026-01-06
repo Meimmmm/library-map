@@ -9,6 +9,11 @@ import { fetchLibraries, type ApiLibrary } from "../api/apiLibraries";
 import { getTodayLibraryStatus, getTodayOpenAndCloseTime } from "../utils/openingHoursUtils";
 import { getGoogleMapsSearchUrl } from "../utils/mapLinkUtils";
 
+// seed import **Change logic later
+// import seedRaw from "../assets/seed-libraries.json";
+// import { seedToApiLibrary } from "../utils/seedMapper";
+// import type { SeedLibrary } from "../types/seedLibrary";
+
 type TimeMode = "openTime" | "closeTime" | "openCloseTime"; //Go types
 
 interface MapViewProps {
@@ -47,12 +52,68 @@ const now = import.meta.env.DEV
 function MapView({ timeMode, setTimeMode }: MapViewProps) {
   const [apiLibs, setApiLibs] = useState<ApiLibrary[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    fetchLibraries()
-      .then(setApiLibs)
-      .catch((e) => setError(e.message));
-  }, []);
+useEffect(() => {
+  const delay = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
+
+  (async () => {
+    setIsLoading(true);
+    try {
+      if (import.meta.env.DEV) {
+        await delay(20_000);  //For testing
+      }
+      const data = await fetchLibraries();
+      setApiLibs(data);
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        setError(e.message);
+      } else {
+        setError("Failed to load libraries");
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  })();
+}, []);
+
+
+  // // seed -> ApiLibrary に正規化（初期表示が爆速になる）
+  // const seedApiLibs: ApiLibrary[] = useMemo(() => {
+  //   return (seedRaw as SeedLibrary[]).map((s, i) => seedToApiLibrary(s, i));
+  // }, []);
+
+  // // 初期値は seed
+  // const [apiLibs, setApiLibs] = useState<ApiLibrary[]>(seedApiLibs);
+  // // const [status, setStatus] = useState<"seed" | "live">("seed");
+  // const [error, setError] = useState<string | null>(null);
+
+  // useEffect(() => {
+  //   // ローカル実験用：20秒待つ
+  //   const delay = (ms: number) =>
+  //     new Promise((resolve) => setTimeout(resolve, ms));
+
+  //   (async () => {
+  //     // DEV のときだけ遅延させる
+  //     if (import.meta.env.DEV) {
+  //       console.log("Delayed 20 seconds (DEV only)");
+  //       await delay(20_000); // 20秒
+  //     }
+  //     // fetchLibraries が AbortSignal に未対応なら controller は不要
+  //     // ここでは「今のあなたのfetchLibraries（引数なし）前提」で書く
+  //     fetchLibraries()
+  //       .then((data) => {
+  //         setApiLibs(data);
+  //         // setStatus("live");
+  //         setError(null);
+  //       })
+  //       .catch((e) => {
+  //         // seed表示を維持したまま、軽く通知
+  //         setError(e?.message ?? "Failed to load live data");
+  //       });
+  //   })();
+  // }, []);
 
   const libs = useMemo(() => apiLibs.map(toFrontendLibrary), [apiLibs]);
 
@@ -62,6 +123,13 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
 
   return (
     <div className="h-full w-full relative">
+      {isLoading && (
+        <div className="absolute inset-0 z-[1200] flex items-center justify-center bg-white/40 backdrop-blur-sm">
+          <div className="rounded-2xl border bg-white px-4 py-3 shadow-lg text-sm text-slate-700">
+            Loading libraries…
+          </div>
+        </div>
+      )}
       {/* Floating dropdown (mobile-first). If you want to display it on PC, remove sm:hidden */}
       <div className="absolute top-3 right-3 z-[1000]">
         <details className="group relative inline-block">
@@ -92,7 +160,7 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
           </div>
         </details>
       </div>
-      
+
       <MapContainer
         className="w-full h-full"
         center={ADELAIDE_CENTER}
@@ -105,7 +173,7 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
         />
 
         {libs.map((lib) => {
-          const { openTime, closeTime, openCloseTime } = 
+          const { openTime, closeTime, openCloseTime } =
             getTodayOpenAndCloseTime(now, lib.openingHoursJson ?? undefined);
           const status = getTodayLibraryStatus(now, lib.openingHoursJson ?? undefined);
           const mapUrl = getGoogleMapsSearchUrl({
