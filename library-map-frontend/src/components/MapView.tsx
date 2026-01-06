@@ -7,7 +7,7 @@ import type { Library } from "../types/library";
 import { createStatusIcon } from "../utils/mapIconUtils";
 import { fetchLibraries, type ApiLibrary } from "../api/apiLibraries";
 import { getTodayLibraryStatus, getTodayOpenAndCloseTime } from "../utils/openingHoursUtils";
-import { getGoogleMapsSearchUrl } from "../utils/mapLinkUtils";
+import { getGoogleMapsSearchUrl, getGoogleMapsDirectionsUrl } from "../utils/mapLinkUtils";
 
 // seed import **Change logic later
 // import seedRaw from "../assets/seed-libraries.json";
@@ -54,29 +54,29 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-useEffect(() => {
-  const delay = (ms: number) =>
-    new Promise((resolve) => setTimeout(resolve, ms));
+  useEffect(() => {
+    const delay = (ms: number) =>
+      new Promise((resolve) => setTimeout(resolve, ms));
 
-  (async () => {
-    setIsLoading(true);
-    try {
-      if (import.meta.env.DEV) {
-        await delay(20_000);  //For testing
+    (async () => {
+      setIsLoading(true);
+      try {
+        if (import.meta.env.DEV) {
+          await delay(3_000);  //For testing
+        }
+        const data = await fetchLibraries();
+        setApiLibs(data);
+      } catch (e: unknown) {
+        if (e instanceof Error) {
+          setError(e.message);
+        } else {
+          setError("Failed to load libraries");
+        }
+      } finally {
+        setIsLoading(false);
       }
-      const data = await fetchLibraries();
-      setApiLibs(data);
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        setError(e.message);
-      } else {
-        setError("Failed to load libraries");
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  })();
-}, []);
+    })();
+  }, []);
 
 
   // // seed -> ApiLibrary に正規化（初期表示が爆速になる）
@@ -180,6 +180,11 @@ useEffect(() => {
             name: lib.name,
             address: lib.address,
           });
+          const directionsUrl = getGoogleMapsDirectionsUrl({
+            lat: lib.lat,
+            lng: lib.lon,
+            travelMode: "walking",
+          });
 
           let markerLabel = "Closed";
           if (timeMode === "openTime") markerLabel = openTime ?? "Closed";
@@ -194,14 +199,20 @@ useEffect(() => {
               zIndexOffset={status.isOpen ? 1000 : 0}
             >
               <Popup>
-                <div className="font-bold mb-1">{lib.name}</div>
+                <div className="text-base font-semibold mb-1">
+                  {lib.name}
+                </div>
 
                 {lib.openingHoursJson && (
-                  <div className="text-xs text-slate-500 mb-2">{status.label}</div>
+                  <div className="text-sm text-slate-500 mb-2">
+                    {status.label}
+                  </div>
                 )}
 
                 {lib.address && (
-                  <div className="text-[11px] text-slate-500 mb-2">{lib.address}</div>
+                  <div className="text-xs text-slate-500 mb-2">
+                    {lib.address}
+                  </div>
                 )}
 
                 {/* links */}
@@ -211,9 +222,9 @@ useEffect(() => {
                       href={lib.websiteUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="block text-[11px] text-blue-600 hover:underline"
+                      className="block text-sm text-blue-600 hover:underline"
                     >
-                      Library Website
+                      🌐Library Website
                     </a>
                   )}
 
@@ -222,9 +233,9 @@ useEffect(() => {
                       href={lib.websiteUrl2}
                       target="_blank"
                       rel="noreferrer"
-                      className="block text-[11px] text-blue-600 hover:underline"
+                      className="block text-sm text-blue-600 hover:underline"
                     >
-                      Opening Hours Web Page
+                      🌐Opening Hours Web Page
                     </a>
                   )}
 
@@ -233,13 +244,25 @@ useEffect(() => {
                       href={mapUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block text-[11px] text-slate-500 mb-2 hover:underline"
+                      className="block text-sm text-slate-600 hover:underline"
                     >
-                      GoogleMap📍
+                      📍Open in Google Maps
+                    </a>
+                  )}
+
+                  {directionsUrl && (
+                    <a
+                      href={directionsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-sm text-slate-600 hover:underline"
+                    >
+                      ➡️Directions from my location
                     </a>
                   )}
                 </div>
               </Popup>
+
             </Marker>
           );
         })}
