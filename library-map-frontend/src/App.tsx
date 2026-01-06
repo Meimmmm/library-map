@@ -15,7 +15,7 @@ function App() {
             Adelaide Library Map
           </h1>
           <p className="text-sm text-slate-500">
-            Library map showing opening times at a glance
+            Opening times at a glance
           </p>
         </div>
       </header>
