@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using LibraryMap.Api.Data;
-using LibraryMap.Api.Data.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +12,8 @@ builder.Services.AddControllers();
 
 //DB
 builder.Services.AddDbContext<LibraryContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("LibraryDb")));
-    // options.UseSqlServer(builder.Configuration.GetConnectionString("LibraryDb")));
+    // options.UseSqlite(builder.Configuration.GetConnectionString("LibraryDb")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("LibraryDb")));
 
 // CORS
 const string CorsPolicyName = "FrontendDev";
@@ -35,18 +34,14 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 //******************************************************************
-// DB migrate + seed
+// DB migrate
 //******************************************************************
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<LibraryContext>();
     await db.Database.MigrateAsync();   // Table creation/update
-    
-    if (!db.Libraries.Any())
-    {
-        await LibrarySeeder.SeedAsync(db, app.Environment);  // Initial data input    
-    }
 }
+
 
 //******************************************************************
 // Middleware pipeline

@@ -235,7 +235,7 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
                       rel="noreferrer"
                       className="block text-sm text-blue-600 hover:underline"
                     >
-                      🌐Opening Hours Web Page
+                      🕒Opening Hours Web Page
                     </a>
                   )}
 
