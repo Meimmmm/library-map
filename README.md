@@ -27,15 +27,17 @@ The frontend and backend are deployed independently and communicate via APIs.
 ```mermaid
 graph TD
     A[React / Vite + TypeScript] -- fetch (CORS) --> B[.NET Core Web API]
-    B -- EF Core --> C[(SQLite Database)]
+    B -- EF Core --> C[(Azure SQL Database)]
 ```
 
 ---
 
 ## Design Key Points
-- Frontend and backend are deployed **independently**
+- Frontend and backend are deployed independently
 - CORS is explicitly configured for production and local development
-- Database schema and seed data are applied automatically on application startup
+- **Database schema is managed via EF Core migrations**
+- **Production database is hosted on Azure SQL Database**
+- Environment-specific configuration via application settings and environment variables
 
 ---
 
@@ -43,17 +45,17 @@ graph TD
 - Interactive map view (Leaflet)
 - Library markers loaded dynamically from API
 - Environment-aware configuration (Dev / Production)
-- Automatic database migration & seeding
+- Explicit database migration management
 - Deployed on Azure with GitHub Actions
 
 ---
 
 ## Design Decisions
-- To minimise operational costs, Leaflet was chosen instead of Google Maps.
+- To minimise operational costs, Leaflet was chosen instead of Google Maps for map rendering.
 - Due to Google API licensing restrictions, data retrieved from Google services cannot be persistently stored.
-- Facility data is therefore primarily sourced from OpenStreetMap (OSM).
+- Facility data is therefore primarily sourced from **OpenStreetMap (OSM)**.
 - Any missing or incomplete information in OSM has been manually supplemented.
-- In future iterations, Google Place ID will be used to periodically validate the consistency and accuracy of facility data.
+- In future iterations, **Google Place ID will be used to periodically validate the consistency and accuracy of facility data**.
 
 ---
 
@@ -68,11 +70,13 @@ graph TD
 ### Backend
 - ASP.NET Core Web API
 - Entity Framework Core
-- SQLite (demo / development use)
+- **SQL Server (local development)**
+- **Azure SQL Database (production)**
 
 ### Infrastructure
 - Azure Static Web Apps (Frontend)
 - Azure App Service (Backend API)
+- Azure SQL Database
 - GitHub Actions (CI/CD)
 
 ---
@@ -90,23 +94,18 @@ This ensures secure cross-origin communication between the frontend and backend.
 
 ---
 
-## Database & Seeding Strategy
+## Database Strategy
 
-- SQLite is used for **development and demo purposes**
-- On application startup:
-  - Database migrations are applied automatically
-  - Seed data is inserted **only if the database is empty**
+- **Local development uses a local SQL Server instance**
+- **Production uses Azure SQL Database**
+- The same EF Core SQL Server provider is used across environments
+- Database schema changes are managed via EF Core migrations
 
-```csharp
-if (!db.Libraries.Any())
-{
-    await LibrarySeeder.SeedAsync(db, app.Environment);
-}
-```
-Note:  
-Azure SQL was originally planned for this project.  
-SQLite is currently used to minimise costs during the demo phase,  
-with the architecture designed to allow an easy migration to Azure SQL in future.
+### Migration Policy
+
+- Migrations are **not executed automatically on application startup**
+- Schema changes are applied explicitly using EF Core migration commands
+- This approach avoids unintended schema changes in production environments and reflects production-safe practices
 
 ---
 
