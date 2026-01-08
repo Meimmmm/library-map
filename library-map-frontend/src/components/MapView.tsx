@@ -78,43 +78,6 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
     })();
   }, []);
 
-
-  // // seed -> ApiLibrary に正規化（初期表示が爆速になる）
-  // const seedApiLibs: ApiLibrary[] = useMemo(() => {
-  //   return (seedRaw as SeedLibrary[]).map((s, i) => seedToApiLibrary(s, i));
-  // }, []);
-
-  // // 初期値は seed
-  // const [apiLibs, setApiLibs] = useState<ApiLibrary[]>(seedApiLibs);
-  // // const [status, setStatus] = useState<"seed" | "live">("seed");
-  // const [error, setError] = useState<string | null>(null);
-
-  // useEffect(() => {
-  //   // ローカル実験用：20秒待つ
-  //   const delay = (ms: number) =>
-  //     new Promise((resolve) => setTimeout(resolve, ms));
-
-  //   (async () => {
-  //     // DEV のときだけ遅延させる
-  //     if (import.meta.env.DEV) {
-  //       console.log("Delayed 20 seconds (DEV only)");
-  //       await delay(20_000); // 20秒
-  //     }
-  //     // fetchLibraries が AbortSignal に未対応なら controller は不要
-  //     // ここでは「今のあなたのfetchLibraries（引数なし）前提」で書く
-  //     fetchLibraries()
-  //       .then((data) => {
-  //         setApiLibs(data);
-  //         // setStatus("live");
-  //         setError(null);
-  //       })
-  //       .catch((e) => {
-  //         // seed表示を維持したまま、軽く通知
-  //         setError(e?.message ?? "Failed to load live data");
-  //       });
-  //   })();
-  // }, []);
-
   const libs = useMemo(() => apiLibs.map(toFrontendLibrary), [apiLibs]);
 
   if (error) {
@@ -199,70 +162,74 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
               zIndexOffset={status.isOpen ? 1000 : 0}
             >
               <Popup>
-                <div className="text-base font-semibold mb-1">
-                  {lib.name}
-                </div>
-
-                {lib.openingHoursJson && (
-                  <div className="text-sm text-slate-500 mb-2">
-                    {status.label}
+                <div className="min-w-[30ch]">
+                  <div className="text-base font-semibold mb-1">
+                    {lib.name}
                   </div>
-                )}
 
-                {lib.address && (
-                  <div className="text-xs text-slate-500 mb-2">
-                    {lib.address}
+                  {lib.openingHoursJson && (
+                    <div className="text-sm text-slate-500 mb-2">
+                      {status.label}
+                    </div>
+                  )}
+
+                  {lib.address && (
+                    <div className="text-xs text-slate-500 mb-3 ">
+                      {lib.address}
+                    </div>
+                  )}
+
+                  {/* === Primary actions === */}
+                  <div className="grid grid-cols-2 gap-2 mb-3">
+                    {mapUrl && (
+                      <a
+                        href={mapUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-1 rounded-lg bg-slate-100 px-2 py-2 text-sm font-medium text-slate-700 hover:bg-slate-200"
+                      >
+                        📍 Maps
+                      </a>
+                    )}
+
+                    {directionsUrl && (
+                      <a
+                        href={directionsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-1 rounded-lg bg-blue-100 px-2 py-2 text-sm font-medium text-blue-700 hover:bg-blue-200"
+                      >
+                        ➡️ Directions
+                      </a>
+                    )}
                   </div>
-                )}
 
-                {/* links */}
-                <div className="flex flex-col gap-1">
-                  {lib.websiteUrl && (
-                    <a
-                      href={lib.websiteUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="block text-sm text-blue-600 hover:underline"
-                    >
-                      🌐Library Website
-                    </a>
-                  )}
+                  {/* === Secondary links === */}
+                  <div className="flex flex-col gap-1">
+                    {lib.websiteUrl && (
+                      <a
+                        href={lib.websiteUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-sm text-blue-600 hover:underline"
+                      >
+                        🌐 Library Website
+                      </a>
+                    )}
 
-                  {lib.websiteUrl2 && (
-                    <a
-                      href={lib.websiteUrl2}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="block text-sm text-blue-600 hover:underline"
-                    >
-                      🕒Opening Hours Web Page
-                    </a>
-                  )}
-
-                  {mapUrl && (
-                    <a
-                      href={mapUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-sm text-slate-600 hover:underline"
-                    >
-                      📍Open in Google Maps
-                    </a>
-                  )}
-
-                  {directionsUrl && (
-                    <a
-                      href={directionsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-sm text-slate-600 hover:underline"
-                    >
-                      ➡️Directions from my location
-                    </a>
-                  )}
+                    {lib.websiteUrl2 && (
+                      <a
+                        href={lib.websiteUrl2}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-sm text-blue-600 hover:underline"
+                      >
+                        🕒 Opening Hours Web Page
+                      </a>
+                    )}
+                  </div>
                 </div>
               </Popup>
-
             </Marker>
           );
         })}
