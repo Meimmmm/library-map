@@ -87,6 +87,10 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
 
   const libs = useMemo(() => apiLibs.map(toFrontendLibrary), [apiLibs]);
 
+  // Responsive check
+  const isMobile = window.matchMedia("(max-width: 640px)").matches;
+
+
   if (error) {
     return <div className="p-4 text-red-600">API Error: {error}</div>;
   }
@@ -177,11 +181,27 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
               />
             )}
 
-            {/* Current Location (light point marker) */}
+            {/* Outside: White border */}
             <CircleMarker
               center={[myLocation.lat, myLocation.lng]}
-              radius={7}
-              pathOptions={{}}
+              radius={isMobile ? 14 : 12}
+              pathOptions={{
+                color: "#ffffff",
+                weight: isMobile ? 5 : 4,
+                fillOpacity: 0, // Do not paint the inside
+              }}
+            />
+
+            {/* Inside: Blue dot */}
+            <CircleMarker
+              center={[myLocation.lat, myLocation.lng]}
+              radius={isMobile ? 10 : 8}
+              pathOptions={{
+                color: "#2563eb",
+                weight: 2,
+                fillColor: "#3b82f6",
+                fillOpacity: 0.95,
+              }}
             />
           </>
         )}
