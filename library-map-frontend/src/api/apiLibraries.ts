@@ -10,7 +10,7 @@ export type ApiLibrary = {
 
   // visible info
   name: string;
-  address?: string | null;
+  address: string;
   websiteUrl?: string | null;
   websiteUrl2?: string | null;
   openingHoursJson?: string | null;

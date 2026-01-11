@@ -7,12 +7,7 @@ import type { Library } from "../types/library";
 import { createStatusIcon } from "../utils/mapIconUtils";
 import { fetchLibraries, type ApiLibrary } from "../api/apiLibraries";
 import { getTodayLibraryStatus, getTodayOpenAndCloseTime } from "../utils/openingHoursUtils";
-import { getGoogleMapsSearchUrl, getGoogleMapsDirectionsUrl } from "../utils/mapLinkUtils";
-
-// seed import **Change logic later
-// import seedRaw from "../assets/seed-libraries.json";
-// import { seedToApiLibrary } from "../utils/seedMapper";
-// import type { SeedLibrary } from "../types/seedLibrary";
+import LibraryPopup from "./LibraryPopup";
 
 type TimeMode = "openTime" | "closeTime" | "openCloseTime"; //Go types
 
@@ -37,10 +32,10 @@ function toFrontendLibrary(api: ApiLibrary): Library {
     GooglePlaceId: api.GooglePlaceId,
 
     name: api.name,
-    address: api.address ?? "",
+    address: api.address,
     websiteUrl: api.websiteUrl ?? undefined,
     websiteUrl2: api.websiteUrl2 ?? undefined,
-    openingHoursJson: api.openingHoursJson ?? null, //
+    openingHoursJson: api.openingHoursJson ?? null,
   };
 }
 
@@ -62,7 +57,7 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
       setIsLoading(true);
       try {
         if (import.meta.env.DEV) {
-          await delay(3_000);  //For testing
+          await delay(1_000);  //For testing
         }
         const data = await fetchLibraries();
         setApiLibs(data);
@@ -86,6 +81,8 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
 
   return (
     <div className="h-full w-full relative">
+      
+      {/* Loading overlay */}
       {isLoading && (
         <div className="absolute inset-0 z-[1200] flex items-center justify-center bg-white/40 backdrop-blur-sm">
           <div className="rounded-2xl border bg-white px-4 py-3 shadow-lg text-sm text-slate-700">
@@ -139,15 +136,6 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
           const { openTime, closeTime, openCloseTime } =
             getTodayOpenAndCloseTime(now, lib.openingHoursJson ?? undefined);
           const status = getTodayLibraryStatus(now, lib.openingHoursJson ?? undefined);
-          const mapUrl = getGoogleMapsSearchUrl({
-            name: lib.name,
-            address: lib.address,
-          });
-          const directionsUrl = getGoogleMapsDirectionsUrl({
-            lat: lib.lat,
-            lng: lib.lon,
-            travelMode: "walking",
-          });
 
           let markerLabel = "Closed";
           if (timeMode === "openTime") markerLabel = openTime ?? "Closed";
@@ -162,73 +150,10 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
               zIndexOffset={status.isOpen ? 1000 : 0}
             >
               <Popup>
-                <div className="min-w-[30ch]">
-                  <div className="text-base font-semibold mb-1">
-                    {lib.name}
-                  </div>
-
-                  {lib.openingHoursJson && (
-                    <div className="text-sm text-slate-500 mb-2">
-                      {status.label}
-                    </div>
-                  )}
-
-                  {lib.address && (
-                    <div className="text-xs text-slate-500 mb-3 ">
-                      {lib.address}
-                    </div>
-                  )}
-
-                  {/* === Primary actions === */}
-                  <div className="grid grid-cols-2 gap-2 mb-3">
-                    {mapUrl && (
-                      <a
-                        href={mapUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-1 rounded-lg bg-slate-100 px-2 py-2 text-sm font-medium text-slate-700 hover:bg-slate-200"
-                      >
-                        📍 Maps
-                      </a>
-                    )}
-
-                    {directionsUrl && (
-                      <a
-                        href={directionsUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-1 rounded-lg bg-blue-100 px-2 py-2 text-sm font-medium text-blue-700 hover:bg-blue-200"
-                      >
-                        ➡️ Directions
-                      </a>
-                    )}
-                  </div>
-
-                  {/* === Secondary links === */}
-                  <div className="flex flex-col gap-1">
-                    {lib.websiteUrl && (
-                      <a
-                        href={lib.websiteUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-sm text-blue-600 hover:underline"
-                      >
-                        🌐 Library Website
-                      </a>
-                    )}
-
-                    {lib.websiteUrl2 && (
-                      <a
-                        href={lib.websiteUrl2}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-sm text-blue-600 hover:underline"
-                      >
-                        🕒 Opening Hours Web Page
-                      </a>
-                    )}
-                  </div>
-                </div>
+                <LibraryPopup
+                  lib={lib}
+                  status={status}
+                />
               </Popup>
             </Marker>
           );
