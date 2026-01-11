@@ -8,6 +8,8 @@ import { createStatusIcon } from "../utils/mapIconUtils";
 import { fetchLibraries, type ApiLibrary } from "../api/apiLibraries";
 import { getTodayLibraryStatus, getTodayOpenAndCloseTime } from "../utils/openingHoursUtils";
 import LibraryPopup from "./LibraryPopup";
+import { Circle, CircleMarker } from "react-leaflet";
+import MyLocationControl from "./MyLocationControl";
 
 type TimeMode = "openTime" | "closeTime" | "openCloseTime"; //Go types
 
@@ -49,6 +51,16 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [myLocation, setMyLocation] = useState<{
+    lat: number;
+    lng: number;
+    accuracy?: number;
+    updatedAt: number;
+  } | null>(null);
+  // const [isLocating, setIsLocating] = useState(false);
+  const [locationError, setLocationError] = useState<string | null>(null);
+
+
   useEffect(() => {
     const delay = (ms: number) =>
       new Promise((resolve) => setTimeout(resolve, ms));
@@ -81,7 +93,7 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
 
   return (
     <div className="h-full w-full relative">
-      
+
       {/* Loading overlay */}
       {isLoading && (
         <div className="absolute inset-0 z-[1200] flex items-center justify-center bg-white/40 backdrop-blur-sm">
@@ -90,7 +102,8 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
           </div>
         </div>
       )}
-      {/* Floating dropdown (mobile-first). If you want to display it on PC, remove sm:hidden */}
+
+      {/* Dropdown */}
       <div className="absolute top-3 right-3 z-[1000]">
         <details className="group relative inline-block">
           <summary className="list-none cursor-pointer select-none rounded-full border bg-white/95 backdrop-blur px-3 py-2 shadow-md inline-flex items-center gap-2 w-max">
@@ -121,6 +134,13 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
         </details>
       </div>
 
+      {/* Location error */}
+      {locationError && (
+        <div className="absolute top-16 right-3 z-[1000] rounded-xl border bg-white/95 px-3 py-2 text-xs text-slate-700 shadow">
+          {locationError}
+        </div>
+      )}
+
       <MapContainer
         className="w-full h-full"
         center={ADELAIDE_CENTER}
@@ -131,6 +151,40 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
           attribution="&copy; OpenStreetMap contributors"
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+
+        <MyLocationControl
+          onStart={() => {
+            // setIsLocating(true);
+            setLocationError(null);
+          }}
+          onSuccess={(lat, lng, accuracy) => {
+            setMyLocation({ lat, lng, accuracy, updatedAt: Date.now() });
+            // setIsLocating(false);
+          }}
+          onError={(msg) => {
+            setLocationError(msg);
+            // setIsLocating(false);
+          }}
+        />
+
+        {myLocation && (
+          <>
+            {/* Precision Circle */}
+            {typeof myLocation.accuracy === "number" && myLocation.accuracy > 0 && (
+              <Circle
+                center={[myLocation.lat, myLocation.lng]}
+                radius={myLocation.accuracy}
+              />
+            )}
+
+            {/* Current Location (light point marker) */}
+            <CircleMarker
+              center={[myLocation.lat, myLocation.lng]}
+              radius={7}
+              pathOptions={{}}
+            />
+          </>
+        )}
 
         {libs.map((lib) => {
           const { openTime, closeTime, openCloseTime } =
@@ -156,6 +210,7 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
                 />
               </Popup>
             </Marker>
+
           );
         })}
       </MapContainer>
