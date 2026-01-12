@@ -21,8 +21,8 @@ This project is dedicated to everyone who works hard every day. I hope this map 
   https://library-map-api-xxxxx.azurewebsites.net/api/libraries
 
 - Note  
-> The backend API may be asleep to reduce hosting costs.  
-> If data does not load immediately, please wait a few seconds and refresh the page.
+  The backend API may be asleep to reduce hosting costs.  
+  If data does not load immediately, please wait a few seconds and refresh the page.
 
 ---
 
