@@ -7,7 +7,7 @@ This project is built as a **portfolio application** to demonstrate modern full-
 ---
 
 ## Background & Motivation
-Have you ever finished an errand and wondered, "Are there any libraries nearby where I can stop by for a bit? Which one stays open the latest?"
+Have you ever finished an errand and wondered, "**Are there any libraries nearby where I can stop by for a bit? Which one stays open the latest?**"
 I built this tool to solve that exact problem, to allow anyone to instantly compare the locations and opening hours of multiple libraries at a glance.
 This project is dedicated to everyone who works hard every day. I hope this map supports your journey, even in a small way.
 
@@ -19,6 +19,10 @@ This project is dedicated to everyone who works hard every day. I hope this map 
 
 - **Backend API (Azure App Service)**  
   https://library-map-api-xxxxx.azurewebsites.net/api/libraries
+
+- **Note**
+  The backend API may be asleep to reduce hosting costs.  
+  If data does not load immediately, **please wait a few seconds and refresh the page**.
 
 ---
 
