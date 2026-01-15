@@ -1,94 +1,83 @@
 // src/components/MapView.tsx
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import type { LatLngExpression } from "leaflet";
+import type { TimeMode } from "../types/timeMode";
 
-import type { Library } from "../types/library";
 import { createStatusIcon } from "../utils/mapIconUtils";
-import { fetchLibraries, type ApiLibrary } from "../api/apiLibraries";
 import { getTodayLibraryStatus, getTodayOpenAndCloseTime } from "../utils/openingHoursUtils";
-import LibraryPopup from "./LibraryPopup";
-import { Circle, CircleMarker } from "react-leaflet";
-import MyLocationControl from "./MyLocationControl";
+import { isSameDay, mergeYmdWithHHmm, fromYmdLocal } from "../utils/dateUtils";
 
-type TimeMode = "openTime" | "closeTime" | "openCloseTime"; //Go types
+import LibraryPopup from "./LibraryPopup";
+import MyLocationControl from "./MyLocationControl";
+import MyLocationOverlay, { type MyLocation } from "./MyLocationOverlay";
+import TimeModeDropdown from "./TimeModeDropdown";
+
+import { useLibraries } from "../hooks/useLibraries";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 interface MapViewProps {
   timeMode: TimeMode;
   setTimeMode: (m: TimeMode) => void;
+  selectedDate: string; //read only
+  selectedTime: string; //read only
+  now: Date; //read only?
 }
 
+// Adelaide city center
 const ADELAIDE_CENTER: LatLngExpression = [-34.9285, 138.6007];
 
-const modeLabel: Record<TimeMode, string> = {
-  openCloseTime: "Open-Close Time",
-  openTime: "Open Time",
-  closeTime: "Close Time",
-};
-
-function toFrontendLibrary(api: ApiLibrary): Library {
-  return {
-    id: api.id,
-    lat: api.lat,
-    lon: api.lon,
-    GooglePlaceId: api.GooglePlaceId,
-
-    name: api.name,
-    address: api.address,
-    websiteUrl: api.websiteUrl ?? undefined,
-    websiteUrl2: api.websiteUrl2 ?? undefined,
-    openingHoursJson: api.openingHoursJson ?? null,
-  };
+// Get marker label based on time mode
+function getMarkerLabel(
+  timeMode: TimeMode,
+  t: { openTime: string | null; closeTime: string | null; openCloseTime: string | null }
+) {
+  if (timeMode === "openTime") return t.openTime ?? "Closed";
+  if (timeMode === "closeTime") return t.closeTime ?? "Closed";
+  return t.openCloseTime ?? "Closed";
 }
 
-const now = import.meta.env.DEV
-  // ? new Date("2025-12-29T13:00:00+10:30")  // for testing
-  ? new Date()
-  : new Date();
+function MapView({
+  timeMode,
+  setTimeMode,
+  selectedDate,
+  selectedTime,
+  now
+}: MapViewProps) {
+  const { libs, isLoading, error } = useLibraries(); //apiLibs
 
-function MapView({ timeMode, setTimeMode }: MapViewProps) {
-  const [apiLibs, setApiLibs] = useState<ApiLibrary[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  // const selectedDateTime = mergeYmdWithHHmm(selectedDate, selectedTime);
+  // const isTodaySelected = isSameDay(fromYmdLocal(selectedDate), now);
 
-  const [myLocation, setMyLocation] = useState<{
-    lat: number;
-    lng: number;
-    accuracy?: number;
-    updatedAt: number;
-  } | null>(null);
-  // const [isLocating, setIsLocating] = useState(false);
+  // usemenoじゃないとダメ？上じゃダメ？
+  const selectedDateTime = useMemo(
+    () => mergeYmdWithHHmm(selectedDate, selectedTime),
+    [selectedDate, selectedTime]
+  );
+
+  const isTodaySelected = useMemo(
+    () => isSameDay(fromYmdLocal(selectedDate), now),
+    [selectedDate, now]
+  );
+
+  const isMobile = useMediaQuery("(max-width: 640px)");
+
+  // const [myLocation, setMyLocation] = useState<{
+  //   lat: number;
+  //   lng: number;
+  //   accuracy?: number;
+  //   updatedAt: number;
+  // } | null>(null);
+  // // const [isLocating, setIsLocating] = useState(false);
+  // const [locationError, setLocationError] = useState<string | null>(null);
+
+  const [myLocation, setMyLocation] = useState<MyLocation | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
 
+  // const libs = useMemo(() => apiLibs.map(toFrontendLibrary), [apiLibs]);
 
-  useEffect(() => {
-    const delay = (ms: number) =>
-      new Promise((resolve) => setTimeout(resolve, ms));
-
-    (async () => {
-      setIsLoading(true);
-      try {
-        if (import.meta.env.DEV) {
-          await delay(1_000);  //For testing
-        }
-        const data = await fetchLibraries();
-        setApiLibs(data);
-      } catch (e: unknown) {
-        if (e instanceof Error) {
-          setError(e.message);
-        } else {
-          setError("Failed to load libraries");
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-  }, []);
-
-  const libs = useMemo(() => apiLibs.map(toFrontendLibrary), [apiLibs]);
-
-  // Responsive check
-  const isMobile = window.matchMedia("(max-width: 640px)").matches;
+  // // Responsive check
+  // const isMobile = window.matchMedia("(max-width: 640px)").matches;
 
 
   if (error) {
@@ -108,35 +97,7 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
       )}
 
       {/* Dropdown */}
-      <div className="absolute top-3 right-3 z-[1000]">
-        <details className="group relative inline-block">
-          <summary className="list-none cursor-pointer select-none rounded-full border bg-white/95 backdrop-blur px-3 py-2 shadow-md inline-flex items-center gap-2 w-max">
-            <span className="text-sm font-medium text-slate-800 max-w-[120px] truncate">
-              {modeLabel[timeMode]}
-            </span>
-            <span className="text-slate-500 transition-transform group-open:rotate-180">▾</span>
-          </summary>
-
-          {/* Menu should be right-aligned and have a fixed width (if necessary) */}
-          <div className="absolute right-0 mt-2 w-40 rounded-2xl border bg-white overflow-hidden shadow-lg">
-            {(Object.keys(modeLabel) as TimeMode[]).map((m) => (
-              <button
-                key={m}
-                type="button"
-                className={
-                  "w-full px-3 py-2 text-left text-sm " +
-                  (timeMode === m
-                    ? "bg-slate-800 text-white"
-                    : "text-slate-700 hover:bg-slate-50")
-                }
-                onClick={() => setTimeMode(m)}
-              >
-                {modeLabel[m]}
-              </button>
-            ))}
-          </div>
-        </details>
-      </div>
+      <TimeModeDropdown timeMode={timeMode} setTimeMode={setTimeMode} />
 
       {/* Location error */}
       {locationError && (
@@ -145,6 +106,7 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
         </div>
       )}
 
+      {/* main area */}
       <MapContainer
         className="w-full h-full"
         center={ADELAIDE_CENTER}
@@ -157,70 +119,29 @@ function MapView({ timeMode, setTimeMode }: MapViewProps) {
         />
 
         <MyLocationControl
-          onStart={() => {
-            // setIsLocating(true);
-            setLocationError(null);
-          }}
-          onSuccess={(lat, lng, accuracy) => {
-            setMyLocation({ lat, lng, accuracy, updatedAt: Date.now() });
-            // setIsLocating(false);
-          }}
-          onError={(msg) => {
-            setLocationError(msg);
-            // setIsLocating(false);
-          }}
+          onStart={() => setLocationError(null)}
+          onSuccess={(lat, lng, accuracy) =>
+            setMyLocation({ lat, lng, accuracy, updatedAt: Date.now() })
+          }
+          onError={(msg) => setLocationError(msg)}
         />
 
-        {myLocation && (
-          <>
-            {/* Precision Circle */}
-            {typeof myLocation.accuracy === "number" && myLocation.accuracy > 0 && (
-              <Circle
-                center={[myLocation.lat, myLocation.lng]}
-                radius={myLocation.accuracy}
-              />
-            )}
-
-            {/* Outside: White border */}
-            <CircleMarker
-              center={[myLocation.lat, myLocation.lng]}
-              radius={isMobile ? 14 : 12}
-              pathOptions={{
-                color: "#ffffff",
-                weight: isMobile ? 5 : 4,
-                fillOpacity: 0, // Do not paint the inside
-              }}
-            />
-
-            {/* Inside: Blue dot */}
-            <CircleMarker
-              center={[myLocation.lat, myLocation.lng]}
-              radius={isMobile ? 10 : 8}
-              pathOptions={{
-                color: "#2563eb",
-                weight: 2,
-                fillColor: "#3b82f6",
-                fillOpacity: 0.95,
-              }}
-            />
-          </>
-        )}
+        {myLocation && <MyLocationOverlay myLocation={myLocation} isMobile={isMobile} />}
 
         {libs.map((lib) => {
-          const { openTime, closeTime, openCloseTime } =
-            getTodayOpenAndCloseTime(now, lib.openingHoursJson ?? undefined);
-          const status = getTodayLibraryStatus(now, lib.openingHoursJson ?? undefined);
+          const times = getTodayOpenAndCloseTime(selectedDateTime, lib.openingHoursJson ?? undefined);
+          const status = getTodayLibraryStatus(selectedDateTime, lib.openingHoursJson ?? undefined);
+          const markerLabel = getMarkerLabel(timeMode, times);
 
-          let markerLabel = "Closed";
-          if (timeMode === "openTime") markerLabel = openTime ?? "Closed";
-          else if (timeMode === "closeTime") markerLabel = closeTime ?? "Closed";
-          else markerLabel = openCloseTime ?? "Closed";
+          // const { openTime, closeTime, openCloseTime } =
+          //   getTodayOpenAndCloseTime(selectedDateTime, lib.openingHoursJson ?? undefined);
+          // const status = getTodayLibraryStatus(selectedDateTime, lib.openingHoursJson ?? undefined);
 
           return (
             <Marker
               key={lib.id}
               position={[lib.lat, lib.lon]}
-              icon={createStatusIcon(markerLabel, status.isOpen)}
+              icon={createStatusIcon(markerLabel, status.isOpen, isTodaySelected)}
               zIndexOffset={status.isOpen ? 1000 : 0}
             >
               <Popup>

@@ -122,11 +122,45 @@ export function getTodayOpenAndCloseTime(
   };
 }
 
+// -------- Popup：Opening hours for the selected date --------
+// selected date (Tue): 10:00–18:00
+// export function getOpeningHoursTextForDate(
+//   date: Date,
+//   openingHoursJson?: string | undefined
+// ): { weekday: Weekday; text: string | null } {
+//   if (!openingHoursJson) return { weekday: "mon", text: null };
+
+//   let schedule: OpeningHoursSchedule;
+//   try {
+//     schedule = JSON.parse(openingHoursJson);
+//   } catch {
+//     return { weekday: "mon", text: null };
+//   }
+
+//   if (!schedule.timezone || !schedule.weekly) return { weekday: "mon", text: null };
+
+//   const p = getZonedParts(schedule.timezone, date);
+//   const slots = schedule.weekly?.[p.weekday] ?? [];
+
+//   if (slots.length === 0) return { weekday: p.weekday, text: null };
+
+//   const firstOpen = [...slots]
+//     .map((s) => s.open)
+//     .sort((a, b) => hhmmToMinutes(a) - hhmmToMinutes(b))[0];
+
+//   const lastClose = [...slots]
+//     .map((s) => s.close)
+//     .sort((a, b) => hhmmToMinutes(b) - hhmmToMinutes(a))[0];
+
+//   const text = firstOpen && lastClose ? `${firstOpen}–${lastClose}` : null;
+//   return { weekday: p.weekday, text };
+// }
+
+
 // -------- main status（Popup / icon color / zIndex） --------
 //   label: "Open now · 10:00–18:00",
 //   isOpen: true
 //   ※slots: [ { open: "10:00", close: "12:00" }, { open: "13:00", close: "16:00" } ]
-
 export function getTodayLibraryStatus(
   now: Date,
   openingHoursJson?: string | undefined,

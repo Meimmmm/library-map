@@ -1,8 +1,12 @@
 // src/utils/mapIconUtils.ts
 import L from "leaflet";
 
-export function createStatusIcon(label: string, isOpen: boolean) {
-  const color = isOpen ? "#16a34a" : "#4b5563"; // Green or Gray
+export function createStatusIcon(label: string, isOpen: boolean, isTodaySelected: boolean): L.DivIcon {
+  const color = (() => {
+    if (!isOpen) return "#4b5563";          // gray-600 (closed)
+    if (isTodaySelected) return "#16a34a";  // green-600 (open today)
+    return "#2563eb";                       // blue-600 (open on selected day)
+  })();
 
   const html = `
     <div style="display:flex;flex-direction:column;align-items:center;transform:translateY(-8px);">
