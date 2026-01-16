@@ -9,17 +9,18 @@ type Props = {
   setSelectedTime: (v: string) => void;
 };
 
+// Pad number to two digits (e.g. 3 -> "03")
 function pad2(n: number) {
   return String(n).padStart(2, "0");
 }
 
-// "YYYY-MM-DD" をローカル日付として Date 化（TZズレ回避）
+// Convert "YYYY-MM-DD" string to a local Date object (avoids timezone shift issues)
 function fromYmdLocal(ymd: string) {
   const [y, m, d] = ymd.split("-").map(Number);
   return new Date(y, (m ?? 1) - 1, d ?? 1);
 }
 
-// 30分刻みの候補を作る
+// Build time options with fixed minute steps (default: 30 minutes)
 function buildTimeOptions(stepMinutes = 30) {
   const out: string[] = [];
   for (let h = 0; h < 24; h++) {
@@ -30,7 +31,7 @@ function buildTimeOptions(stepMinutes = 30) {
   return out;
 }
 
-// 任意の "HH:MM" を 30分刻みに丸める（初期値やReset用）
+// Round an arbitrary "HH:MM" time to the nearest step (used for initial/reset values)
 function roundTimeToStep(hhmm: string, stepMinutes = 30) {
   const [h, m] = hhmm.split(":").map(Number);
   const minutes = h * 60 + m;
@@ -50,27 +51,20 @@ export default function HeaderDateTimeChip({
   setSelectedTime,
 }: Props) {
   const dateRef = useRef<HTMLInputElement | null>(null);
-  const timeWrapRef  = useRef<HTMLInputElement | null>(null);
+  const timeWrapRef = useRef<HTMLDivElement | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
 
-  // Time dropdown (30-min steps)
+  // Whether the custom time dropdown is open
   const [isTimeOpen, setIsTimeOpen] = useState(false);
 
-  // outside click to close time dropdown
-  useEffect(() => {
-    function onDocMouseDown(e: MouseEvent) {
-      if (!isTimeOpen) return;
-      const wrap = timeWrapRef.current;
-      if (!wrap) return;
-      if (e.target instanceof Node && !wrap.contains(e.target)) setIsTimeOpen(false);
-    }
-    document.addEventListener("mousedown", onDocMouseDown);
-    return () => document.removeEventListener("mousedown", onDocMouseDown);
-  }, [isTimeOpen]);
+  // Detect touch-capable devices (iOS / Android)
+  const isTouch =
+    typeof window !== "undefined" &&
+    ("ontouchstart" in window || navigator.maxTouchPoints > 0);
 
+  // Format date label like "Wed, 28 Jan"
   const formattedDate = useMemo(() => {
     const d = fromYmdLocal(selectedDate);
-    // "Wed, 28 Jan"
     return new Intl.DateTimeFormat("en-AU", {
       weekday: "short",
       day: "2-digit",
@@ -78,31 +72,23 @@ export default function HeaderDateTimeChip({
     }).format(d);
   }, [selectedDate]);
 
+  // Open native date picker (PC browsers only)
   const openDatePicker = () => {
     const el = dateRef.current;
     if (!el) return;
-    if (typeof el.showPicker === "function") {
-      el.showPicker();
-    } else {
+    if (typeof el.showPicker === "function") el.showPicker();
+    else {
       el.focus();
       el.click();
     }
   };
 
-  // const openTimePicker = () => {
-  //   const el = timeRef.current;
-  //   if (!el) return;
-  //   if (typeof el.showPicker === "function") {
-  //     el.showPicker();
-  //   } else {
-  //     el.focus();
-  //     el.click();
-  //   }
-  // };
-
+  // Reset date and time to "now"
   const resetToNow = () => {
     const now = new Date();
-    const ymd = `${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(now.getDate())}`;
+    const ymd = `${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(
+      now.getDate()
+    )}`;
     const hhmm = `${pad2(now.getHours())}:${pad2(now.getMinutes())}`;
 
     setSelectedDate(ymd);
@@ -110,16 +96,17 @@ export default function HeaderDateTimeChip({
     setIsTimeOpen(false);
   };
 
-  // close by outside click / ESC
+  // Close time dropdown on outside click or ESC key
   useEffect(() => {
     function onDocMouseDown(e: MouseEvent) {
       if (!isTimeOpen) return;
       const wrap = timeWrapRef.current;
       if (!wrap) return;
-      if (e.target instanceof Node && !wrap.contains(e.target)) setIsTimeOpen(false);
+      if (e.target instanceof Node && !wrap.contains(e.target)) {
+        setIsTimeOpen(false);
+      }
     }
     function onKeyDown(e: KeyboardEvent) {
-      if (!isTimeOpen) return;
       if (e.key === "Escape") setIsTimeOpen(false);
     }
     document.addEventListener("mousedown", onDocMouseDown);
@@ -130,39 +117,48 @@ export default function HeaderDateTimeChip({
     };
   }, [isTimeOpen]);
 
-  // when opening, scroll list to current selectedTime
+  // When opening the dropdown, scroll to the currently selected time
   useEffect(() => {
     if (!isTimeOpen) return;
     const idx = TIME_OPTIONS.indexOf(selectedTime);
-    const list = listRef.current;
-    if (!list) return;
-    if (idx < 0) return;
-
-    // approx: each row 36px
-    const rowH = 36;
-    list.scrollTop = Math.max(0, idx * rowH - rowH * 3);
+    if (idx < 0 || !listRef.current) return;
+    listRef.current.scrollTop = Math.max(0, idx * 36 - 36 * 3);
   }, [isTimeOpen, selectedTime]);
 
   return (
     <div className="flex items-center">
       {/* Date chip */}
-      <button
-        type="button"
-        onClick={openDatePicker}
-        className="inline-flex items-center gap-2 rounded-full border bg-white px-4 py-2 text-sm text-slate-700 shadow-sm hover:bg-slate-50"
-        aria-label="Select date"
-      >
-        <span aria-hidden>🗓️</span>
-        <span className="font-medium">{formattedDate}</span>
-      </button>
+      <div className="relative">
+        <button
+          type="button"
+          onClick={() => {
+            if (!isTouch) openDatePicker(); // PC only
+          }}
+          className="inline-flex items-center gap-2 rounded-full border bg-white px-4 py-2 text-sm text-slate-700 shadow-sm hover:bg-slate-50"
+          aria-label="Select date"
+        >
+          <span aria-hidden>🗓️</span>
+          <span className="font-medium">{formattedDate}</span>
+        </button>
 
-      {/* Time chip + dropdown */}
+        {/* Mobile: transparent input overlay to trigger native date picker */}
+        {isTouch && (
+          <input
+            type="date"
+            value={selectedDate}
+            onChange={(e) => setSelectedDate(e.target.value)}
+            aria-label="Select date"
+            className="absolute inset-0 h-full w-full opacity-0 cursor-pointer"
+          />
+        )}
+      </div>
+
+      {/* Time chip + custom dropdown */}
       <div className="relative -ml-px" ref={timeWrapRef}>
         <button
           type="button"
           onClick={() => setIsTimeOpen((v) => !v)}
           className="inline-flex items-center gap-2 rounded-full border bg-white px-3 py-2 text-sm text-slate-700 shadow-sm hover:bg-slate-50"
-          aria-label="Select time"
         >
           <span aria-hidden>🕒</span>
           <span className="font-medium tabular-nums">{selectedTime}</span>
@@ -170,40 +166,22 @@ export default function HeaderDateTimeChip({
 
         {isTimeOpen && (
           <div className="absolute right-0 mt-2 w-56 rounded-2xl border bg-white shadow-lg z-[3000] overflow-hidden">
-            <div className="flex items-center justify-between px-3 py-2 border-b">
-              <div className="text-sm font-medium text-slate-800">Time</div>
-              <button
-                type="button"
-                onClick={() => setIsTimeOpen(false)}
-                className="text-sm text-slate-600 hover:underline"
-              >
-                Close
-              </button>
-            </div>
-
-            {/* Scroll list */}
-            <div
-              ref={listRef}
-              className="max-h-64 overflow-auto py-1"
-              role="listbox"
-              aria-label="Time options"
-            >
+            <div className="max-h-64 overflow-auto py-1" ref={listRef}>
               {TIME_OPTIONS.map((t) => {
                 const active = t === selectedTime;
                 return (
                   <button
                     key={t}
                     type="button"
-                    role="option"
-                    aria-selected={active}
                     onClick={() => {
                       setSelectedTime(t);
-                      setIsTimeOpen(false); // クリック即確定（Setボタン方式にしたければここ外す）
+                      setIsTimeOpen(false);
                     }}
                     className={[
                       "w-full px-3 py-2 text-left text-sm tabular-nums",
-                      "hover:bg-slate-50",
-                      active ? "bg-slate-100 font-semibold text-slate-900" : "text-slate-700",
+                      active
+                        ? "bg-slate-100 font-semibold text-slate-900"
+                        : "text-slate-700 hover:bg-slate-50",
                     ].join(" ")}
                     style={{ height: 36 }}
                   >
@@ -212,27 +190,11 @@ export default function HeaderDateTimeChip({
                 );
               })}
             </div>
-
-            {/* Optional footer */}
-            <div className="px-3 py-2 border-t flex items-center justify-between">
-              <div className="text-xs text-slate-500"> </div>
-              <button
-                type="button"
-                onClick={() => {
-                  const now = new Date();
-                  const hhmm = `${pad2(now.getHours())}:${pad2(now.getMinutes())}`;
-                  setSelectedTime(roundTimeToStep(hhmm, 30));
-                }}
-                className="text-xs text-slate-700 hover:underline"
-              >
-                Now
-              </button>
-            </div>
           </div>
         )}
       </div>
 
-      {/* Reset */}
+      {/* Reset button */}
       <button
         type="button"
         onClick={resetToNow}
@@ -243,16 +205,18 @@ export default function HeaderDateTimeChip({
         ↺
       </button>
 
-      {/* Hidden date input (native calendar) */}
-      <input
-        ref={dateRef}
-        type="date"
-        value={selectedDate}
-        onChange={(e) => setSelectedDate(e.target.value)}
-        className="sr-only"
-        tabIndex={-1}
-        aria-hidden="true"
-      />
+      {/* PC-only hidden date input */}
+      {!isTouch && (
+        <input
+          ref={dateRef}
+          type="date"
+          value={selectedDate}
+          onChange={(e) => setSelectedDate(e.target.value)}
+          className="sr-only"
+          tabIndex={-1}
+          aria-hidden="true"
+        />
+      )}
     </div>
   );
 }

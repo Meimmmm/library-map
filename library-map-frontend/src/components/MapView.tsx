@@ -151,7 +151,6 @@ function MapView({
                 />
               </Popup>
             </Marker>
-
           );
         })}
       </MapContainer>
