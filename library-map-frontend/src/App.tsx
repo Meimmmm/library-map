@@ -52,7 +52,7 @@ function App() {
   </div>
 
   {/* Bottom floating bar */}
-  <div className="absolute inset-x-0 bottom-4 z-[1500] flex justify-center px-3">
+  <div className="absolute inset-x-0 bottom-8 z-[1500] flex justify-center px-3">
     <BottomDateTimeBar
       selectedDate={selectedDate}
       setSelectedDate={setSelectedDate}
