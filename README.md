@@ -129,11 +129,9 @@ Make sure the API is running before starting the frontend.
 ---
 
 ## Future Improvements
-- Date/time-based opening status support
 - Handling of irregular hours (holidays, year-end periods)
 - Periodic data validation using Google Place ID
 - **Scheduled background job for automated verification**
-- Optional migration to Azure SQL as data and feature requirements grow
 - API health check endpoint
 - Refactor redundant structures for maintainability
 
