@@ -2,7 +2,9 @@
 import { useState } from "react";
 import MapView from "./components/MapView";
 import type { TimeMode } from "./types/timeMode";
-import HeaderDateTimeChip from "./components/HeaderDateTimeChip";
+import BottomDateTimeBar from "./components/BottomDateTimeBar";
+
+// import HeaderDateTimeChip from "./components/HeaderDateTimeChip";
 
 function pad2(n: number) {
   return String(n).padStart(2, "0");
@@ -35,28 +37,40 @@ function App() {
           <h1 className="text-xl font-bold text-slate-800">Adelaide Library Map</h1>
           <p className="text-sm text-slate-500">Opening times at a glance</p>
         </div>
-
-        {/* Right: single pill date button + hidden input */}
-        <HeaderDateTimeChip
-          selectedDate={selectedDate}
-          setSelectedDate={setSelectedDate}
-          selectedTime={selectedTime}
-          setSelectedTime={setSelectedTime}
-        />
       </header>
 
       {/* main content */}
-      <main className="flex-1 min-h-0">
-        <div className="w-full h-full">
-          <MapView
-            timeMode={timeMode}
-            setTimeMode={setTimeMode}
-            selectedDate={selectedDate}
-            selectedTime={selectedTime}
-            now={now}
-          />
-        </div>
-      </main>
+<main className="flex-1 min-h-0 relative">
+  <div className="w-full h-full">
+    <MapView
+      timeMode={timeMode}
+      setTimeMode={setTimeMode}
+      selectedDate={selectedDate}
+      selectedTime={selectedTime}
+      now={now}
+    />
+  </div>
+
+  {/* Bottom floating bar */}
+  <div className="absolute inset-x-0 bottom-4 z-[1500] flex justify-center px-3">
+    <BottomDateTimeBar
+      selectedDate={selectedDate}
+      setSelectedDate={setSelectedDate}
+      selectedTime={selectedTime}
+      setSelectedTime={setSelectedTime}
+      onReset={() => {
+        // Use the same "now" reset logic you already have
+        const d = new Date();
+        const ymd = d.toISOString().split("T")[0];
+        const hh = String(d.getHours()).padStart(2, "0");
+        const mm = String(d.getMinutes()).padStart(2, "0");
+        setSelectedDate(ymd);
+        setSelectedTime(`${hh}:${mm}`); // (30分丸めしたいならここで round)
+      }}
+    />
+  </div>
+</main>
+
     </div>
   );
 }
