@@ -91,7 +91,7 @@ export default function BottomDateTimeBar({
 return (
   // Add ref here (includes dropdown + bar)
   <div className="relative" ref={timeWrapRef}>
-    {/* Time dropdown - 外側に配置 */}
+    {/* Time dropdown - Placed outside */}
     {isTimeOpen && (
       <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-56 rounded-2xl border border-slate-300 bg-white shadow-2xl z-[9999] overflow-hidden">
         <div
@@ -114,7 +114,7 @@ return (
                   setIsTimeOpen(false);
                 }}
                 className={[
-                  "w-full px-3 py-2 text-left text-sm tabular-nums",
+                  "w-full px-3 py-2 text-left text-base font-medium tabular-nums",
                   "hover:bg-slate-50",
                   active ? "bg-slate-100 font-semibold text-slate-900" : "text-slate-700",
                 ].join(" ")}

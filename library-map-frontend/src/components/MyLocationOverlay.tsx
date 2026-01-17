@@ -15,10 +15,29 @@ export default function MyLocationOverlay({
   myLocation: MyLocation;
   isMobile: boolean;
 }) {
+  const accuracy =
+    typeof myLocation.accuracy === "number" && myLocation.accuracy > 0
+      ? myLocation.accuracy
+      : null;
+
+  // ✅ 精度が良いと小さすぎるので下限をつける（好みで調整OK）
+  const minRadius = isMobile ? 250 : 700;
+  const radius = accuracy !== null ? Math.max(accuracy, minRadius) : null;
+
   return (
     <>
-      {typeof myLocation.accuracy === "number" && myLocation.accuracy > 0 && (
-        <Circle center={[myLocation.lat, myLocation.lng]} radius={myLocation.accuracy} />
+      {radius !== null && (
+        <Circle
+          center={[myLocation.lat, myLocation.lng]}
+          radius={radius}
+          pathOptions={{
+            color: "#2563eb",
+            weight: isMobile ? 3 : 2,     // ✅ 外周を太く
+            opacity: 0.9,                 // ✅ 線を濃く
+            fillColor: "#3b82f6",
+            fillOpacity: 0.12,            // ✅ うっすら塗って見えるように
+          }}
+        />
       )}
 
       <CircleMarker
