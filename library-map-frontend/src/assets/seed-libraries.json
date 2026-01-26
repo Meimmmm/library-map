@@ -1,0 +1,1485 @@
+
+[
+  {
+    "OsmType": "way",
+    "OsmId": "way/1038983217",
+    "Name": "Adelaide Plains Library - Two Wells",
+    "Address": "61 Old Port Wakefield Rd, Two Wells SA 5501",
+    "Lat": -34.594077,
+    "Lon": 138.5143111,
+    "Website": "http://www.apc.sa.gov.au/",
+    "Website2": "https://onecard.network/client/en_AU/mallala/",
+    "GooglePlaceId": "ChIJf6qFISyksGoRJONu8SKibSY",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [],
+        "tue": [{ "open": "09:00", "close": "17:00" }],
+        "wed": [{ "open": "12:00", "close": "19:00" }],
+        "thu": [{ "open": "09:00", "close": "17:00" }],
+        "fri": [{ "open": "09:00", "close": "17:00" }],
+        "sat": [{ "open": "09:00", "close": "11:30" }],
+        "sun": []
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": ""
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/1292752686",
+    "Name": "Barr Smith Library",
+    "Address": "LOT 1207 North Terrace,Adelaide SA 5000",
+    "Lat": -34.9188814,
+    "Lon": 138.604483,
+    "Website": "https://www.adelaide.edu.au/library/",
+    "Website2": "https://www.adelaide.edu.au/library/locations-hours/barr-smith-library",
+    "GooglePlaceId": "ChIJHWo7sCzJsGoRqqTqVf_W0rA",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "08:00", "close": "19:00" }],
+        "tue": [{ "open": "08:00", "close": "19:00" }],
+        "wed": [{ "open": "08:00", "close": "19:00" }],
+        "thu": [{ "open": "08:00", "close": "19:00" }],
+        "fri": [{ "open": "08:00", "close": "19:00" }],
+        "sat": [{ "open": "10:00", "close": "17:00" }],
+        "sun": [{ "open": "10:00", "close": "17:00" }]
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "University Library",
+    "Comment": ""
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/11533716830",
+    "Name": "Blackwood Library",
+    "Address": "2 Young St, Blackwood SA 5051",
+    "Lat": -35.0196181,
+    "Lon": 138.6150736,
+    "Website": "https://www.mitchamcouncil.sa.gov.au/Learn-and-explore/libraries",
+    "Website2": "https://onecard.network/client/en_AU/mitcham",
+    "GooglePlaceId": "ChIJyVLWqr_RsGoRiErZPOmDAUI",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "10:00", "close": "17:30" }],
+        "tue": [{ "open": "10:00", "close": "17:30" }],
+        "wed": [{ "open": "10:00", "close": "17:30" }],
+        "thu": [{ "open": "10:00", "close": "20:00" }],
+        "fri": [{ "open": "10:00", "close": "14:00" }],
+        "sat": [{ "open": "10:00", "close": "16:00" }],
+        "sun": [{ "open": "14:00", "close": "17:00" }]
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Library",
+    "Comment": "☆みっちもんど？"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/581499139",
+    "Name": "Brighton Library - City of Holdfast Bay",
+    "Address": "20 Jetty Rd, Brighton SA 5048",
+    "Lat": -35.0166714,
+    "Lon": 138.5201239,
+    "Website": "https://www.holdfast.sa.gov.au/libraries",
+    "Website2": "https://www.holdfast.sa.gov.au/libraries/library-opening-hours",
+    "GooglePlaceId": "ChIJT4lWojTasGoRb4gv4fUN-yM",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:00", "close": "17:00" }],
+        "tue": [{ "open": "09:00", "close": "19:00" }],
+        "wed": [{ "open": "09:00", "close": "17:00" }],
+        "thu": [{ "open": "09:00", "close": "17:00" }],
+        "fri": [{ "open": "09:00", "close": "17:00" }],
+        "sat": [{ "open": "09:00", "close": "13:00" }],
+        "sun": []
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Library",
+    "Comment": ""
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/57919090",
+    "Name": "Burnside Library",
+    "Address": "401, B26, Tusmore SA 5065",
+    "Lat": -34.93866,
+    "Lon": 138.643638,
+    "Website": "https://www.burnside.sa.gov.au/Library",
+    "Website2": "https://www.burnside.sa.gov.au/Community-Recreation/Community-Venues/Burnside-Library",
+    "GooglePlaceId": "ChIJifpGOgHMsGoRRgwYIObtIvY",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:30", "close": "18:00" }],
+        "tue": [{ "open": "09:30", "close": "18:00" }],
+        "wed": [{ "open": "09:30", "close": "18:00" }],
+        "thu": [{ "open": "09:30", "close": "21:00" }],
+        "fri": [{ "open": "09:30", "close": "18:00" }],
+        "sat": [{ "open": "10:00", "close": "16:00" }],
+        "sun": [{ "open": "14:00", "close": "17:00" }]
+      },
+      "exceptions": [],
+      "source": { "type": "manual", "updatedAt": "2025-12-24T09:00:00+10:30" }
+    },
+    "Categories": "Public Library",
+    "Comment": ""
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/663054311",
+    "Name": "Campbelltown Library",
+    "Address": "171 Montacute Rd, Newton SA 5074",
+    "Lat": -34.8879543,
+    "Lon": 138.6784462,
+    "Website": "https://www.campbelltown.sa.gov.au/library",
+    "GooglePlaceId": "ChIJebnFh2LKsGoR__gNUmeP2nI",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "10:00", "close": "18:00" }],
+        "tue": [{ "open": "09:30", "close": "20:00" }],
+        "wed": [{ "open": "09:30", "close": "18:00" }],
+        "thu": [{ "open": "09:30", "close": "18:00" }],
+        "fri": [{ "open": "09:30", "close": "20:00" }],
+        "sat": [{ "open": "09:30", "close": "14:00" }],
+        "sun": [{ "open": "13:00", "close": "17:00" }]
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/5602269421",
+    "Name": "City Library",
+    "Address": "3, Rundle Place, 77-91 Rundle Mall, Adelaide SA 5000",
+    "Lat": -34.9232211,
+    "Lon": 138.6023806,
+    "Website": "https://www.cityofadelaide.com.au/community/library-services/library-locations/city-library/?utm_content=Adelaide%20City%20Library%20-%20Adelaide&utm_campaign=Google%20My%20Business&utm_medium=organic&utm_source=google&utm_term=plcid_2581712428439297448",
+    "Website2": "https://www.cityofadelaide.com.au/community/libr ary-services/library-locations/city-library/",
+    "GooglePlaceId": "ChIJLS_HSNTOsGoRzzdQ3I_0Zew",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "10:00", "close": "18:00" }],
+        "tue": [{ "open": "10:00", "close": "18:00" }],
+        "wed": [{ "open": "10:00", "close": "19:00" }],
+        "thu": [{ "open": "10:00", "close": "18:00" }],
+        "fri": [{ "open": "10:00", "close": "20:00" }],
+        "sat": [{ "open": "10:00", "close": "17:00" }],
+        "sun": [{ "open": "12:00", "close": "17:00" }]
+      },
+      "exceptions": [
+      {
+        "closed": true,
+        "reason": "Public Holidays"
+      }
+      ],
+      "source": { "type": "manual", "updatedAt": "2025-12-22T15:40:00+10:30" }
+    },
+    "Categories": "Library",
+    "Comment": "URL is same"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/192384142",
+    "Name": "City of Tea Tree Gully Library",
+    "Address": "571 Montague Rd, Modbury SA 5092",
+    "Lat": -34.828469,
+    "Lon": 138.6901145,
+    "Website": "https://www.teatreegully.sa.gov.au/community-and-recreation/library/library-contact-and-opening-times",
+    "GooglePlaceId": "ChIJ3dztc-20sGoRA6iinL-apAg",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:00", "close": "20:00" }],
+        "tue": [{ "open": "09:00", "close": "17:00" }],
+        "wed": [{ "open": "09:00", "close": "20:00" }],
+        "thu": [{ "open": "09:00", "close": "17:00" }],
+        "fri": [{ "open": "09:00", "close": "17:00" }],
+        "sat": [{ "open": "10:00", "close": "17:00" }],
+        "sun": [{ "open": "11:00", "close": "15:00" }]
+      },
+      "exceptions": [],
+      "source": { "type": "manual", "updatedAt": "2025-12-22T15:40:00+10:30" }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/210312269",
+    "Name": "Civic (Woodville) Library",
+    "Address": "72 Woodville Rd, Woodville SA 5011",
+    "Lat": -34.8788117,
+    "Lon": 138.538279,
+    "Website": "https://www.charlessturt.sa.gov.au/community/library/our-libraries/civic-library-woodville",
+    "GooglePlaceId": "ChIJfYw5ahzEsGoRTPy8qhupsD8",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:30", "close": "17:00" }],
+        "tue": [{ "open": "09:30", "close": "17:00" }],
+        "wed": [{ "open": "09:30", "close": "17:00" }],
+        "thu": [{ "open": "09:30", "close": "17:00" }],
+        "fri": [{ "open": "09:30", "close": "17:00" }],
+        "sat": [{ "open": "10:00", "close": "16:00" }],
+        "sun": [{ "open": "12:00", "close": "16:00" }]
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/132180997",
+    "Name": "Adelaide Hills Council Libraries (Coventry)",
+    "Address": "63 Mount Barker Rd, Stirling SA 5152",
+    "Lat": -35.0053994,
+    "Lon": 138.7175661,
+    "Website": "https://www.ahc.sa.gov.au/services/libraries/library-locations-and-hours/coventry-library",
+    "GooglePlaceId": "ChIJc4-JLjAzt2oRhm9RVfyfe98",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "10:00", "close": "18:00" }],
+        "tue": [{ "open": "10:00", "close": "18:00" }],
+        "wed": [{ "open": "10:00", "close": "18:00" }],
+        "thu": [{ "open": "10:00", "close": "19:00" }],
+        "fri": [{ "open": "10:00", "close": "18:00" }],
+        "sat": [{ "open": "10:00", "close": "16:00" }],
+        "sun": [{ "open": "13:00", "close": "16:00" }]
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/3760233641",
+    "Name": "Enfield Library",
+    "Address": "1 Kensington Cres, Enfield SA 5085",
+    "Lat": -34.8528803,
+    "Lon": 138.6016223,
+    "Website": "https://www.cityofpae.sa.gov.au/explore/libraries",
+    "Website2" : "https://www.paelibraries.com.au/locations",
+    "GooglePlaceId": "ChIJtwJgetLJsGoRD_bsiHD-4hM",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:00", "close": "17:00" }],
+        "tue": [{ "open": "09:00", "close": "17:00" }],
+        "wed": [{ "open": "09:00", "close": "17:00" }],
+        "thu": [{ "open": "09:00", "close": "19:00" }],
+        "fri": [{ "open": "09:00", "close": "17:00" }],
+        "sat": [{ "open": "10:00", "close": "14:00" }],
+        "sun": [{ "open": "13:00", "close": "16:00" }]
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL OK"
+
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/108179135",
+    "Name": "Flinders University Central Library",
+    "Address": "Level 1, Central Library, Humanities Road Flinders University, Bedford Park SA 5042",
+    "Lat": -35.0253171,
+    "Lon": 138.5723296,
+    "Website": "https://library.flinders.edu.au/",
+    "GooglePlaceId": "ChIJw0nO3s3RsGoRDtRDN3BZcZY",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "00:00", "close": "24:00" }],
+        "tue": [{ "open": "00:00", "close": "24:00" }],
+        "wed": [{ "open": "00:00", "close": "24:00" }],
+        "thu": [{ "open": "00:00", "close": "24:00" }],
+        "fri": [{ "open": "00:00", "close": "24:00" }],
+        "sat": [{ "open": "00:00", "close": "24:00" }],
+        "sun": [{ "open": "00:00", "close": "24:00" }]
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "University Library",
+    "Comment": ""
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/11341136920",
+    "Name": "Gawler Civic Centre Library",
+    "Address": "91 Murray St, Gawler SA 5118",
+    "Lat": -34.5993033,
+    "Lon": 138.7494095,
+    "Website": "https://www.libraries.sa.gov.au/gawler",
+    "GooglePlaceId": "ChIJIesWYM__uWoRbRucWfRkeeM",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:00", "close": "17:00" }],
+        "tue": [{ "open": "09:00", "close": "17:00" }],
+        "wed": [{ "open": "09:00", "close": "17:00" }],
+        "thu": [{ "open": "10:00", "close": "18:00" }],
+        "fri": [{ "open": "09:00", "close": "17:00" }],
+        "sat": [{ "open": "09:00", "close": "13:00" }],
+        "sun": []
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/2570988381",
+    "Name": "Glenelg Library",
+    "Address": "2 Colley Terrace, Glenelg SA 5045",
+    "Lat": -34.9797128,
+    "Lon": 138.512212,
+    "Website": "http://www.holdfast.sa.gov.au/libraries",
+    "Website2": "https://www.holdfast.sa.gov.au/discover/glenelg-library",
+    "GooglePlaceId": "ChIJLSCHCxvbsGoRLwUyr3H1-6I",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:00", "close": "17:00" }],
+        "tue": [{ "open": "09:00", "close": "17:00" }],
+        "wed": [{ "open": "09:00", "close": "19:00" }],
+        "thu": [{ "open": "09:00", "close": "17:00" }],
+        "fri": [{ "open": "09:00", "close": "17:00" }],
+        "sat": [{ "open": "09:00", "close": "13:00" }],
+        "sun": [{ "open": "13:00", "close": "16:00" }]
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Library",
+    "Comment": "URL OK"
+
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/423630380",
+    "Name": "Goodwood Library",
+    "Address": "101 Goodwood Rd, Goodwood SA 5034",
+    "Lat": -34.9508054,
+    "Lon": 138.5899313,
+    "Website": "http://www.unley.sa.gov.au/libraries",
+    "GooglePlaceId": "ChIJnSTEE6jPsGoRZOSSf0gRgBE",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "10:30", "close": "17:00" }],
+        "tue": [{ "open": "10:00", "close": "18:00" }],
+        "wed": [{ "open": "13:00", "close": "17:00" }],
+        "thu": [{ "open": "10:00", "close": "18:00" }],
+        "fri": [{ "open": "10:00", "close": "17:00" }],
+        "sat": [{ "open": "10:00", "close": "13:00" }],
+        "sun": []
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/543080890",
+    "Name": "Greenacres Library",
+    "Address": "2 Fosters Rd, Greenacres SA 5086",
+    "Lat": -34.8701618,
+    "Lon": 138.6374333,
+    "Website": "https://www.cityofpae.sa.gov.au/explore/libraries",
+    "Website2": "https://www.paelibraries.com.au/locations",
+    "GooglePlaceId": "ChIJj3PflvfJsGoRQWWY8oQqoro",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:00", "close": "18:00" }],
+        "tue": [{ "open": "09:00", "close": "18:00" }],
+        "wed": [{ "open": "09:00", "close": "18:00" }],
+        "thu": [{ "open": "09:00", "close": "19:00" }],
+        "fri": [{ "open": "09:00", "close": "18:00" }],
+        "sat": [{ "open": "10:00", "close": "14:00" }],
+        "sun": [{ "open": "13:00", "close": "16:00" }]
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/7085872951",
+    "Name": "Adelaide Hills Council Libraries (Gumeracha)",
+    "Address": "45 Albert St, Gumeracha SA 5233",
+    "Lat": -34.8219684,
+    "Lon": 138.8863948,
+    "Website": "https://onecard.network/client/en_AU/adelaidehills/",
+    "Website2": "https://www.ahc.sa.gov.au/services/libraries/library-locations-and-hours/gumeracha-library",
+    "GooglePlaceId": "ChIJNSdt71lFt2oR3yndjpYE_xc",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:00", "close": "14:00" }],
+        "tue": [{ "open": "12:00", "close": "17:00" }],
+        "wed": [{ "open": "09:00", "close": "14:00" }],
+        "thu": [{ "open": "12:00", "close": "17:00" }],
+        "fri": [],
+        "sat": [{ "open": "11:00", "close": "14:00" }],
+        "sun": []
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30",
+        "note": "Wednesday: Self-service only"
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL OK"
+
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/215405039",
+    "Name": "Hindmarsh Library",
+    "Address": "139 Port Rd, Hindmarsh SA 5007",
+    "Lat": -34.9057407,
+    "Lon": 138.5735694,
+    "Website": "https://www.charlessturt.sa.gov.au/community/library/our-libraries/hindmarsh-library",
+    "GooglePlaceId": "ChIJcSoMmPPGsGoRBTtLSWcThpI",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:30", "close": "17:00" }],
+        "tue": [{ "open": "09:30", "close": "17:00" }],
+        "wed": [{ "open": "09:30", "close": "17:00" }],
+        "thu": [{ "open": "09:30", "close": "17:00" }],
+        "fri": [{ "open": "09:30", "close": "17:00" }],
+        "sat": [{ "open": "12:00", "close": "16:00" }],
+        "sun": []
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/367866730",
+    "Name": "Hutt Street Library",
+    "Address": "235 Hutt St, Adelaide SA 5000",
+    "Lat": -34.9334316,
+    "Lon": 138.612166,
+    "Website": "https://www.cityofadelaide.com.au/community/library-services/library-locations/hutt-street-library/?utm_content=Hutt+Street+Library+-+Adelaide&utm_campaign=Google+My+Business&utm_medium=organic&utm_source=google&utm_term=plcid_4647370103454683774",
+    "Website2": "https://www.cityofadelaide.com.au/community/library-services/library-locations/hutt-street-library/",
+    "GooglePlaceId": "ChIJWfQ2sMXOsGoRzDhY8sftQ_k",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "10:00", "close": "17:00" }],
+        "tue": [{ "open": "10:00", "close": "17:00" }],
+        "wed": [{ "open": "10:00", "close": "17:00" }],
+        "thu": [{ "open": "10:00", "close": "17:00" }],
+        "fri": [{ "open": "10:00", "close": "17:00" }],
+        "sat": [{ "open": "10:00", "close": "14:00" }],
+        "sun": []
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL is same"
+
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/1871406497",
+    "Name": "Ingle Farm Library",
+    "Address": "Beovich Rd, Ingle Farm SA 5098",
+    "Lat": -34.8324041,
+    "Lon": 138.6489251,
+    "Website": "https://www.salisbury.sa.gov.au/community/libraries/branches-hours-locations/ingle-farm-library", 
+    "GooglePlaceId": "ChIJi40ypda1sGoRZqWbbVLCu1c",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:30", "close": "17:00" }],
+        "tue": [{ "open": "09:30", "close": "17:00" }],
+        "wed": [{ "open": "09:30", "close": "17:00" }],
+        "thu": [{ "open": "09:30", "close": "19:00" }],
+        "fri": [{ "open": "09:30", "close": "17:00" }],
+        "sat": [{ "open": "10:00", "close": "14:00" }],
+        "sun": []
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL OK (google link is broken(404))"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/362188005",
+    "Name": "Jeffrey Smart Library",
+    "Address": "Jeffrey Smart Building, 217/243 Hindley St, Adelaide SA 5000",
+    "Lat": -34.9238061,
+    "Lon": 138.5906566,
+    "Website": "https://www.library.unisa.edu.au/",
+    "GooglePlaceId": "ChIJu1zG84y2sGoRPxpiDa8M20o",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "00:00", "close": "24:00" }],
+        "tue": [{ "open": "00:00", "close": "24:00" }],
+        "wed": [{ "open": "00:00", "close": "24:00" }],
+        "thu": [{ "open": "00:00", "close": "24:00" }],
+        "fri": [{ "open": "00:00", "close": "24:00" }],
+        "sat": [{ "open": "00:00", "close": "24:00" }],
+        "sun": [{ "open": "00:00", "close": "24:00" }]
+      },
+      "exceptions": [],
+      "source": { "type": "manual", "updatedAt": "2025-12-22T15:40:00+10:30" }
+    },
+    "Categories": "University Library",
+    "Comment": ""
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/6953440885",
+    "Name": "Norwood Library",
+    "Address": "110 The Parade, Norwood SA 5067",
+    "Lat": -34.9215529,
+    "Lon": 138.6316423,
+    "Website": "http://www.npsp.sa.gov.au/culture_and_lifestyle/libraries",
+    "Website2": "https://www.npsp.sa.gov.au/culture_and_lifestyle/libraries/locations_and_opening_hours",
+    "GooglePlaceId": "ChIJaaVfgVDJsGoR9Mu_2OaiasU",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [],
+        "tue": [{ "open": "13:00", "close": "17:00" }],
+        "wed": [{ "open": "13:00", "close": "17:00" }],
+        "thu": [{ "open": "13:00", "close": "17:00" }],
+        "fri": [{ "open": "09:30", "close": "17:00" }],
+        "sat": [{ "open": "10:00", "close": "13:00" }],
+        "sun": [{ "open": "13:00", "close": "16:00" }]
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30",
+        "note": "Monday: Closed"
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/1285911391",
+    "Name": "Hub Library",
+    "Address": "Hub Dr, Aberfoyle Park SA 5159",
+    "Lat": -35.0742477,
+    "Lon": 138.5929557,
+    "Website": "https://www.onkaparingacity.com/Community-facilities-support/Libraries",
+    "Website2": "https://www.onkaparingacity.com/Community-facilities-support/Libraries/Library-locations/Hub-Library",
+    "GooglePlaceId": "ChIJb7NITOfXsGoRTisQjdoTOic",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:30", "close": "17:30" }],
+        "tue": [{ "open": "09:30", "close": "17:30" }],
+        "wed": [{ "open": "09:30", "close": "17:30" }],
+        "thu": [{ "open": "09:30", "close": "19:00" }],
+        "fri": [{ "open": "09:30", "close": "17:30" }],
+        "sat": [{ "open": "10:00", "close": "13:00" }],
+        "sun": [{ "open": "14:00", "close": "17:00" }]
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Library",
+    "Comment": "URL OK"
+
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/9518134387",
+    "Name": "Lyndoch Council Branch Office and Library",
+    "Address": "29 Barossa Valley Way, Lyndoch SA 5351",
+    "Lat": -34.6011644,
+    "Lon": 138.891016,
+    "Website": "http://www.barossa.sa.gov.au/",
+    "Website2": "https://www.barossa.sa.gov.au/recreation-and-venues/libraries/lyndoch-council-branch-office-and-library",
+    "GooglePlaceId": "ChIJ57t7GVrjuWoRf09uKwOBRYI",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:00", "close": "12:30" }, { "open": "13:30", "close": "17:00" }],
+        "tue": [{ "open": "09:00", "close": "12:30" }, { "open": "13:30", "close": "17:00" }],
+        "wed": [{ "open": "09:00", "close": "12:30" }, { "open": "13:30", "close": "17:00" }],
+        "thu": [{ "open": "09:00", "close": "12:30" }, { "open": "13:30", "close": "17:00" }],
+        "fri": [{ "open": "09:00", "close": "12:30" }, { "open": "13:30", "close": "17:00" }],
+        "sat": [{ "open": "09:30", "close": "12:30" }],
+        "sun": []
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/12150899998",
+    "Name": "Cultural Centre Library",
+    "Address": "287 Diagonal Rd, Oaklands Park SA 5046",
+    "Lat": -35.0135615,
+    "Lon": 138.5434011,
+    "Website": "https://www.marion.sa.gov.au/venues-and-facilities/cultural-centre-library",
+    "GooglePlaceId": "ChIJTxYGWW_asGoRuvzfupv12W4",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:30", "close": "19:00" }],
+        "tue": [{ "open": "09:30", "close": "19:00" }],
+        "wed": [{ "open": "09:30", "close": "17:00" }],
+        "thu": [{ "open": "09:30", "close": "19:00" }],
+        "fri": [{ "open": "09:30", "close": "17:00" }],
+        "sat": [{ "open": "10:00", "close": "16:00" }],
+        "sun": [{ "open": "13:00", "close": "16:00" }]
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/286681484",
+    "Name": "Mawson Lakes Library",
+    "Address": "2-8 Main St, Mawson Lakes SA 5095",
+    "Lat": -34.8109606,
+    "Lon": 138.6170947,
+    "Website": "https://www.salisbury.sa.gov.au/community/libraries/branches-hours-locations/mawson-lakes-library",
+    "GooglePlaceId": "ChIJUdOMk_S2sGoR1O_Cio9HOvM",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:30", "close": "17:00" }],
+        "tue": [{ "open": "09:30", "close": "18:00" }],
+        "wed": [{ "open": "09:30", "close": "17:00" }],
+        "thu": [{ "open": "09:30", "close": "19:00" }],
+        "fri": [{ "open": "09:30", "close": "17:00" }],
+        "sat": [{ "open": "10:00", "close": "14:00" }],
+        "sun": []
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/60341614",
+    "Name": "Mitcham Memorial Library",
+    "Address": "154 Belair Rd, Hawthorn SA 5062",
+    "Lat": -34.9729828,
+    "Lon": 138.6085885,
+    "Website": "https://onecard.network/client/en_AU/mitcham",
+    "GooglePlaceId": "ChIJg95BnkjOsGoRoaAYsLXMf6k",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "10:00", "close": "17:30" }],
+        "tue": [{ "open": "10:00", "close": "17:30" }],
+        "wed": [{ "open": "10:00", "close": "20:00" }],
+        "thu": [{ "open": "10:00", "close": "17:30" }],
+        "fri": [{ "open": "10:00", "close": "14:00" }],
+        "sat": [{ "open": "10:00", "close": "16:00" }],
+        "sun": [{ "open": "14:00", "close": "17:00" }]
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/200113113",
+    "Name": "Mount Barker Community Library",
+    "Address": "5 Dumas St, Mount Barker SA 5251",
+    "Lat": -35.0691308,
+    "Lon": 138.8549994,
+    "Website": "http://library.mountbarker.sa.gov.au/",
+    "GooglePlaceId": "ChIJrYoP6kQwt2oR8EewUfKnst4",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:00", "close": "19:00" }],
+        "tue": [{ "open": "09:00", "close": "17:00" }],
+        "wed": [{ "open": "09:00", "close": "17:00" }],
+        "thu": [{ "open": "09:00", "close": "20:00" }],
+        "fri": [{ "open": "09:00", "close": "17:00" }],
+        "sat": [{ "open": "09:00", "close": "16:00" }],
+        "sun": []
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/903719806",
+    "Name": "West Lakes Library",
+    "Address": "9 Charles St, West Lakes SA 5021",
+    "Lat": -34.8790342,
+    "Lon": 138.4944856,
+    "Website": "https://www.charlessturt.sa.gov.au/community/library/our-libraries/ngutungka-west-lakes",
+    "GooglePlaceId": "ChIJVaVAbRzEsGoRmq2NyeVxvy8",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:30", "close": "17:00" }],
+        "tue": [{ "open": "09:30", "close": "17:00" }],
+        "wed": [{ "open": "09:30", "close": "17:00" }],
+        "thu": [{ "open": "09:30", "close": "17:00" }],
+        "fri": [{ "open": "09:30", "close": "17:00" }],
+        "sat": [{ "open": "10:00", "close": "16:00" }],
+        "sun": [{ "open": "12:00", "close": "16:00" }]
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        },
+        {
+          "closed": true,
+          "reason": "Easter weekend"
+        },
+        {
+          "closed": true,
+          "reason": "Christmas"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30",
+        "note": "Spaces are available for hire outside of standard opening hours."
+      }
+    },
+    "Categories": "Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/259725059",
+    "Name": "Noarlunga Library",
+    "Address": "Hannah Rd, Noarlunga Centre SA 5168",
+    "Lat": -35.1400676,
+    "Lon": 138.4967251,
+    "Website": "http://www.onkaparingacity.com/libraries",
+    "Website2": "https://www.onkaparingacity.com/Community-facilities-support/Libraries/Library-locations/Noarlunga-Library",
+    "GooglePlaceId": "3OcMmsWoRofZylZpef90",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:30", "close": "17:30" }],
+        "tue": [{ "open": "09:30", "close": "17:30" }],
+        "wed": [{ "open": "09:30", "close": "17:30" }],
+        "thu": [{ "open": "09:30", "close": "19:00" }],
+        "fri": [{ "open": "09:30", "close": "17:30" }],
+        "sat": [{ "open": "10:00", "close": "15:00" }],
+        "sun": []
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/218842486",
+    "Name": "North Adelaide Public Library",
+    "Address": "North Adelaide Public Library",
+    "Lat": -34.9062141,
+    "Lon": 138.593835,
+    "Website": "http://www.adelaidecitycouncil.com/your-community/library-services/",
+    "Website2": "https://www.cityofadelaide.com.au/community/library-services/library-locations/north-adelaide-library/",
+    "GooglePlaceId": "ChIJ5WwfU9fIsGoRLTMsfMdyF-Y",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "10:00", "close": "18:00" }],
+        "tue": [{ "open": "10:00", "close": "18:00" }],
+        "wed": [{ "open": "10:00", "close": "18:00" }],
+        "thu": [{ "open": "10:00", "close": "20:00" }],
+        "fri": [{ "open": "10:00", "close": "18:00" }],
+        "sat": [{ "open": "11:00", "close": "14:00" }],
+        "sun": []
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL OK ※一個目意味わからんが"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/502828536",
+    "Name": "Park Holme Library",
+    "Address": "2a Duncan Ave, Park Holme SA 5043",
+    "Lat": -34.9917514,
+    "Lon": 138.555503,
+    "Website": "https://www.marion.sa.gov.au/venues-and-facilities/park-holme-library",
+    "GooglePlaceId": "ChIJKSAPHpnasGoRZK-8InWvD1w",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:30", "close": "17:00" }],
+        "tue": [{ "open": "09:30", "close": "17:00" }],
+        "wed": [{ "open": "09:30", "close": "19:00" }],
+        "thu": [{ "open": "09:30", "close": "17:00" }],
+        "fri": [{ "open": "09:30", "close": "17:00" }],
+        "sat": [{ "open": "10:00", "close": "16:00" }],
+        "sun": []
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30",
+        "note": "Sunday: Closed"
+      }
+    },
+    "Categories": "Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/6884056285",
+    "Name": "Parks Library",
+    "Address": "46 Trafford St, Angle Park SA 5010",
+    "Lat": -34.8586136,
+    "Lon": 138.557573,
+    "Website": "https://www.paelibraries.com.au/home",
+    "Website2": "https://www.paelibraries.com.au/locations",
+    "GooglePlaceId": "ChIJsaO-w-3HsGoROOmKhBcV7_8",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:00", "close": "17:00" }],
+        "tue": [{ "open": "09:00", "close": "17:00" }],
+        "wed": [{ "open": "09:00", "close": "19:00" }],
+        "thu": [{ "open": "09:00", "close": "17:00" }],
+        "fri": [{ "open": "09:00", "close": "19:00" }],
+        "sat": [{ "open": "10:00", "close": "16:00" }],
+        "sun": [{ "open": "10:00", "close": "16:00" }]
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Library",
+    "Comment": ""
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/3803457282",
+    "Name": "Playford Library Service (Stretton Centre Library)",
+    "Address": "307 Peachey Rd, Munno Para SA 5115",
+    "Lat": -34.66944,
+    "Lon": 138.68049,
+    "Website": "http://www.playford.sa.gov.au/library",
+    "Website2": "https://www.playford.sa.gov.au/community/library-services/locations",
+    "GooglePlaceId": "ChIJAwQ2uPqssGoR5OuJPtlOhJs",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:00", "close": "17:00" }],
+        "tue": [{ "open": "09:00", "close": "17:00" }],
+        "wed": [{ "open": "09:00", "close": "17:00" }],
+        "thu": [{ "open": "10:00", "close": "19:00" }],
+        "fri": [{ "open": "09:00", "close": "17:00" }],
+        "sat": [{ "open": "10:00", "close": "14:00" }],
+        "sun": []
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30",
+        "note": "Sunday: Closed"
+      }
+    }, 
+    "Categories": "Library",
+    "Comment": "URL OK 緯度経度直した"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/4950739608",
+    "Name": "Playford Library",
+    "Address": "10 Playford Blvd, Elizabeth SA 5112",
+    "Lat": -34.71775,
+    "Lon": 138.67131,
+    "Website": "http://playford.sa.gov.au/",
+    "Website2": "https://www.playford.sa.gov.au/community/library-services/locations",
+    "GooglePlaceId": "ChIJwRldJaWtsGoRSNpvdPD7EHM",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:00", "close": "18:00" }],
+        "tue": [{ "open": "09:00", "close": "21:00" }],
+        "wed": [{ "open": "09:00", "close": "18:00" }],
+        "thu": [{ "open": "09:00", "close": "21:00" }],
+        "fri": [{ "open": "09:00", "close": "18:00" }],
+        "sat": [{ "open": "10:00", "close": "14:00" }],
+        "sun": [{ "open": "13:00", "close": "16:00" }]
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    }, 
+    "Categories": "Library",
+    "Comment": "URLOK 緯度経度直した"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/2483267814",
+    "Name": "Port Adelaide Public Library",
+    "Address": "2-4 Church St, Port Adelaide SA 5015",
+    "Lat": -34.8473277,
+    "Lon": 138.5033672,
+    "Website": "https://www.paelibraries.com.au/home",
+    "Website2": "https://www.paelibraries.com.au/locations",
+    "GooglePlaceId": "ChIJd1U_hebGsGoRXPdqLLuZbes",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:00", "close": "17:00" }],
+        "tue": [{ "open": "09:00", "close": "17:00" }],
+        "wed": [{ "open": "09:00", "close": "17:00" }],
+        "thu": [{ "open": "09:00", "close": "19:00" }],
+        "fri": [{ "open": "09:00", "close": "17:00" }],
+        "sat": [{ "open": "10:00", "close": "14:00" }],
+        "sun": [{ "open": "13:00", "close": "16:00" }]
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/215364809",
+    "Name": "Semaphore Library",
+    "Address": "14 Semaphore Rd, Semaphore SA 5019",
+    "Lat": -34.8388164,
+    "Lon": 138.4812309,
+    "Website": "https://www.paelibraries.com.au/home",
+    "Website2": "https://www.paelibraries.com.au/locations",
+    "GooglePlaceId": "ChIJ91XBqtPGsGoRM7su2SDPOc4",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:00", "close": "18:00" }],
+        "tue": [{ "open": "09:00", "close": "18:00" }],
+        "wed": [{ "open": "09:00", "close": "18:00" }],
+        "thu": [{ "open": "09:00", "close": "19:00" }],
+        "fri": [{ "open": "09:00", "close": "18:00" }],
+        "sat": [{ "open": "10:00", "close": "14:00" }],
+        "sun": [{ "open": "13:00", "close": "16:00" }]
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/831017647",
+    "Name": "Prospect Library",
+    "Address": "Payinthi/128 Prospect Rd, Prospect SA 5082",
+    "Lat": -34.8860586,
+    "Lon": 138.5935751,
+    "Website": "https://www.prospect.sa.gov.au/community/library",
+    "GooglePlaceId": "ChIJAdbBpADJsGoRsTx-h-OMk2k",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:00", "close": "17:00" }],
+        "tue": [{ "open": "09:00", "close": "17:00" }],
+        "wed": [{ "open": "09:00", "close": "17:00" }],
+        "thu": [{ "open": "09:00", "close": "17:00" }],
+        "fri": [{ "open": "09:00", "close": "17:00" }],
+        "sat": [{ "open": "10:00", "close": "16:00" }],
+        "sun": []
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30",
+        "note": "Closed Sundays and public holidays."
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/588082537",
+    "Name": "Ngutungka Henley",
+    "Address": "378 Seaview Rd, Henley Beach SA 5022",
+    "Lat": -34.9170365,
+    "Lon": 138.4938722,
+    "Website": "https://www.charlessturt.sa.gov.au/community/library/our-libraries/ngutungka-henley",
+    "GooglePlaceId": "ChIJOzo9gI7EsGoRaixbUDcJpHw",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:30", "close": "17:00" }],
+        "tue": [{ "open": "09:30", "close": "17:00" }],
+        "wed": [{ "open": "09:30", "close": "17:00" }],
+        "thu": [{ "open": "09:30", "close": "17:00" }],
+        "fri": [{ "open": "09:30", "close": "17:00" }],
+        "sat": [{ "open": "10:00", "close": "16:00" }],
+        "sun": [{ "open": "12:00", "close": "16:00" }]
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        },
+        {
+          "closed": true,
+          "reason": "Easter weekend"
+        },
+        {
+          "closed": true,
+          "reason": "Christmas"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/677417155",
+    "Name": "State Library of South Australia",
+    "Address": "North Terrace, Adelaide SA 5000",
+    "Lat": -34.9205015,
+    "Lon": 138.6023669,
+    "Website": "https://www.slsa.sa.gov.au/",
+    "Website2": "https://www.slsa.sa.gov.au/open-hours",
+    "GooglePlaceId": "ChIJO-oXXtTOsGoRfYnU7yRVa74",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "10:00", "close": "17:00" }],
+        "tue": [{ "open": "10:00", "close": "19:00" }],
+        "wed": [{ "open": "10:00", "close": "17:00" }],
+        "thu": [{ "open": "10:00", "close": "17:00" }],
+        "fri": [{ "open": "10:00", "close": "17:00" }],
+        "sat": [{ "open": "12:00", "close": "17:00" }],
+        "sun": [{ "open": "12:00", "close": "17:00" }]
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Library",
+    "Comment": "The second URL is more for opening hours"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/260373162",
+    "Name": "Sturt Library",
+    "Address": "Sturt Dr, Bedford Park SA 5042",
+    "Lat": -35.0183565,
+    "Lon": 138.5751312,
+    "Website": "Sturt Dr, Bedford Park SA 5042",
+    "GooglePlaceId": "ChIJYUzuQIrQsGoR_agznGsHYPg",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "00:00", "close": "24:00" }],
+        "tue": [{ "open": "00:00", "close": "24:00" }],
+        "wed": [{ "open": "00:00", "close": "24:00" }],
+        "thu": [{ "open": "00:00", "close": "24:00" }],
+        "fri": [{ "open": "00:00", "close": "24:00" }],
+        "sat": [{ "open": "00:00", "close": "24:00" }],
+        "sun": [{ "open": "00:00", "close": "24:00" }]
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "University Library",
+    "Comment": "OKでしょ"
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/282459978",
+    "Name": "Unley Civic Library",
+    "Address": "181 Unley Rd, Unley SA 5061",
+    "Lat": -34.9506833,
+    "Lon": 138.6078907,
+    "Website": "http://www.unley.sa.gov.au/libraries",
+    "GooglePlaceId": "ChIJoxrdY_rOsGoRd7-K0JRZ1is",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "13:00", "close": "18:00" }],
+        "tue": [{ "open": "10:00", "close": "18:00" }],
+        "wed": [{ "open": "10:00", "close": "18:00" }],
+        "thu": [{ "open": "10:00", "close": "20:00" }],
+        "fri": [{ "open": "10:00", "close": "18:00" }],
+        "sat": [{ "open": "10:00", "close": "16:00" }],
+        "sun": [{ "open": "14:00", "close": "17:00" }]
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Library",
+    "Comment": "OK"
+
+  },
+  {
+    "OsmType": "node",
+    "OsmId": "node/322709645",
+    "Name": "Walkerville Library",
+    "Address": "66 Walkerville Terrace, Gilberton SA 5081",
+    "Lat": -34.8976454,
+    "Lon": 138.614537,
+    "Website": "https://sapln.ent.sirsidynix.net.au/client/en_AU/walkerville/",
+    "GooglePlaceId": "ChIJ9dDKOxLJsGoRzA4bvLc8V5s",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:00", "close": "19:00" }],
+        "tue": [{ "open": "09:00", "close": "17:00" }],
+        "wed": [{ "open": "09:00", "close": "17:00" }],
+        "thu": [{ "open": "09:00", "close": "17:00" }],
+        "fri": [{ "open": "09:00", "close": "17:00" }],
+        "sat": [{ "open": "09:30", "close": "13:00" }],
+        "sun": []
+      },
+      "exceptions": [],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/182633531",
+    "Name": "West Torrens Library",
+    "Address": "1 Brooker Terrace, Hilton SA 5033",
+    "Lat": -34.9338192,
+    "Lon": 138.5618824,
+    "Website": "https://www.westtorrens.sa.gov.au/Library",
+    "Website2": "https://www.libraries.sa.gov.au/client/en_AU/westtorrens/",
+    "GooglePlaceId": "ChIJMysw2oHPsGoRfewZ18-uwxU",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "10:00", "close": "18:00" }],
+        "tue": [{ "open": "10:00", "close": "18:00" }],
+        "wed": [{ "open": "08:00", "close": "18:00" }],
+        "thu": [{ "open": "10:00", "close": "20:00" }],
+        "fri": [{ "open": "10:00", "close": "18:00" }],
+        "sat": [{ "open": "10:00", "close": "16:00" }],
+        "sun": [{ "open": "13:00", "close": "16:00" }]
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/227745472",
+    "Name": "Woodcroft Library",
+    "Address": "175 Bains Rd, Morphett Vale SA 5162",
+    "Lat": -35.1136282,
+    "Lon": 138.5460761,
+    "Website": "https://www.onkaparingacity.com/Community-facilities-support/Libraries",
+    "Website2": "https://www.onkaparingacity.com/Community-facilities-support/Libraries/Library-locations/Woodcroft-Library",
+    "GooglePlaceId": "ChIJRd8M4AnYsGoRgHxxuphtn28",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:30", "close": "17:30" }],
+        "tue": [{ "open": "09:30", "close": "17:30" }],
+        "wed": [{ "open": "09:30", "close": "17:30" }],
+        "thu": [{ "open": "09:30", "close": "19:00" }],
+        "fri": [{ "open": "09:30", "close": "17:30" }],
+        "sat": [],
+        "sun": [{ "open": "13:00", "close": "16:00" }]
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30"
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL OK"
+  },
+  {
+    "OsmType": "way",
+    "OsmId": "way/341969614",
+    "Name": "Adelaide Hills Council Libraries (Woodside)",
+    "Address": "26 Onkaparinga Valley Rd, Woodside SA 5244",
+    "Lat": -34.9539764,
+    "Lon": 138.8750404,
+    "Website": "https://onecard.network/client/en_AU/adelaidehills/",
+    "Website2": "https://www.ahc.sa.gov.au/services/libraries/library-locations-and-hours/woodside-library",
+    "GooglePlaceId": "ChIJ1xGaYQFIt2oRiYyUvEEG51A",
+    "OpeningHours": {
+      "timezone": "Australia/Adelaide",
+      "weekly": {
+        "mon": [{ "open": "09:00", "close": "17:00" }],
+        "tue": [{ "open": "09:00", "close": "17:00" }],
+        "wed": [{ "open": "09:00", "close": "17:00" }],
+        "thu": [{ "open": "11:00", "close": "19:00" }],
+        "fri": [{ "open": "09:00", "close": "17:00" }],
+        "sat": [{ "open": "10:00", "close": "13:00" }],
+        "sun": []
+      },
+      "exceptions": [
+        {
+          "closed": true,
+          "reason": "Public Holidays"
+        }
+      ],
+      "source": {
+        "type": "manual",
+        "updatedAt": "2025-12-24T09:00:00+10:30",
+        "note": "Library and Council Customer Services hours. "
+      }
+    },
+    "Categories": "Public Library",
+    "Comment": "URL OK"
+  }
+
+]

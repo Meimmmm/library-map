@@ -40,36 +40,36 @@ function App() {
       </header>
 
       {/* main content */}
-<main className="flex-1 min-h-0 relative">
-  <div className="w-full h-full">
-    <MapView
-      timeMode={timeMode}
-      setTimeMode={setTimeMode}
-      selectedDate={selectedDate}
-      selectedTime={selectedTime}
-      now={now}
-    />
-  </div>
+      <main className="flex-1 min-h-0 relative">
+        <div className="w-full h-full">
+          <MapView
+            timeMode={timeMode}
+            setTimeMode={setTimeMode}
+            selectedDate={selectedDate}
+            selectedTime={selectedTime}
+            now={now}
+          />
+        </div>
 
-  {/* Bottom floating bar */}
-  <div className="absolute inset-x-0 bottom-6 z-[1500] flex justify-center px-3">
-    <BottomDateTimeBar
-      selectedDate={selectedDate}
-      setSelectedDate={setSelectedDate}
-      selectedTime={selectedTime}
-      setSelectedTime={setSelectedTime}
-      onReset={() => {
-        // Use the same "now" reset logic you already have
-        const d = new Date();
-        const ymd = d.toISOString().split("T")[0];
-        const hh = String(d.getHours()).padStart(2, "0");
-        const mm = String(d.getMinutes()).padStart(2, "0");
-        setSelectedDate(ymd);
-        setSelectedTime(`${hh}:${mm}`); // (30分丸めしたいならここで round)
-      }}
-    />
-  </div>
-</main>
+        {/* Bottom floating bar */}
+        <div className="absolute inset-x-0 bottom-6 z-[1500] flex justify-center px-3">
+          <BottomDateTimeBar
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+            selectedTime={selectedTime}
+            setSelectedTime={setSelectedTime}
+            onReset={() => {
+              // Use the same "now" reset logic you already have
+              const d = new Date();
+              const ymd = d.toISOString().split("T")[0];
+              const hh = String(d.getHours()).padStart(2, "0");
+              const mm = String(d.getMinutes()).padStart(2, "0");
+              setSelectedDate(ymd);
+              setSelectedTime(`${hh}:${mm}`); // (30分丸めしたいならここで round)
+            }}
+          />
+        </div>
+      </main>
 
     </div>
   );

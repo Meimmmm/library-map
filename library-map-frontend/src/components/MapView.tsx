@@ -16,6 +16,10 @@ import TimeModeDropdown from "./TimeModeDropdown";
 import { useLibraries } from "../hooks/useLibraries";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 
+import seedLibraries from "../assets/seed-libraries.json";
+import { mapSeedToLibrary } from "../utils/seedMapper";
+import type { Library } from "../types/library";
+
 interface MapViewProps {
   timeMode: TimeMode;
   setTimeMode: (m: TimeMode) => void;
@@ -44,12 +48,24 @@ function MapView({
   selectedTime,
   now
 }: MapViewProps) {
-  const { libs, isLoading, error } = useLibraries(); //apiLibs
+  const { libs: apiLibs, isLoading, error } = useLibraries();
 
-  // const selectedDateTime = mergeYmdWithHHmm(selectedDate, selectedTime);
-  // const isTodaySelected = isSameDay(fromYmdLocal(selectedDate), now);
+  // Transform seed data only once (performance optimization)
+  const seedLibs = useMemo<Library[]>(
+    () => seedLibraries.map(mapSeedToLibrary),
+    []
+  );
 
-  // usemenoじゃないとダメ？上じゃダメ？
+  // Display library: API after API loading is complete, seed until then
+  const libraries = useMemo(() => {
+    // API loading or no errors & data available → Use API
+    if (!isLoading && !error && apiLibs.length > 0) {
+      return apiLibs;
+    }
+    // Others (initial display, loading, error) → Use seed
+    return seedLibs;
+  }, [apiLibs, seedLibs, isLoading, error]);
+
   const selectedDateTime = useMemo(
     () => mergeYmdWithHHmm(selectedDate, selectedTime),
     [selectedDate, selectedTime]
@@ -62,37 +78,27 @@ function MapView({
 
   const isMobile = useMediaQuery("(max-width: 640px)");
 
-  // const [myLocation, setMyLocation] = useState<{
-  //   lat: number;
-  //   lng: number;
-  //   accuracy?: number;
-  //   updatedAt: number;
-  // } | null>(null);
-  // // const [isLocating, setIsLocating] = useState(false);
-  // const [locationError, setLocationError] = useState<string | null>(null);
-
   const [myLocation, setMyLocation] = useState<MyLocation | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
 
-  // const libs = useMemo(() => apiLibs.map(toFrontendLibrary), [apiLibs]);
-
-  // // Responsive check
-  // const isMobile = window.matchMedia("(max-width: 640px)").matches;
-
-
+  // Error message (map is displayed because fallback to seed has been performed)
   if (error) {
-    return <div className="p-4 text-red-600">API Error: {error}</div>;
+    console.warn("API Error (using seed data):", error);
   }
 
   return (
     <div className="h-full w-full relative">
-
-      {/* Loading overlay */}
+      {/* Loading overlay - Displaying seed and waiting for API */}
       {isLoading && (
-        <div className="absolute inset-0 z-[1200] flex items-center justify-center bg-white/40 backdrop-blur-sm">
-          <div className="rounded-2xl border bg-white px-4 py-3 shadow-lg text-sm text-slate-700">
-            Loading libraries…
-          </div>
+        <div className="absolute top-3 left-3 z-[1200] rounded-xl border bg-white/95 px-3 py-2 shadow-md text-xs text-slate-600">
+          Updating from server...
+        </div>
+      )}
+
+      {/* API Error notification */}
+      {error && (
+        <div className="absolute top-3 left-3 z-[1200] rounded-xl border border-amber-200 bg-amber-50/95 px-3 py-2 shadow-md text-xs text-amber-800">
+          Using cached data (API unavailable)
         </div>
       )}
 
@@ -128,14 +134,10 @@ function MapView({
 
         {myLocation && <MyLocationOverlay myLocation={myLocation} isMobile={isMobile} />}
 
-        {libs.map((lib) => {
+        {libraries.map((lib) => {
           const times = getTodayOpenAndCloseTime(selectedDateTime, lib.openingHoursJson ?? undefined);
           const status = getTodayLibraryStatus(selectedDateTime, lib.openingHoursJson ?? undefined);
           const markerLabel = getMarkerLabel(timeMode, times);
-
-          // const { openTime, closeTime, openCloseTime } =
-          //   getTodayOpenAndCloseTime(selectedDateTime, lib.openingHoursJson ?? undefined);
-          // const status = getTodayLibraryStatus(selectedDateTime, lib.openingHoursJson ?? undefined);
 
           return (
             <Marker
@@ -145,10 +147,10 @@ function MapView({
               zIndexOffset={status.isOpen ? 1000 : 0}
             >
               <Popup>
-                <LibraryPopup
-                  lib={lib}
+                <LibraryPopup 
+                  lib={lib} 
                   status={status}
-                />
+                  />
               </Popup>
             </Marker>
           );
