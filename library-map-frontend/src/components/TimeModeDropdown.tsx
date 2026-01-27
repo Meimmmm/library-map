@@ -2,14 +2,6 @@
 import type { TimeMode } from "../types/timeMode";
 import { TIME_MODE_LABEL } from "../types/timeMode";
 
-// type TimeMode = "openTime" | "closeTime" | "openCloseTime";
-
-// const modeLabel: Record<TimeMode, string> = {
-//   openCloseTime: "Open-Close Time",
-//   openTime: "Open Time",
-//   closeTime: "Close Time",
-// };
-
 export default function TimeModeDropdown({
   timeMode,
   setTimeMode,
@@ -18,7 +10,7 @@ export default function TimeModeDropdown({
   setTimeMode: (m: TimeMode) => void;
 }) {
   return (
-    <div className="absolute top-3 right-3 z-[1000]">
+    // <div className="absolute top-3 right-3 z-[1000]">
       <details className="group relative inline-block">
         <summary className="list-none cursor-pointer select-none rounded-full border bg-white/95 backdrop-blur px-3 py-2 shadow-md inline-flex items-center gap-2 w-max">
           <span className="text-sm font-medium text-slate-800 max-w-[120px] truncate">
@@ -45,6 +37,6 @@ export default function TimeModeDropdown({
           ))}
         </div>
       </details>
-    </div>
+    // </div>
   );
 }

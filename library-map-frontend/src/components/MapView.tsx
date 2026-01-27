@@ -88,22 +88,24 @@ function MapView({
 
   return (
     <div className="h-full w-full relative">
-      {/* Loading overlay - Displaying seed and waiting for API */}
-      {isLoading && (
-        <div className="absolute top-3 left-3 z-[1200] rounded-xl border bg-white/95 px-3 py-2 shadow-md text-xs text-slate-600">
-          Updating from server...
-        </div>
-      )}
+      <div className="absolute top-3 right-3 z-[1200] flex flex-col gap-2">
 
-      {/* API Error notification */}
-      {error && (
-        <div className="absolute top-3 left-3 z-[1200] rounded-xl border border-amber-200 bg-amber-50/95 px-3 py-2 shadow-md text-xs text-amber-800">
-          Using cached data (API unavailable)
-        </div>
-      )}
+        {/* Dropdown */}
+        <TimeModeDropdown timeMode={timeMode} setTimeMode={setTimeMode} />
 
-      {/* Dropdown */}
-      <TimeModeDropdown timeMode={timeMode} setTimeMode={setTimeMode} />
+        {/* Loading overlay - Displaying seed and waiting for API */}
+        {isLoading && (
+          <div className="rounded-xl border bg-white/95 px-3 py-2 shadow-md text-xs text-slate-600">
+            Updating from server...
+          </div>
+        )}
+        {/* API Error notification */}
+        {error && (
+          <div className="rounded-xl border border-amber-200 bg-amber-50/95 px-3 py-2 shadow-md text-xs text-amber-800">
+            Using cached data (API unavailable)
+          </div>
+        )}
+      </div>
 
       {/* Location error */}
       {locationError && (
@@ -147,10 +149,10 @@ function MapView({
               zIndexOffset={status.isOpen ? 1000 : 0}
             >
               <Popup>
-                <LibraryPopup 
-                  lib={lib} 
+                <LibraryPopup
+                  lib={lib}
                   status={status}
-                  />
+                />
               </Popup>
             </Marker>
           );
