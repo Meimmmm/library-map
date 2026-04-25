@@ -20,8 +20,9 @@ namespace LibraryMap.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Library>>> GetAll()
         {
+            //Execute the SQL query "SELECT * FROM Libraries" on the Libraries table
             var items = await _db.Libraries
-                .OrderBy(x => x.Id)
+                .OrderBy(x => x.Id) //API responses are easier to handle if they are stable
                 .ToListAsync();
 
             return Ok(items);

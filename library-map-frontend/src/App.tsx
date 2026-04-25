@@ -3,27 +3,24 @@ import { useState } from "react";
 import MapView from "./components/MapView";
 import type { TimeMode } from "./types/timeMode";
 import BottomDateTimeBar from "./components/BottomDateTimeBar";
-
-// import HeaderDateTimeChip from "./components/HeaderDateTimeChip";
-
-function pad2(n: number) {
-  return String(n).padStart(2, "0");
-}
+import { toYmdLocal, toHHmmLocal } from "./utils/dateUtils";
 
 function App() {
   // Use this time and date as the basis for "today"
   const now = new Date();
 
+  // These states represent user-selected date/time (not auto-updated "current time").
+  // They are initialized once from "now" on first render, and then only updated via setState.
   const [timeMode, setTimeMode] = useState<TimeMode>("openCloseTime");
 
   // YYYY-MM-DD
   const [selectedDate, setSelectedDate] = useState(() => {
-    return `${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(now.getDate())}`;
+    return toYmdLocal(now);
   });
 
   // HH:MM
   const [selectedTime, setSelectedTime] = useState(() => {
-    return `${pad2(now.getHours())}:${pad2(now.getMinutes())}`;
+    return toHHmmLocal(now);
   });
 
   console.log("selectedDate:" + selectedDate + ", selectedTime:" + selectedTime); // + ", now: " + now
@@ -59,13 +56,10 @@ function App() {
             selectedTime={selectedTime}
             setSelectedTime={setSelectedTime}
             onReset={() => {
-              // Use the same "now" reset logic you already have
-              const d = new Date();
-              const ymd = d.toISOString().split("T")[0];
-              const hh = String(d.getHours()).padStart(2, "0");
-              const mm = String(d.getMinutes()).padStart(2, "0");
-              setSelectedDate(ymd);
-              setSelectedTime(`${hh}:${mm}`); // (30分丸めしたいならここで round)
+              //Reset to current local date and time using a single Date instance
+              const now = new Date();
+              setSelectedDate(toYmdLocal(now));
+              setSelectedTime(toHHmmLocal(now));
             }}
           />
         </div>

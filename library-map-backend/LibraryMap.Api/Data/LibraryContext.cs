@@ -10,6 +10,7 @@ namespace LibraryMap.Api.Data
         {
         }
 
+        //This maps C#'s Library class to the Database's Libraries table
         public DbSet<Library> Libraries => Set<Library>();  // Table name "Libraries"
     }
 }

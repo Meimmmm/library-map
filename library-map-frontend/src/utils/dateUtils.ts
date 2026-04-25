@@ -1,5 +1,17 @@
 // src/utils/dateUtils.ts
 
+// Get today's date in YYYY-MM-DD format (local)
+export function toYmdLocal(d: Date): string {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+export function toHHmmLocal(d: Date): string {
+  return `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
+}
+
 // Is it the same calendar day?
 export function isSameDay(a: Date, b: Date): boolean {
   return (

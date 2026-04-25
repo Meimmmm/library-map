@@ -1,24 +1,29 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { toYmdLocal } from "../utils/dateUtils";
 
+// Props passed from parent (App) to control date/time state
 type Props = {
-    selectedDate: string; // YYYY-MM-DD
-    setSelectedDate: (v: string) => void;
+    selectedDate: string; // Currently selected date (YYYY-MM-DD)
+    setSelectedDate: (v: string) => void; // Update selected date
 
-    selectedTime: string; // HH:MM (24h)
-    setSelectedTime: (v: string) => void;
+    selectedTime: string; // Currently selected time (HH:MM, 24h)
+    setSelectedTime: (v: string) => void; // Update selected time
 
-    onReset: () => void;
+    onReset: () => void; // Reset to current date/time
 };
 
+// Pad number to 2 digits (e.g., 3 → "03")
 function pad2(n: number) {
     return String(n).padStart(2, "0");
 }
 
+// Convert YYYY-MM-DD string to a local Date object (avoid UTC shift)
 function fromYmdLocal(ymd: string) {
     const [y, m, d] = ymd.split("-").map(Number);
     return new Date(y, (m ?? 1) - 1, d ?? 1);
 }
 
+// Build time options (e.g., every 30 minutes: 00:00, 00:30, ...)
 function buildTimeOptions(stepMinutes = 30) {
     const out: string[] = [];
     for (let h = 0; h < 24; h++) {
@@ -90,7 +95,6 @@ export default function BottomDateTimeBar({
         listRef.current.scrollTop = idx * 36 - 36 * 3;
     }, [isTimeOpen]);
 
-
     return (
         // Add ref here (includes dropdown + bar)
         <div className="relative" ref={timeWrapRef}>
@@ -147,7 +151,15 @@ export default function BottomDateTimeBar({
                         ref={dateInputRef}
                         type="date"
                         value={selectedDate}
-                        onChange={(e) => setSelectedDate(e.target.value)}
+                        onChange={(e) => {
+                            const value = e.target.value;
+                            // If cleared, reset to today's local date
+                            if (!value) {
+                                setSelectedDate(toYmdLocal(new Date()));
+                                return;
+                            }
+                            setSelectedDate(value);
+                        }}
                         aria-label="Select date"
                         className="absolute inset-0 h-full w-full opacity-0 cursor-pointer"
                     />
