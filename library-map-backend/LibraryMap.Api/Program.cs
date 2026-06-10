@@ -4,7 +4,7 @@ using LibraryMap.Api.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 //******************************************************************
-// Services
+// Register Services
 //******************************************************************
 builder.Services.AddEndpointsApiExplorer(); // For Swagger
 builder.Services.AddSwaggerGen();           // For Swagger
@@ -36,10 +36,14 @@ var app = builder.Build();
 //******************************************************************
 // DB migrate
 //******************************************************************
-using (var scope = app.Services.CreateScope())
+if (app.Environment.IsDevelopment())
 {
-    var db = scope.ServiceProvider.GetRequiredService<LibraryContext>();
-    await db.Database.MigrateAsync();   // Table creation/update
+    // Migration when it's on development environment. In production, we should do migration manually (e.g. using CLI) to avoid unexpected issues.
+    using (var scope = app.Services.CreateScope())
+    {
+        var db = scope.ServiceProvider.GetRequiredService<LibraryContext>();
+        await db.Database.MigrateAsync();
+    }
 }
 
 
