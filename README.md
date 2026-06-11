@@ -107,8 +107,8 @@ This ensures secure cross-origin communication between the frontend and backend.
 
 ### Migration Policy
 
-- Migrations are **not executed automatically on application startup**
-- Schema changes are applied explicitly using EF Core migration commands
+- In development, migrations are executed automatically on application startup via `MigrateAsync()`
+- In production, schema changes are applied explicitly using EF Core migration commands
 - This approach avoids unintended schema changes in production environments and reflects production-safe practices
 
 ---
