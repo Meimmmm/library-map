@@ -22,6 +22,7 @@ namespace LibraryMap.Api.Controllers
         {
             //Execute the SQL query "SELECT * FROM Libraries" on the Libraries table
             var items = await _db.Libraries
+                .AsNoTracking()     //Don't track these entities in EF's Change Tracker (we won't be updating them)
                 .OrderBy(x => x.Id) //API responses are easier to handle if they are stable
                 .ToListAsync();
 
